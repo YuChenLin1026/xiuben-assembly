@@ -1,9 +1,9 @@
 <meta charset="utf-8">
-<title>岫本組裝台</title>
+<title>岫本組裝台・原型版 v3</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* 第九輪：每一步拆成動作（放、卡、黏、鎖、焊、綁），可以播放模擬；每個接合處都附驗證結果 */
+/* 原型版 v3（照第九輪網站）：每一步拆成動作（放、卡、黏、鎖、焊、綁），可以播放模擬；每個接合處都附驗證結果 */
 :root{
   --bg:#EEEDE8; --bar:#F7F6F2; --panel:#FBFAF7; --card:#FFFFFF; --ink:#1C1F1A; --muted:#666B60; --line:#DEDBD2; --line2:#E8E5DD;
   --sage:#5E7A55; --sage-2:#7E9A70; --sage-tint:#E4EBDF; --champ:#B08D57; --champ-tint:#F1E8D8; --ok:#3E7D52; --bad:#B4432F;
@@ -237,7 +237,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--champ);outline-offs
   <div class="top">
     <div class="brand">
       <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M4 27 L13 12 L18 19 L22 14 L30 27 Z" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linejoin="round"/><path d="M9 9 Q13 5 17 9 Q21 6 24 9" fill="none" stroke="var(--champ)" stroke-width="2" stroke-linecap="round"/></svg>
-      <div><b>岫本組裝台</b><small id="brandSub">第九輪 · 每一步都可以播放模擬</small></div>
+      <div><b>岫本組裝台</b><small id="brandSub">原型版 v3 · 每一步都可以播放模擬</small></div>
     </div>
     <div class="prog"><span>已組好</span><span class="n" id="pN">0 / 0</span><div class="track"><i id="pBar"></i></div></div>
     <div class="row">
@@ -375,7 +375,7 @@ const S = { inScene: new Set(), t: {}, gid: {}, nextG: 1, sel: null, open: null,
   loading: new Set(), actDone: new Set(), wiresOn: new Set(), curAct: -1, sim: null };
 const KEY = 'xiuben-asm-v9d';   // 零件表、步驟改過（伸縮管一體、觸控 LOGO、18 步）→ 舊進度不載入
 let three = null;
-$('#brandSub').textContent = `第九輪 · ${IDS.length} 個零件 · ${STEPS.length} 步 · ${STEPS.reduce((n, s) => n + s.acts.length, 0)} 個動作`;
+$('#brandSub').textContent = `原型版 v3 · ${IDS.length} 個零件 · ${STEPS.length} 步 · ${STEPS.reduce((n, s) => n + s.acts.length, 0)} 個動作`;
 
 function toast(msg, kind, ms) { const t = $('#toast'); t.textContent = msg; t.className = 'toast ' + (kind || ''); t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, ms || (kind === 'bad' ? 6000 : 3200)); if (kind === 'bad') SND.play('bad'); }
 function groupIds(id) { return IDS.filter(x => S.inScene.has(x) && S.gid[x] === S.gid[id]); }
@@ -547,7 +547,7 @@ function renderSheet() {
     const by = {}; DATA.joints.forEach(j => (by[j.cat] = by[j.cat] || []).push(j));
     const sn = DATA.snap;
     In.innerHTML = `<div class="vsum"><div><b>${sm.joints_ok} / ${sm.joints}</b><span>接合處通過</span></div><div><b>${sm.paths_ok} / ${sm.paths}</b><span>安裝路徑通過（照步驟順序）</span></div><div><b>${sm.wires_ok} / ${sm.wires}</b><span>電線路徑通過</span></div><div><b>${sm.interf_bad}</b><span>處不該有的干涉</span></div></div>
-      <div class="vgrp">這一輪改掉的結構問題</div><ol class="fixlist">${DATA.fix.map(f => `<li>${esc(f)}</li>`).join('')}</ol>
+      <div class="vgrp">原型版 v3 和量產版的差別</div><ol class="fixlist">${DATA.fix.map(f => `<li>${esc(f)}</li>`).join('')}</ol>
       <div class="vgrp">卡扣與螺絲計算</div><div class="calc">
         <div><b>旋轉環 6 根卡爪</b><br>倒鉤 r${sn.ring.hook_r} 對殼頂開口 r${sn.ring.lip_r} → 要往內彎 ${sn.ring.interference} mm<br>卡爪長 ${sn.ring.L}、厚 ${sn.ring.t} mm → 應變 ${sn.ring.strain}%（樹脂可承受約 2%）<br>壓上去約 ${sn.ring.push_N} N（不到 1 公斤力），拔起來約 ${sn.ring.pull_N} N <span class="${sn.ring.ok ? 'ok-t' : 'bad-t'}">${sn.ring.ok ? '通過' : '未通過'}</span></div>
         <div><b>伸縮柱定位鋼珠</b><br>鋼珠外緣 r${sn.ball.ball_tip_r}、套筒內壁 r${sn.ball.sleeve_r} → 推進去時彈簧壓縮 ${sn.ball.push_in} mm<br>凹槽深 ${sn.ball.groove_depth} mm（V 形，往上下推都能退出） <span class="${sn.ball.ok ? 'ok-t' : 'bad-t'}">${sn.ball.ok ? '通過' : '未通過'}</span></div>
