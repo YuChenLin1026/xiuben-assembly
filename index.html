@@ -373,7 +373,7 @@ STEPS.forEach((s, i) => {
 const name = id => P[id].name;
 const S = { inScene: new Set(), t: {}, gid: {}, nextG: 1, sel: null, open: null, filter: 'now', step: 0, ghost: false, wires: true, marks: true,
   loading: new Set(), actDone: new Set(), wiresOn: new Set(), curAct: -1, sim: null };
-const KEY = 'xiuben-asm-v9d';   // 零件表、步驟改過（伸縮管一體、觸控 LOGO、18 步）→ 舊進度不載入
+const KEY = 'xiuben-asm-p3a';   // 原型版 v3 的進度（和第九輪分開）
 let three = null;
 $('#brandSub').textContent = `原型版 v3 · ${IDS.length} 個零件 · ${STEPS.length} 步 · ${STEPS.reduce((n, s) => n + s.acts.length, 0)} 個動作`;
 
