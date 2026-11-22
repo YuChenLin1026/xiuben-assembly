@@ -1,0 +1,5997 @@
+{
+ "units": "mm",
+ "grav": {
+  "old": null,
+  "new": null,
+  "params": "26AWG 矽膠線（外徑 1.1 mm、每公尺約 2.6 g、彎曲剛度約 5×10⁻⁶ N·m²，估計值）；每段懸空的線多留 3 % ＋ 0.5 mm"
+ },
+ "parts": [
+  {
+   "id": "FRAME",
+   "name": "內骨架",
+   "kind": "print",
+   "dirKey": null,
+   "dir": null,
+   "bbMin": [
+    -51.81,
+    7.4,
+    -51.81
+   ],
+   "bbMax": [
+    51.81,
+    212.5,
+    51.81
+   ],
+   "blockers": [],
+   "adj": [
+    "BALL",
+    "CORD",
+    "DRV",
+    "DUCT",
+    "M3NUT",
+    "SCREWS",
+    "SHB_IN",
+    "SHF_IN",
+    "TUBE"
+   ],
+   "travel": 0.0,
+   "bom": {
+    "spec": "一體列印：承板、套筒（3 道定位凹槽、225° 捲線長槽）、導引段（環槽）、2 根鎖柱（M3 螺母側槽）、電池吊架（原型不用，留著）、模組安裝座、直槽、承板線槽",
+    "size": "Ø103.6 × 205 mm",
+    "qty": 1,
+    "mat": "光固化 標準樹脂（灰）",
+    "note": "承板 3 個 Ø6 走線孔。原型只用背面的霧化驅動板安裝座。"
+   }
+  },
+  {
+   "id": "M3NUT",
+   "name": "M3 螺母 ×2",
+   "kind": "buy",
+   "dirKey": null,
+   "dir": null,
+   "bbMin": [
+    -47.18,
+    9.1,
+    -2.75
+   ],
+   "bbMax": [
+    47.18,
+    11.5,
+    2.75
+   ],
+   "blockers": [],
+   "adj": [
+    "FRAME",
+    "SCREWS"
+   ],
+   "travel": 0.0,
+   "bom": {
+    "spec": "M3 六角螺母",
+    "size": "對邊 5.5 × 厚 2.4 mm",
+    "qty": 2,
+    "buy": "M3 螺母",
+    "note": "從鎖柱朝中心的側槽推進去。"
+   }
+  },
+  {
+   "id": "TUBE",
+   "name": "伸縮管",
+   "kind": "print",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -21.6,
+    52.0,
+    -21.6
+   ],
+   "bbMax": [
+    21.6,
+    215.6,
+    21.6
+   ],
+   "blockers": [
+    "BALL",
+    "CORD",
+    "COVER",
+    "DUCT",
+    "FAN",
+    "FCAP",
+    "TLIGHT"
+   ],
+   "adj": [
+    "BALL",
+    "COLLAR",
+    "CORD",
+    "EXT",
+    "FRAME"
+   ],
+   "travel": 220.6,
+   "bom": {
+    "spec": "列印（管子、管底塞、止脫環一件）",
+    "size": "外徑 40 × 厚 2 × 長 163.6 mm；管底外環 Ø43.2 × 16 mm",
+    "qty": 1,
+    "mat": "光固化 透明樹脂，印好用 400 → 800 號砂紙打磨",
+    "note": "鋼珠孔、彈簧孔直接印出來；直立印、管口朝上；外壁要和套筒滑動，支撐痕跡磨平。"
+   }
+  },
+  {
+   "id": "BALL",
+   "name": "定位彈簧＋鋼珠",
+   "kind": "buy",
+   "dirKey": "X+",
+   "dir": [
+    1,
+    0,
+    0
+   ],
+   "bbMin": [
+    12.7,
+    56.04,
+    -2.0
+   ],
+   "bbMax": [
+    22.3,
+    59.96,
+    2.0
+   ],
+   "blockers": [
+    "SHB_IN",
+    "SHB_OUT",
+    "SHF_IN",
+    "SHF_OUT"
+   ],
+   "adj": [
+    "FRAME",
+    "TUBE"
+   ],
+   "travel": 60.1,
+   "bom": {
+    "spec": "小壓縮彈簧＋鋼珠",
+    "size": "彈簧：外徑 3.0–3.2 mm、自由長度約 8 mm；鋼珠 Ø4 mm",
+    "qty": "各 1",
+    "buy": "小壓縮彈簧（外徑 3 mm、長 8 mm）、4 mm 鋼珠",
+    "note": "鋼珠卡進套筒的 V 形凹槽，伸縮管停在 3 段高度。"
+   }
+  },
+  {
+   "id": "CORD",
+   "name": "2 芯彈簧線",
+   "kind": "buy",
+   "dirKey": null,
+   "dir": null,
+   "bbMin": [
+    -20.29,
+    49.3,
+    -6.2
+   ],
+   "bbMax": [
+    -4.8,
+    151.56,
+    20.29
+   ],
+   "blockers": [],
+   "adj": [
+    "EXT",
+    "FRAME",
+    "TUBE"
+   ],
+   "travel": 0.0,
+   "bom": {
+    "spec": "2 芯彈簧線（紅、黑）",
+    "size": "螺旋部分剪成跟伸縮管差不多長",
+    "qty": 1,
+    "buy": "2 芯彈簧線",
+    "note": "霧化驅動板的輸出從底座送上去；上端在伸縮管裡（管口下約 6 cm）接 2 條延長線。"
+   }
+  },
+  {
+   "id": "EXT",
+   "name": "延長線＋PH2.0 母座",
+   "kind": "buy",
+   "dirKey": null,
+   "dir": null,
+   "bbMin": [
+    -20.2,
+    148.36,
+    -1.8
+   ],
+   "bbMax": [
+    -9.87,
+    225.63,
+    1.8
+   ],
+   "blockers": [],
+   "adj": [
+    "COLLAR",
+    "CORD",
+    "CUP",
+    "MESH",
+    "TUBE"
+   ],
+   "travel": 0.0,
+   "bom": {
+    "spec": "26AWG 矽膠線紅、黑各 1 條＋PH2.0 2P 母座（對接線剪一半）",
+    "size": "每條約 11 cm",
+    "qty": 1,
+    "buy": "26AWG 矽膠線、PH2.0 2P 對接線",
+    "note": "下端和彈簧線焊好套熱縮；上端穿過頭座插管 180° 的缺口，接 PH2.0 母座，放在頭座裡。"
+   }
+  },
+  {
+   "id": "COLLAR",
+   "name": "頭座（收腰殼）",
+   "kind": "print",
+   "dirKey": "Z+",
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "bbMin": [
+    -26.0,
+    205.6,
+    -26.0
+   ],
+   "bbMax": [
+    26.0,
+    243.0,
+    26.0
+   ],
+   "blockers": [
+    "BOTTLE",
+    "CUP",
+    "HOOD",
+    "UMB"
+   ],
+   "adj": [
+    "CUP",
+    "EXT",
+    "MESH",
+    "RING",
+    "SHB_IN",
+    "SHB_OUT",
+    "SHF_IN",
+    "SHF_OUT",
+    "TUBE"
+   ],
+   "travel": 150.9,
+   "bom": {
+    "spec": "列印件（收腰殼、插管、內底一體）",
+    "size": "Ø52 × 37.4 mm",
+    "qty": 1,
+    "mat": "光固化 標準樹脂＋香檳金噴漆（插管不要噴，要上膠）",
+    "note": "插管 Ø35.8 插進伸縮管口；插管 180° 有 4 mm 寬的走線缺口（z205–217.7）。"
+   }
+  },
+  {
+   "id": "CUP",
+   "name": "集液杯",
+   "kind": "print",
+   "dirKey": "Z+",
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "bbMin": [
+    -17.3,
+    169.0,
+    -17.3
+   ],
+   "bbMax": [
+    17.3,
+    224.0,
+    17.3
+   ],
+   "blockers": [
+    "BOTTLE",
+    "MESH",
+    "ORING",
+    "RING",
+    "SEAT",
+    "UMB",
+    "WICK"
+   ],
+   "adj": [
+    "COLLAR",
+    "EXT",
+    "MESH",
+    "UMB",
+    "WICK"
+   ],
+   "travel": 187.5,
+   "bom": {
+    "spec": "列印件（杯子、凸緣、霧化片座、座臂、定位肋一件）",
+    "size": "Ø34.6 × 55 mm；裝到進風窗窗台 15.4 mL",
+    "qty": 1,
+    "mat": "光固化白色樹脂（要防水）",
+    "note": "杯底 26° 漏斗＋小井；側面 6 個進風窗；凸緣坐在頭座內底，3 條定位肋貼著插管；杯緣 180° 有線槽。不黏，可以拿起來洗。"
+   }
+  },
+  {
+   "id": "MESH",
+   "name": "霧化片 16 mm（含矽膠圈、線）",
+   "kind": "buy",
+   "dirKey": "Z+",
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "bbMin": [
+    -21.8,
+    215.0,
+    -10.0
+   ],
+   "bbMax": [
+    10.0,
+    228.6,
+    10.0
+   ],
+   "blockers": [
+    "BOTTLE",
+    "HOOD",
+    "ORING",
+    "RING",
+    "SEAT",
+    "UMB"
+   ],
+   "adj": [
+    "COLLAR",
+    "CUP",
+    "EXT",
+    "WICK"
+   ],
+   "travel": 141.5,
+   "bom": {
+    "spec": "16 mm 霧化片（外圈白色矽膠圈、自帶紅黑線、PH2.0 公頭）",
+    "size": "矽膠圈外徑 20 × 高 4 mm；線長約 125 mm",
+    "qty": "1＋備品",
+    "buy": "16mm 霧化片（和驅動板一起買，選帶 PH2.0 插頭的款）",
+    "note": "出霧面朝上、接觸水的面朝下（貼著棉棒）。"
+   }
+  },
+  {
+   "id": "WICK",
+   "name": "棉棒 Ø5",
+   "kind": "buy",
+   "dirKey": "Z+",
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "bbMin": [
+    -2.5,
+    170.6,
+    -2.5
+   ],
+   "bbMax": [
+    2.5,
+    216.7,
+    2.5
+   ],
+   "blockers": [
+    "BOTTLE",
+    "MESH",
+    "UMB"
+   ],
+   "adj": [
+    "CUP",
+    "MESH"
+   ],
+   "travel": 185.9,
+   "bom": {
+    "spec": "Ø5 mm 加濕器棉棒",
+    "size": "用棉棒剪裁治具剪成 47 mm",
+    "qty": "1（髒了就換）",
+    "buy": "Ø5 加濕器替換棉棒",
+    "note": "站在杯底小井，頂到霧化片底面。"
+   }
+  },
+  {
+   "id": "UMB",
+   "name": "傘架（套環＋擋滴傘）",
+   "kind": "print",
+   "dirKey": "Z+",
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "bbMin": [
+    -14.5,
+    219.0,
+    -15.3
+   ],
+   "bbMax": [
+    16.8,
+    244.2,
+    15.3
+   ],
+   "blockers": [
+    "BOTTLE",
+    "ORING",
+    "RING",
+    "SEAT"
+   ],
+   "adj": [
+    "CUP",
+    "ORING",
+    "SEAT"
+   ],
+   "travel": 137.5,
+   "bom": {
+    "spec": "列印件（套環、錐形擋滴傘、3 支腳、3 根傘柱一件）",
+    "size": "Ø31 × 25 mm",
+    "qty": 1,
+    "mat": "光固化白色樹脂",
+    "note": "3 支腳站在集液杯凸緣上；套環台階撐住瓶座；內壁 90° 鍵槽。"
+   }
+  },
+  {
+   "id": "SEAT",
+   "name": "瓶座",
+   "kind": "print",
+   "dirKey": "Z+",
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "bbMin": [
+    -14.0,
+    232.0,
+    -14.0
+   ],
+   "bbMax": [
+    14.0,
+    245.0,
+    14.0
+   ],
+   "blockers": [
+    "ORING"
+   ],
+   "adj": [
+    "BOTTLE",
+    "ORING",
+    "UMB"
+   ],
+   "travel": 124.5,
+   "bom": {
+    "spec": "列印件",
+    "size": "Ø28 × 13 mm",
+    "qty": 1,
+    "mat": "光固化白色樹脂",
+    "note": "定位鍵對準傘架套環的鍵槽；藥瓶轉進它的螺紋。加水從中間的口倒。"
+   }
+  },
+  {
+   "id": "ORING",
+   "name": "O 形環",
+   "kind": "buy",
+   "dirKey": "Z+",
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "bbMin": [
+    -11.2,
+    244.25,
+    -11.2
+   ],
+   "bbMax": [
+    11.2,
+    245.0,
+    11.2
+   ],
+   "blockers": [],
+   "adj": [
+    "BOTTLE",
+    "SEAT",
+    "UMB"
+   ],
+   "travel": 112.3,
+   "bom": {
+    "spec": "O 形環（矽膠）",
+    "size": "內徑 19.4 × 線徑 1.5 mm",
+    "qty": 1,
+    "buy": "O型環 19.4x1.5",
+    "note": "放在瓶座提緣裡，藥瓶瓶頸凸緣壓住。"
+   }
+  },
+  {
+   "id": "BOTTLE",
+   "name": "空藥瓶",
+   "kind": "print",
+   "dirKey": "Z+",
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "bbMin": [
+    -16.0,
+    236.6,
+    -16.0
+   ],
+   "bbMax": [
+    16.0,
+    282.0,
+    16.0
+   ],
+   "blockers": [],
+   "adj": [
+    "ORING",
+    "SEAT"
+   ],
+   "travel": 119.9,
+   "bom": {
+    "spec": "列印件（原型是空瓶，只展示轉進去）",
+    "size": "Ø32 × 45.4 mm（瓶底淺圓弧）",
+    "qty": 1,
+    "mat": "光固化透明樹脂＋綠色染料，打磨霧面",
+    "note": "瓶蓋另外列印（收藏用）。"
+   }
+  },
+  {
+   "id": "HOOD",
+   "name": "導流罩",
+   "kind": "print",
+   "dirKey": "Z+",
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "bbMin": [
+    -63.9,
+    243.4,
+    -63.9
+   ],
+   "bbMax": [
+    63.9,
+    351.54,
+    63.9
+   ],
+   "blockers": [],
+   "adj": [
+    "RING"
+   ],
+   "travel": 113.1,
+   "bom": {
+    "spec": "TPU 列印（半透明，FDM）",
+    "size": "大口 Ø127.8 × 高 108 mm、壁厚 1.6 mm",
+    "qty": 1,
+    "mat": "半透明 TPU 線材 1.75 mm（85A–95A）",
+    "note": "大口朝下直立印、4 圈外牆、慢速；小口撐開套住旋轉環。"
+   }
+  },
+  {
+   "id": "RING",
+   "name": "旋轉環",
+   "kind": "print",
+   "dirKey": "Z+",
+   "dir": [
+    0,
+    1,
+    0
+   ],
+   "bbMin": [
+    -21.5,
+    239.0,
+    -21.5
+   ],
+   "bbMax": [
+    21.5,
+    249.5,
+    21.5
+   ],
+   "blockers": [],
+   "adj": [
+    "COLLAR",
+    "HOOD"
+   ],
+   "travel": 117.5,
+   "bom": {
+    "spec": "列印件（韌性樹脂）",
+    "size": "Ø43 × 10.5 mm",
+    "qty": 1,
+    "mat": "光固化韌性樹脂",
+    "note": "6 根卡爪扣在頭座殼頂下緣，可以轉、用力可以拔起來。"
+   }
+  },
+  {
+   "id": "DRV",
+   "name": "霧化驅動板",
+   "kind": "buy",
+   "dirKey": "Y+",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "bbMin": [
+    -18.0,
+    56.0,
+    -40.2
+   ],
+   "bbMax": [
+    18.0,
+    76.0,
+    -25.0
+   ],
+   "blockers": [
+    "SHB_IN",
+    "SHB_OUT"
+   ],
+   "adj": [
+    "FRAME"
+   ],
+   "travel": 47.8,
+   "bom": {
+    "spec": "16 mm 霧化片驅動板 5 V（通電就噴霧的款）",
+    "size": "預留 36 × 20 × 17 mm（買常見的 35 × 19 mm 款）",
+    "qty": 1,
+    "buy": "霧化片驅動板 5V（35×19 mm、通電即噴）",
+    "note": "橫著貼在背面安裝座；輸出接彈簧線紅黑；VIN、GND 就是整台的 5 V 配電點（風扇、燈條也接這裡）。"
+   }
+  },
+  {
+   "id": "DUCT",
+   "name": "風道接管",
+   "kind": "print",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -26.0,
+    16.0,
+    -26.0
+   ],
+   "bbMax": [
+    26.0,
+    48.0,
+    26.0
+   ],
+   "blockers": [
+    "COVER",
+    "FAN",
+    "FCAP"
+   ],
+   "adj": [
+    "FAN",
+    "FRAME",
+    "TLIGHT"
+   ],
+   "travel": 53.0,
+   "bom": {
+    "spec": "列印件",
+    "size": "Ø52 × 32 mm",
+    "qty": 1,
+    "mat": "光固化 標準樹脂（灰）",
+    "note": "上端喇叭口貼住承板底面，被風扇和底蓋往上頂住，不用膠。"
+   }
+  },
+  {
+   "id": "TLIGHT",
+   "name": "伸縮管燈（燈環＋3 顆燈）",
+   "kind": "print",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -14.85,
+    42.7,
+    -14.85
+   ],
+   "bbMax": [
+    16.36,
+    45.65,
+    16.37
+   ],
+   "blockers": [
+    "COVER",
+    "FAN",
+    "FCAP"
+   ],
+   "adj": [
+    "DUCT"
+   ],
+   "travel": 50.6,
+   "bom": {
+    "spec": "列印燈環＋5 V 燈條剪 3 顆",
+    "size": "燈環 Ø29.7 × 1.2 mm（中間 Ø19 讓風過）",
+    "qty": 1,
+    "mat": "光固化 標準樹脂（白）",
+    "note": "坐在風道接管喇叭口的斜面上，燈朝上照進伸縮管底部中心孔；伸縮管是半透明霧面，拉出來那一段整根會亮。"
+   }
+  },
+  {
+   "id": "FAN",
+   "name": "4010 風扇",
+   "kind": "buy",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -20.0,
+    5.4,
+    -20.0
+   ],
+   "bbMax": [
+    20.0,
+    16.0,
+    20.0
+   ],
+   "blockers": [
+    "COVER",
+    "FCAP"
+   ],
+   "adj": [
+    "COVER",
+    "DUCT",
+    "FCAP"
+   ],
+   "travel": 21.0,
+   "bom": {
+    "spec": "4010 風扇 5 V＋4 片泡棉",
+    "size": "40 × 40 × 10 mm；泡棉 6 × 6 × 1 mm",
+    "qty": 1,
+    "buy": "4010 5V 風扇",
+    "note": "出風面朝上；紅線串一顆 22 Ω 電阻降速（風太強換 47 Ω、太弱換 10 Ω）。"
+   }
+  },
+  {
+   "id": "USB",
+   "name": "USB-C 插座板",
+   "kind": "buy",
+   "dirKey": "Y-",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "bbMin": [
+    -6.0,
+    19.0,
+    -63.67
+   ],
+   "bbMax": [
+    6.0,
+    25.0,
+    -56.01
+   ],
+   "blockers": [
+    "DUCT",
+    "SHF_IN",
+    "SHF_OUT"
+   ],
+   "adj": [
+    "SHB_IN",
+    "SHB_OUT"
+   ],
+   "travel": 136.5,
+   "bom": {
+    "spec": "USB-C 母座轉接板（供電用）",
+    "size": "預留 12 × 6 × 4 mm",
+    "qty": 1,
+    "buy": "Type-C 母座 轉接板",
+    "note": "整台唯一的電源；用線上有開關的 USB-C 線。"
+   }
+  },
+  {
+   "id": "SHB_OUT",
+   "name": "後殼外層",
+   "kind": "print",
+   "dirKey": "Y+",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "bbMin": [
+    -67.82,
+    3.02,
+    -67.82
+   ],
+   "bbMax": [
+    67.82,
+    215.0,
+    -0.0
+   ],
+   "blockers": [],
+   "adj": [
+    "COLLAR",
+    "COVER",
+    "FOOT_B",
+    "FOOT_F",
+    "PADS",
+    "SHB_IN",
+    "SHF_IN",
+    "SHF_OUT",
+    "USB"
+   ],
+   "travel": 72.8,
+   "bom": {
+    "spec": "列印件（透明霧面）",
+    "size": "136 × 68 × 212 mm",
+    "qty": 1,
+    "mat": "光固化透明樹脂，打磨成霧面",
+    "note": "有 USB-C 孔。"
+   }
+  },
+  {
+   "id": "SHB_IN",
+   "name": "後殼內層",
+   "kind": "print",
+   "dirKey": "Y+",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "bbMin": [
+    -66.42,
+    4.42,
+    -66.42
+   ],
+   "bbMax": [
+    66.42,
+    214.98,
+    -0.0
+   ],
+   "blockers": [
+    "COVER",
+    "NUTS"
+   ],
+   "adj": [
+    "COLLAR",
+    "COVER",
+    "FRAME",
+    "MAG_B",
+    "MAG_F",
+    "SCREWS",
+    "SHB_OUT",
+    "SHF_IN",
+    "SHF_OUT",
+    "USB"
+   ],
+   "travel": 72.8,
+   "bom": {
+    "spec": "列印件（綠色）",
+    "size": "133 × 66 × 211 mm",
+    "qty": 1,
+    "mat": "光固化 標準樹脂（鼠尾草綠、霧面）",
+    "note": "底部卡耳、頂部卡唇、USB 夾條、2 個磁鐵座。"
+   }
+  },
+  {
+   "id": "MAG_B",
+   "name": "磁鐵（後殼）×4",
+   "kind": "buy",
+   "dirKey": "Y-",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "bbMin": [
+    -58.2,
+    27.0,
+    -3.1
+   ],
+   "bbMax": [
+    58.2,
+    123.0,
+    -0.1
+   ],
+   "blockers": [
+    "MAG_F",
+    "SHF_IN",
+    "SHF_OUT"
+   ],
+   "adj": [
+    "MAG_F",
+    "SHB_IN",
+    "SHF_IN"
+   ],
+   "travel": 75.9,
+   "bom": {
+    "spec": "釹磁鐵",
+    "size": "Ø6 × 3 mm",
+    "qty": 4,
+    "buy": "釹磁鐵 6x3",
+    "note": "裝之前先和前殼的磁鐵疊在一起，確認吸的那面朝外。"
+   }
+  },
+  {
+   "id": "FOOT_B",
+   "name": "腳環（後半）",
+   "kind": "print",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -60.0,
+    0.0,
+    -60.0
+   ],
+   "bbMax": [
+    60.0,
+    3.0,
+    -0.0
+   ],
+   "blockers": [
+    "FOOT_F"
+   ],
+   "adj": [
+    "FOOT_F",
+    "SHB_OUT",
+    "SHF_OUT"
+   ],
+   "travel": 8.0,
+   "bom": {
+    "spec": "列印件，噴香檳金",
+    "size": "Ø120 × 3 mm 的半圈",
+    "qty": 1,
+    "mat": "光固化 標準樹脂＋香檳金噴漆",
+    "note": "黏在後殼外層底緣。"
+   }
+  },
+  {
+   "id": "SHF_OUT",
+   "name": "前殼外層",
+   "kind": "print",
+   "dirKey": "Y-",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "bbMin": [
+    -67.82,
+    3.02,
+    -0.0
+   ],
+   "bbMax": [
+    67.82,
+    215.0,
+    67.82
+   ],
+   "blockers": [],
+   "adj": [
+    "COLLAR",
+    "COVER",
+    "FOOT_B",
+    "FOOT_F",
+    "LBOX",
+    "LED",
+    "PADS",
+    "SHB_IN",
+    "SHB_OUT",
+    "SHF_IN"
+   ],
+   "travel": 72.8,
+   "bom": {
+    "spec": "列印件（透明霧面）",
+    "size": "136 × 68 × 212 mm",
+    "qty": 1,
+    "mat": "光固化透明樹脂，打磨成霧面",
+    "note": "燈光從這層透出來。"
+   }
+  },
+  {
+   "id": "SHF_IN",
+   "name": "前殼內層",
+   "kind": "print",
+   "dirKey": "Y-",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "bbMin": [
+    -66.42,
+    4.42,
+    -0.0
+   ],
+   "bbMax": [
+    66.42,
+    214.98,
+    66.42
+   ],
+   "blockers": [
+    "COVER",
+    "NUTS"
+   ],
+   "adj": [
+    "COLLAR",
+    "COVER",
+    "FRAME",
+    "LBOX",
+    "LED",
+    "MAG_B",
+    "MAG_F",
+    "SCREWS",
+    "SHB_IN",
+    "SHB_OUT",
+    "SHF_OUT"
+   ],
+   "travel": 72.8,
+   "bom": {
+    "spec": "列印件（綠色）",
+    "size": "133 × 66 × 211 mm",
+    "qty": 1,
+    "mat": "光固化 標準樹脂（鼠尾草綠、霧面）",
+    "note": "燈窗、底部卡耳、頂部卡唇、2 個磁鐵座。"
+   }
+  },
+  {
+   "id": "MAG_F",
+   "name": "磁鐵（前殼）×4",
+   "kind": "buy",
+   "dirKey": "Y+",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "bbMin": [
+    -58.2,
+    27.0,
+    0.1
+   ],
+   "bbMax": [
+    58.2,
+    123.0,
+    3.1
+   ],
+   "blockers": [
+    "MAG_B",
+    "SHB_IN",
+    "SHB_OUT"
+   ],
+   "adj": [
+    "MAG_B",
+    "SHB_IN",
+    "SHF_IN"
+   ],
+   "travel": 75.9,
+   "bom": {
+    "spec": "釹磁鐵",
+    "size": "Ø6 × 3 mm",
+    "qty": 4,
+    "buy": "釹磁鐵 6x3",
+    "note": "同後殼，吸的那面朝外。"
+   }
+  },
+  {
+   "id": "FOOT_F",
+   "name": "腳環（前半）",
+   "kind": "print",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -60.0,
+    0.0,
+    -0.0
+   ],
+   "bbMax": [
+    60.0,
+    3.0,
+    60.0
+   ],
+   "blockers": [
+    "FOOT_B"
+   ],
+   "adj": [
+    "FOOT_B",
+    "SHB_OUT",
+    "SHF_OUT"
+   ],
+   "travel": 8.0,
+   "bom": {
+    "spec": "列印件，噴香檳金",
+    "size": "Ø120 × 3 mm 的半圈",
+    "qty": 1,
+    "mat": "光固化 標準樹脂＋香檳金噴漆",
+    "note": "黏在前殼外層底緣。"
+   }
+  },
+  {
+   "id": "LED",
+   "name": "LED 燈條（5 V）",
+   "kind": "buy",
+   "dirKey": "Y+",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "bbMin": [
+    -2.5,
+    114.24,
+    27.05
+   ],
+   "bbMax": [
+    2.5,
+    155.61,
+    34.67
+   ],
+   "blockers": [
+    "FRAME",
+    "SHB_IN",
+    "SHB_OUT",
+    "TUBE"
+   ],
+   "adj": [
+    "SHF_IN",
+    "SHF_OUT"
+   ],
+   "travel": 107.5,
+   "bom": {
+    "spec": "5 V 單色燈條（暖白，可剪）",
+    "size": "寬 5–8 mm，剪 6 顆（或 2 段×3 顆）",
+    "qty": 1,
+    "buy": "5V USB 燈條 暖白",
+    "note": "通電就亮，不用主控板；燈面朝外放進燈窗，透明 UV 膠或泡棉膠固定。"
+   }
+  },
+  {
+   "id": "LBOX",
+   "name": "LOGO 遮光盒",
+   "kind": "print",
+   "dirKey": "Y+",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "bbMin": [
+    -9.5,
+    94.5,
+    30.5
+   ],
+   "bbMax": [
+    9.5,
+    113.5,
+    39.36
+   ],
+   "blockers": [
+    "CORD",
+    "FRAME",
+    "SHB_IN",
+    "SHB_OUT",
+    "TUBE"
+   ],
+   "adj": [
+    "LLED",
+    "SHF_IN",
+    "SHF_OUT"
+   ],
+   "travel": 112.2,
+   "bom": {
+    "spec": "列印件（白色、不透光）",
+    "size": "Ø19 × 約 8 mm",
+    "qty": 1,
+    "mat": "光固化 標準樹脂（白、不透光）",
+    "note": "AB 膠黏在 LOGO 後面；左邊缺口讓 LOGO 燈的線出去。"
+   }
+  },
+  {
+   "id": "LLED",
+   "name": "LOGO 燈",
+   "kind": "buy",
+   "dirKey": "Y+",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "bbMin": [
+    -3.45,
+    101.5,
+    31.7
+   ],
+   "bbMax": [
+    3.45,
+    106.5,
+    33.6
+   ],
+   "blockers": [
+    "FRAME",
+    "LBOX",
+    "SHB_IN",
+    "SHB_OUT",
+    "TUBE"
+   ],
+   "adj": [
+    "LBOX"
+   ],
+   "travel": 106.4,
+   "bom": {
+    "spec": "3 mm 白光 LED＋220 Ω 電阻",
+    "size": "Ø3 mm",
+    "qty": 1,
+    "buy": "3mm LED、220Ω 電阻",
+    "note": "燈頭朝 LOGO 黏在遮光盒盒底（模型是示意形狀）。"
+   }
+  },
+  {
+   "id": "NUTS",
+   "name": "配重螺帽 ×12",
+   "kind": "buy",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -40.09,
+    4.8,
+    -47.31
+   ],
+   "bbMax": [
+    40.09,
+    12.8,
+    47.31
+   ],
+   "blockers": [
+    "COVER",
+    "PADS"
+   ],
+   "adj": [
+    "COVER"
+   ],
+   "travel": 17.8,
+   "bom": {
+    "spec": "M10 六角螺帽",
+    "size": "對邊 17 × 厚 8 mm",
+    "qty": 12,
+    "buy": "M10 螺帽",
+    "note": "AB 膠黏在底蓋上；原型沒裝電池，配重更重要（頭部加水後也不容易倒）。"
+   }
+  },
+  {
+   "id": "COVER",
+   "name": "底蓋",
+   "kind": "print",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -49.4,
+    3.05,
+    -49.4
+   ],
+   "bbMax": [
+    49.4,
+    8.0,
+    49.4
+   ],
+   "blockers": [
+    "PADS",
+    "SCREWS"
+   ],
+   "adj": [
+    "FAN",
+    "FCAP",
+    "NUTS",
+    "PADS",
+    "SCREWS",
+    "SHB_IN",
+    "SHB_OUT",
+    "SHF_IN",
+    "SHF_OUT"
+   ],
+   "travel": 13.0,
+   "bom": {
+    "spec": "列印件",
+    "size": "Ø98.8 × 5 mm",
+    "qty": 1,
+    "mat": "光固化 標準樹脂（灰）",
+    "note": "2 個 Ø3.4 螺絲孔；中央是濾網蓋的卡口；4 個定位塊夾住風扇。"
+   }
+  },
+  {
+   "id": "SCREWS",
+   "name": "M3 螺絲 ×2",
+   "kind": "buy",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -46.75,
+    0.12,
+    -2.75
+   ],
+   "bbMax": [
+    46.75,
+    14.0,
+    2.75
+   ],
+   "blockers": [],
+   "adj": [
+    "COVER",
+    "FRAME",
+    "M3NUT",
+    "SHB_IN",
+    "SHF_IN"
+   ],
+   "travel": 19.0,
+   "bom": {
+    "spec": "M3 × 12 內六角螺絲",
+    "size": "M3 × 12",
+    "qty": 2,
+    "buy": "M3x12 內六角",
+    "note": "穿過底蓋和兩片殼的卡耳，鎖進鎖柱裡的 M3 螺母。"
+   }
+  },
+  {
+   "id": "FCAP",
+   "name": "濾網蓋",
+   "kind": "print",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -18.3,
+    2.35,
+    -20.0
+   ],
+   "bbMax": [
+    18.3,
+    5.4,
+    20.0
+   ],
+   "blockers": [],
+   "adj": [
+    "COVER",
+    "FAN"
+   ],
+   "travel": 10.4,
+   "bom": {
+    "spec": "列印件（原型可不放濾網）",
+    "size": "Ø36.6 mm",
+    "qty": 1,
+    "mat": "光固化 標準樹脂（白）",
+    "note": "對準入口往上推、轉 36° 鎖住。"
+   }
+  },
+  {
+   "id": "PADS",
+   "name": "止滑墊 ×4",
+   "kind": "buy",
+   "dirKey": "Z-",
+   "dir": [
+    0,
+    -1,
+    0
+   ],
+   "bbMin": [
+    -36.82,
+    0.0,
+    -36.82
+   ],
+   "bbMax": [
+    36.82,
+    3.05,
+    36.82
+   ],
+   "blockers": [],
+   "adj": [
+    "COVER",
+    "SHB_OUT",
+    "SHF_OUT"
+   ],
+   "travel": 8.0,
+   "bom": {
+    "spec": "止滑墊貼片",
+    "size": "Ø10 × 3 mm",
+    "qty": 4,
+    "buy": "止滑墊 10mm",
+    "note": "貼在底蓋下方。"
+   }
+  }
+ ],
+ "steps": [
+  {
+   "title": "準備零件、內骨架與 M3 螺母",
+   "parts": [
+    "FRAME",
+    "M3NUT"
+   ],
+   "view": "iso",
+   "units": [],
+   "acts": [
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "先把列印件都印好（清單見「清單・接線・驗證」）：除了導流罩用半透明 TPU（FDM）以外，全部光固化：外殼外層、伸縮管、藥瓶用透明樹脂，印好打磨成霧面；外殼內層用鼠尾草綠；集液杯、傘架、瓶座、燈環用白色樹脂；旋轉環用韌性樹脂；內骨架、風道、底蓋用灰色樹脂。頭座外面和腳環噴香檳金。尺寸和顏色照工程圖。",
+     "at": null,
+     "parts": [
+      "FRAME"
+     ],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "push",
+     "label": "推入",
+     "cat": "fit",
+     "text": "兩顆 M3 螺母從鎖柱朝機身中心那一面的側槽推進去，推到底和鎖柱中心孔對齊。",
+     "at": [
+      40.0,
+      10.3,
+      0
+     ],
+     "parts": [
+      "M3NUT"
+     ],
+     "wires": [],
+     "joint": "J01",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.05 mm；接觸 140 mm²"
+     }
+    }
+   ]
+  },
+  {
+   "title": "伸縮管",
+   "parts": [
+    "TUBE",
+    "BALL"
+   ],
+   "view": "iso",
+   "units": [
+    {
+     "parts": [
+      "TUBE",
+      "BALL"
+     ],
+     "dirKey": "Z-",
+     "dir": [
+      0,
+      -1,
+      0
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "t": "press",
+     "label": "壓入",
+     "cat": "fit",
+     "text": "彈簧從伸縮管底部外環側面的孔放進去，鋼珠壓在彈簧上。",
+     "at": [
+      21.0,
+      58.0,
+      0
+     ],
+     "parts": [
+      "TUBE",
+      "BALL"
+     ],
+     "wires": [],
+     "joint": null,
+     "bench": true,
+     "install": false
+    },
+    {
+     "t": "flip",
+     "label": "翻面",
+     "cat": "tool",
+     "text": "骨架倒過來放。",
+     "at": null,
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": true,
+     "install": false
+    },
+    {
+     "t": "detent",
+     "label": "段落卡位",
+     "cat": "snap",
+     "text": "用手指壓住鋼珠，從承板中間的孔把伸縮管往上推進套筒；推到「喀」一聲，鋼珠卡進最下面的凹槽。",
+     "at": [
+      22.0,
+      58.0,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": "J05",
+     "bench": false,
+     "install": true,
+     "check": {
+      "ok": true,
+      "note": ""
+     }
+    },
+    {
+     "t": "detent",
+     "label": "段落卡位",
+     "cat": "snap",
+     "text": "骨架翻回正面，試拉三段：每 6 cm「喀」一聲，第三段到頂就拉不出來。放手不會自己往下滑才對。",
+     "at": [
+      0,
+      215.0,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": "J02",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.30 mm"
+     }
+    }
+   ]
+  },
+  {
+   "title": "彈簧線＋延長線",
+   "parts": [
+    "CORD",
+    "EXT"
+   ],
+   "view": "front",
+   "units": [],
+   "acts": [
+    {
+     "t": "cut",
+     "label": "剪",
+     "cat": "tool",
+     "text": "彈簧線貼著伸縮管比一下，螺旋部分剪成跟管子差不多長；兩端剝出紅、黑 2 條線，上錫。",
+     "at": null,
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "thread",
+     "label": "穿線",
+     "cat": "fit",
+     "text": "下端從管頂穿進去，穿過伸縮管管底的中央孔，從套筒底部的長槽拉出來。",
+     "at": [
+      -22.6,
+      52.4,
+      22.6
+     ],
+     "parts": [
+      "CORD"
+     ],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "solder",
+     "label": "焊接",
+     "cat": "wire",
+     "text": "上端（管口下約 6 cm）各焊一條 11 cm 的 26AWG 延長線（紅接紅、黑接黑），套熱縮套管。延長線另一端先接上 PH2.0 母座。",
+     "at": [
+      -12.0,
+      151.0,
+      0
+     ],
+     "parts": [
+      "EXT"
+     ],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "shrink",
+     "label": "熱縮套管",
+     "cat": "wire",
+     "text": "熱縮套管吹緊；延長線先拉出管口，下一步要穿過頭座。",
+     "at": [
+      -12.4,
+      151.0,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    }
+   ]
+  },
+  {
+   "title": "頭座（收腰殼）",
+   "parts": [
+    "COLLAR"
+   ],
+   "view": "head",
+   "units": [
+    {
+     "parts": [
+      "COLLAR"
+     ],
+     "dirKey": "Z+",
+     "dir": [
+      0,
+      1,
+      0
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "t": "thread",
+     "label": "穿線",
+     "cat": "fit",
+     "text": "頭座拿在管口上方。延長線（連 PH2.0 母座）從插管下面、180° 的走線缺口穿進頭座裡。",
+     "at": [
+      -17.5,
+      211.0,
+      0
+     ],
+     "parts": [
+      "COLLAR"
+     ],
+     "wires": [],
+     "joint": null,
+     "bench": true,
+     "install": false
+    },
+    {
+     "t": "ab",
+     "label": "AB 膠",
+     "cat": "glue",
+     "text": "插管外圈和內底底面塗 AB 膠，插進伸縮管口到底（內底坐在管口上）。",
+     "at": [
+      19.0,
+      214.0,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": "J06",
+     "bench": false,
+     "install": true,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 1385 mm²（需要 ≥ 500）"
+     }
+    },
+    {
+     "t": "hot",
+     "label": "熱熔膠",
+     "cat": "glue",
+     "text": "走線缺口塞熱熔膠封住（擋風，也固定線）；PH2.0 母座留在頭座裡、凸緣上方。",
+     "at": [
+      -17.5,
+      214.0,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": "J60",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": ""
+     }
+    }
+   ]
+  },
+  {
+   "title": "霧化驅動板上架與配線",
+   "parts": [
+    "DRV"
+   ],
+   "view": "iso",
+   "units": [],
+   "acts": [
+    {
+     "t": "tape",
+     "label": "泡棉膠",
+     "cat": "glue",
+     "text": "霧化驅動板背面貼 1 mm 泡棉雙面膠，橫著貼在背面安裝座（輸出端朝左）。",
+     "at": [
+      -8.0,
+      66.0,
+      -31.0
+     ],
+     "parts": [
+      "DRV"
+     ],
+     "wires": [],
+     "joint": "J22",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 680 mm²（需要 ≥ 150）"
+     }
+    },
+    {
+     "t": "hot",
+     "label": "熱熔膠",
+     "cat": "glue",
+     "text": "套筒長槽用熱熔膠封住（固定彈簧線、擋風）。",
+     "at": [
+      -17.5,
+      51.0,
+      17.5
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "solder",
+     "label": "焊接",
+     "cat": "wire",
+     "text": "彈簧線下端紅、黑焊到驅動板輸出（霧化片兩極不分正負）。走線規則：焊好往旁邊拉進模組旁的直槽，順著槽往下，進承板那一圈線槽、壓進卡勾。",
+     "at": [
+      -14.0,
+      75.0,
+      -30.0
+     ],
+     "parts": [],
+     "wires": [
+      "b_r",
+      "b_k"
+     ],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "solder",
+     "label": "焊接",
+     "cat": "wire",
+     "text": "驅動板 VIN、GND 就是整台的 5 V：各焊一條線到 USB 2P 插頭（從承板左孔往下，留在後面），再各焊一條到燈 2P 插頭（前面）。",
+     "at": [
+      -5.0,
+      70.0,
+      -30.0
+     ],
+     "parts": [],
+     "wires": [
+      "u1",
+      "u2",
+      "f2",
+      "f5"
+     ],
+     "joint": null,
+     "bench": false,
+     "install": false
+    }
+   ]
+  },
+  {
+   "title": "伸縮管燈、風道與風扇（倒過來裝）",
+   "parts": [
+    "TLIGHT",
+    "DUCT",
+    "FAN"
+   ],
+   "view": "bottom",
+   "units": [
+    {
+     "parts": [
+      "DUCT",
+      "TLIGHT"
+     ],
+     "dirKey": "Z-",
+     "dir": [
+      0,
+      -1,
+      0
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "t": "flip",
+     "label": "翻面",
+     "cat": "tool",
+     "text": "整個骨架倒過來放（承板朝上）。",
+     "at": null,
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "伸縮管燈：燈條剪 3 顆，背膠貼在燈環上面一圈（燈朝上）；紅、黑線從風道接管喇叭口 315° 的小孔穿出去，燈環放進喇叭口、坐在斜面上（燈朝喇叭口那一邊）。",
+     "at": [
+      8.2,
+      44.6,
+      8.2
+     ],
+     "parts": [
+      "TLIGHT"
+     ],
+     "wires": [],
+     "joint": "J66",
+     "bench": true,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.04 mm；接觸 29 mm²"
+     }
+    },
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "風道接管喇叭口朝承板，放進中間；它會被風扇往上頂住，不用膠。",
+     "at": [
+      0,
+      47.0,
+      0
+     ],
+     "parts": [
+      "DUCT"
+     ],
+     "wires": [],
+     "joint": "J23",
+     "bench": false,
+     "install": true,
+     "check": {
+      "ok": true,
+      "note": "夾緊面積 475 mm²"
+     }
+    },
+    {
+     "t": "tape",
+     "label": "泡棉膠",
+     "cat": "glue",
+     "text": "風扇底面四角貼 1 mm 泡棉，出風面朝承板，疊在風道法蘭上。",
+     "at": [
+      16.5,
+      6.0,
+      -16.5
+     ],
+     "parts": [
+      "FAN"
+     ],
+     "wires": [],
+     "joint": "J24",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "夾緊面積 166 mm²"
+     }
+    },
+    {
+     "t": "solder",
+     "label": "焊接",
+     "cat": "wire",
+     "text": "風扇紅線串一顆 22 Ω 電阻（套熱縮），和黑線一起從承板右孔穿上去，接到驅動板 VIN、GND；伸縮管燈的紅、黑線也從右孔上去接同樣兩點。",
+     "at": [
+      35.7,
+      49.0,
+      13.0
+     ],
+     "parts": [],
+     "wires": [
+      "fan_r",
+      "fan_k",
+      "tl_r",
+      "tl_k"
+     ],
+     "joint": null,
+     "bench": false,
+     "install": false
+    }
+   ]
+  },
+  {
+   "title": "後殼",
+   "parts": [
+    "SHB_IN",
+    "SHB_OUT",
+    "MAG_B",
+    "FOOT_B",
+    "USB"
+   ],
+   "view": "back",
+   "units": [
+    {
+     "parts": [
+      "SHB_IN",
+      "SHB_OUT",
+      "MAG_B",
+      "FOOT_B",
+      "USB"
+     ],
+     "dirKey": "Y+",
+     "dir": [
+      0,
+      0,
+      -1
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "t": "uv",
+     "label": "UV 膠",
+     "cat": "glue",
+     "text": "後殼內層外面塗薄薄一層透明 UV 膠，套進外層，照 UV 燈固化。",
+     "at": [
+      0,
+      120.0,
+      -40.0
+     ],
+     "parts": [
+      "SHB_IN",
+      "SHB_OUT"
+     ],
+     "wires": [],
+     "joint": "J28",
+     "bench": true,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 29695 mm²（需要 ≥ 5000）"
+     }
+    },
+    {
+     "t": "ab",
+     "label": "AB 膠",
+     "cat": "glue",
+     "text": "4 顆磁鐵用 AB 膠黏進磁鐵座（先和前殼磁鐵疊一次，吸的那面朝外）；後半腳環黏在外層底緣。",
+     "at": [
+      30.5,
+      120.0,
+      -2.0
+     ],
+     "parts": [
+      "MAG_B",
+      "FOOT_B"
+     ],
+     "wires": [],
+     "joint": "J29",
+     "bench": true,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 291 mm²（需要 ≥ 40）"
+     }
+    },
+    {
+     "t": "ab",
+     "label": "AB 膠",
+     "cat": "glue",
+     "text": "USB-C 板從殼內往外推進夾條，母座穿出殼孔；板邊點 AB 膠。USB 線焊到 2P 插頭。",
+     "at": [
+      0,
+      22.0,
+      -57.0
+     ],
+     "parts": [
+      "USB"
+     ],
+     "wires": [
+      "us1",
+      "us2"
+     ],
+     "joint": "J27",
+     "bench": true,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 34 mm²（需要 ≥ 10）"
+     }
+    },
+    {
+     "t": "hook",
+     "label": "勾入",
+     "cat": "snap",
+     "text": "骨架翻回正面。USB 2P 插頭和第 5 步留的那一半插好。後殼從背面水平推上去：卡唇勾進骨架環槽。",
+     "at": [
+      0,
+      208.5,
+      -23.0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": "J31",
+     "bench": false,
+     "install": true,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.10 mm；接觸 59 mm²"
+     }
+    }
+   ]
+  },
+  {
+   "title": "前殼：燈條、LOGO 燈，通電測試",
+   "parts": [
+    "SHF_IN",
+    "SHF_OUT",
+    "MAG_F",
+    "FOOT_F",
+    "LED",
+    "LLED",
+    "LBOX"
+   ],
+   "view": "front",
+   "units": [
+    {
+     "parts": [
+      "SHF_IN",
+      "SHF_OUT",
+      "MAG_F",
+      "FOOT_F",
+      "LED",
+      "LLED",
+      "LBOX"
+     ],
+     "dirKey": "Y-",
+     "dir": [
+      0,
+      0,
+      1
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "t": "uv",
+     "label": "UV 膠",
+     "cat": "glue",
+     "text": "前殼內層外面塗 UV 膠，套進外層、壓緊，照 UV 燈固化。",
+     "at": [
+      0,
+      104.0,
+      38.5
+     ],
+     "parts": [
+      "SHF_IN",
+      "SHF_OUT"
+     ],
+     "wires": [],
+     "joint": "J32",
+     "bench": true,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 29610 mm²（需要 ≥ 5000）"
+     }
+    },
+    {
+     "t": "ab",
+     "label": "AB 膠",
+     "cat": "glue",
+     "text": "4 顆磁鐵黏進磁鐵座；前半腳環黏在外層底緣。",
+     "at": [
+      30.5,
+      120.0,
+      2.0
+     ],
+     "parts": [
+      "MAG_F",
+      "FOOT_F"
+     ],
+     "wires": [],
+     "joint": "J33",
+     "bench": true,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 305 mm²（需要 ≥ 40）"
+     }
+    },
+    {
+     "t": "uv",
+     "label": "UV 膠",
+     "cat": "glue",
+     "text": "燈條燈面朝外放進燈窗固定；＋、− 兩條線接到燈 2P 插頭。",
+     "at": [
+      0,
+      133.0,
+      31.0
+     ],
+     "parts": [
+      "LED"
+     ],
+     "wires": [
+      "l1",
+      "l3"
+     ],
+     "joint": "J37",
+     "bench": true,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 438 mm²（需要 ≥ 0）"
+     }
+    },
+    {
+     "t": "ab",
+     "label": "AB 膠",
+     "cat": "glue",
+     "text": "LOGO 燈（3 mm LED）長腳串 220 Ω，燈頭朝 LOGO 黏在遮光盒盒底；遮光盒前緣塗 AB 膠黏在 LOGO 背後，線從左邊缺口出去接燈 2P 插頭。",
+     "at": [
+      0,
+      104.0,
+      34.0
+     ],
+     "parts": [
+      "LLED",
+      "LBOX"
+     ],
+     "wires": [
+      "lg1",
+      "lg3"
+     ],
+     "joint": "J46",
+     "bench": true,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 80 mm²（需要 ≥ 30）"
+     }
+    },
+    {
+     "t": "plug",
+     "label": "插頭",
+     "cat": "wire",
+     "text": "通電測試（前殼先不要裝上去）：燈 2P 插頭插好，USB-C 線插上、按線上的開關：燈條、LOGO 燈、伸縮管燈要亮，風扇要轉。",
+     "at": [
+      0,
+      103.0,
+      30.0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": true,
+     "install": false
+    },
+    {
+     "t": "magnet",
+     "label": "磁吸",
+     "cat": "snap",
+     "text": "測試沒問題，前殼從正面水平推上去：卡唇勾進環槽，左右接縫的磁鐵把兩片殼吸在一起。",
+     "at": [
+      30.5,
+      120.0,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": "J36",
+     "bench": false,
+     "install": true,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.20 mm"
+     }
+    }
+   ]
+  },
+  {
+   "title": "底蓋",
+   "parts": [
+    "COVER",
+    "NUTS",
+    "SCREWS"
+   ],
+   "view": "bottom",
+   "units": [
+    {
+     "parts": [
+      "COVER",
+      "NUTS"
+     ],
+     "dirKey": "Z-",
+     "dir": [
+      0,
+      -1,
+      0
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "t": "ab",
+     "label": "AB 膠",
+     "cat": "glue",
+     "text": "12 顆 M10 螺帽各放進底蓋上的六角淺槽，點 AB 膠（原型沒有電池，配重更重要）。",
+     "at": [
+      0,
+      9.0,
+      -39.0
+     ],
+     "parts": [
+      "COVER",
+      "NUTS"
+     ],
+     "wires": [],
+     "joint": "J39",
+     "bench": true,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 1832 mm²（需要 ≥ 1000）"
+     }
+    },
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "整台倒過來，底蓋蓋上：4 個定位塊夾住風扇。",
+     "at": [
+      0,
+      4.0,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": "J25",
+     "bench": false,
+     "install": true,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 253 mm²（需要 ≥ 60）"
+     }
+    },
+    {
+     "t": "screw",
+     "label": "鎖螺絲",
+     "cat": "screw",
+     "text": "兩顆 M3×12 螺絲穿過底蓋和前後殼卡耳的半孔，鎖進鎖柱裡的螺母。",
+     "at": [
+      44.0,
+      2.0,
+      0
+     ],
+     "parts": [
+      "SCREWS"
+     ],
+     "wires": [],
+     "joint": "J40",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": ""
+     }
+    }
+   ]
+  },
+  {
+   "title": "濾網蓋與止滑墊",
+   "parts": [
+    "FCAP",
+    "PADS"
+   ],
+   "view": "bottom",
+   "units": [],
+   "acts": [
+    {
+     "t": "twist",
+     "label": "轉入鎖住",
+     "cat": "snap",
+     "text": "濾網蓋卡耳對準底蓋入口往上推，轉到底鎖住（原型可以不放濾網）。",
+     "at": [
+      0,
+      4.0,
+      -19.0
+     ],
+     "parts": [
+      "FCAP"
+     ],
+     "wires": [],
+     "joint": "J41",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": ""
+     }
+    },
+    {
+     "t": "stick",
+     "label": "背膠",
+     "cat": "glue",
+     "text": "4 片止滑墊貼在底蓋下方。",
+     "at": [
+      31.8,
+      1.5,
+      -31.8
+     ],
+     "parts": [
+      "PADS"
+     ],
+     "wires": [],
+     "joint": "J42",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "接觸面積 326 mm²（需要 ≥ 200）"
+     }
+    },
+    {
+     "t": "flip",
+     "label": "翻面",
+     "cat": "tool",
+     "text": "整台翻回正面。",
+     "at": null,
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    }
+   ]
+  },
+  {
+   "title": "集液杯",
+   "parts": [
+    "CUP"
+   ],
+   "view": "head",
+   "units": [],
+   "acts": [
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "集液杯杯底朝下放進頭座：任何角度都可以，3 條定位肋會順著插管滑下去，凸緣坐在頭座內底。不用膠。",
+     "at": [
+      16.3,
+      218.3,
+      0
+     ],
+     "parts": [
+      "CUP"
+     ],
+     "wires": [],
+     "joint": "J08",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.00 mm；接觸 243 mm²"
+     }
+    }
+   ]
+  },
+  {
+   "title": "棉棒、霧化片、插頭",
+   "parts": [
+    "WICK",
+    "MESH"
+   ],
+   "view": "head",
+   "units": [],
+   "acts": [
+    {
+     "t": "cut",
+     "label": "剪",
+     "cat": "tool",
+     "text": "Ø5 棉棒插進棉棒剪裁治具到底，沿著治具口剪平（47 mm）。",
+     "at": null,
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "thread",
+     "label": "穿線",
+     "cat": "fit",
+     "text": "棉棒從霧化片座中間的孔插進導管，往下推到碰到杯底小井。",
+     "at": [
+      0,
+      214.0,
+      0
+     ],
+     "parts": [
+      "WICK"
+     ],
+     "wires": [],
+     "joint": "J62",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.00 mm；接觸 21 mm²"
+     }
+    },
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "霧化片連白色矽膠圈放進霧化片座：出霧面朝上，接觸水的面朝下壓在棉棒頂上。線從座的 180° 缺口出去、壓進杯緣的線槽。",
+     "at": [
+      0,
+      217.0,
+      0
+     ],
+     "parts": [
+      "MESH"
+     ],
+     "wires": [],
+     "joint": "J61",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.00 mm；接觸 252 mm²"
+     }
+    },
+    {
+     "t": "plug",
+     "label": "插頭",
+     "cat": "wire",
+     "text": "霧化片的 PH2.0 公頭插進延長線的母座，插頭放在頭座裡、凸緣上方。",
+     "at": [
+      -19.6,
+      225.6,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": "J63",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": ""
+     }
+    }
+   ]
+  },
+  {
+   "title": "傘架、瓶座、O 形環",
+   "parts": [
+    "UMB",
+    "SEAT",
+    "ORING"
+   ],
+   "view": "head",
+   "units": [],
+   "acts": [
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "傘架 3 支腳朝下，放在集液杯凸緣上（腳內側會貼著杯壁自己對中）。",
+     "at": [
+      15.4,
+      225.0,
+      0
+     ],
+     "parts": [
+      "UMB"
+     ],
+     "wires": [],
+     "joint": "J64",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.00 mm；接觸 28 mm²"
+     }
+    },
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "瓶座的定位鍵對準傘架套環內壁的鍵槽（90°）放進去，坐在台階上。",
+     "at": [
+      0,
+      236.0,
+      -12.5
+     ],
+     "parts": [
+      "SEAT"
+     ],
+     "wires": [],
+     "joint": "J65",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.00 mm；接觸 492 mm²"
+     }
+    },
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "O 形環放進瓶座上緣的提緣裡。",
+     "at": [
+      0,
+      244.6,
+      0
+     ],
+     "parts": [
+      "ORING"
+     ],
+     "wires": [],
+     "joint": "J43",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.08 mm；接觸 21 mm²"
+     }
+    }
+   ]
+  },
+  {
+   "title": "加水",
+   "parts": [],
+   "view": "head",
+   "units": [],
+   "acts": [
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "用 10 mL 針筒吸 8–10 mL 清水（不要超過 10 mL）。",
+     "at": null,
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "從瓶座中間的口慢慢注水：水會落在擋滴傘頂上，從傘邊滴進集液杯（電腦算過：瓶座口往下第一個碰到的就是擋滴傘；傘邊滴下去都落在杯裡）。",
+     "at": [
+      0,
+      238.0,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "measure",
+     "label": "量測",
+     "cat": "tool",
+     "text": "10 mL 時水面離進風窗還有 11.6 mm，不會從窗口流出去。",
+     "at": [
+      0,
+      194.6,
+      -12.0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    }
+   ]
+  },
+  {
+   "title": "空藥瓶",
+   "parts": [
+    "BOTTLE"
+   ],
+   "view": "head",
+   "units": [],
+   "acts": [
+    {
+     "t": "twist",
+     "label": "轉入鎖住",
+     "cat": "snap",
+     "text": "空藥瓶瓶口朝下，轉進瓶座到底；瓶頸凸緣壓住 O 形環。",
+     "at": [
+      0,
+      255.0,
+      0
+     ],
+     "parts": [
+      "BOTTLE"
+     ],
+     "wires": [],
+     "joint": "J44",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.10 mm；接觸 37 mm²"
+     }
+    }
+   ]
+  },
+  {
+   "title": "旋轉環、導流罩，出霧測試",
+   "parts": [
+    "RING",
+    "HOOD"
+   ],
+   "view": "head",
+   "units": [
+    {
+     "parts": [
+      "RING"
+     ],
+     "dirKey": "Z+",
+     "dir": [
+      0,
+      1,
+      0
+     ]
+    }
+   ],
+   "acts": [
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "旋轉環拿出來，6 根卡爪朝下。",
+     "at": null,
+     "parts": [
+      "RING"
+     ],
+     "wires": [],
+     "joint": null,
+     "bench": true,
+     "install": false
+    },
+    {
+     "t": "snap",
+     "label": "卡扣",
+     "cat": "snap",
+     "text": "旋轉環對準頭座殼頂往下壓，6 根卡爪「喀」一聲扣住；環可以轉、不會掉。",
+     "at": [
+      17.6,
+      240.5,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": "J15",
+     "bench": false,
+     "install": true,
+     "check": {
+      "ok": true,
+      "note": ""
+     }
+    },
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "TPU 導流罩小口撐開，往下套住旋轉環。",
+     "at": [
+      21.2,
+      247.0,
+      0
+     ],
+     "parts": [
+      "HOOD"
+     ],
+     "wires": [],
+     "joint": "J17",
+     "bench": false,
+     "install": false,
+     "check": {
+      "ok": true,
+      "note": "最小間隙 0.00 mm；接觸 759 mm²"
+     }
+    },
+    {
+     "t": "plug",
+     "label": "插頭",
+     "cat": "wire",
+     "text": "出霧測試：插上 USB-C、按線上開關：燈亮、風扇轉、霧從導流罩飄出來。霧太散或太弱就換風扇電阻（47 Ω 比較慢、10 Ω 比較快）。拉高伸縮管三段試一次。",
+     "at": null,
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    }
+   ]
+  },
+  {
+   "title": "之後：換水與清洗",
+   "parts": [],
+   "view": "head",
+   "units": [],
+   "acts": [
+    {
+     "t": "twist",
+     "label": "轉入鎖住",
+     "cat": "snap",
+     "text": "換水：關掉開關 → 轉下空藥瓶 → 從瓶座口用針筒補水到 8–10 mL → 藥瓶轉回去。不用拆別的。",
+     "at": [
+      0,
+      255.0,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "snap",
+     "label": "卡扣",
+     "cat": "snap",
+     "text": "清洗（約一週一次或換棉棒時）：關掉開關 → 轉下藥瓶 → 旋轉環連導流罩用力往上拔起來。",
+     "at": [
+      17.6,
+      240.5,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "依序拿起：瓶座 → 傘架 → 拔開 PH2.0 → 霧化片連矽膠圈 → 棉棒 → 集液杯（杯裡的水倒掉）。",
+     "at": [
+      0,
+      225.0,
+      0
+     ],
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    },
+    {
+     "t": "place",
+     "label": "放上",
+     "cat": "fit",
+     "text": "集液杯、傘架、瓶座用清水沖洗晾乾；霧化片只用清水沖、不要泡到插頭；棉棒髒了就換新的。裝回去照第 11 步開始反過來做。",
+     "at": null,
+     "parts": [],
+     "wires": [],
+     "joint": null,
+     "bench": false,
+     "install": false
+    }
+   ]
+  }
+ ],
+ "wires": [
+  {
+   "id": "b_r",
+   "name": "彈簧線 紅 → 霧化驅動板輸出 1",
+   "color": "#d23a2c",
+   "step": 5,
+   "frm": "CORD_BOT",
+   "to": "DRV_O1",
+   "pts": [
+    [
+     -19.4,
+     51.2,
+     19.4
+    ],
+    [
+     -19.4,
+     50.7,
+     19.4
+    ],
+    [
+     -20.36,
+     50.7,
+     20.36
+    ],
+    [
+     -22.39,
+     50.7,
+     18.12
+    ],
+    [
+     -24.16,
+     50.7,
+     15.67
+    ],
+    [
+     -25.67,
+     50.7,
+     13.05
+    ],
+    [
+     -26.9,
+     50.7,
+     10.29
+    ],
+    [
+     -27.83,
+     50.7,
+     7.41
+    ],
+    [
+     -28.45,
+     50.7,
+     4.46
+    ],
+    [
+     -28.76,
+     50.7,
+     1.45
+    ],
+    [
+     -28.76,
+     50.7,
+     -1.57
+    ],
+    [
+     -28.43,
+     50.7,
+     -4.58
+    ],
+    [
+     -27.8,
+     50.7,
+     -7.53
+    ],
+    [
+     -26.85,
+     50.7,
+     -10.4
+    ],
+    [
+     -25.62,
+     50.7,
+     -13.16
+    ],
+    [
+     -24.1,
+     50.7,
+     -15.77
+    ],
+    [
+     -22.31,
+     50.7,
+     -18.21
+    ],
+    [
+     -22.0,
+     50.7,
+     -17.96
+    ],
+    [
+     -22.0,
+     56.0,
+     -17.96
+    ],
+    [
+     -22.0,
+     56.0,
+     -22.8
+    ],
+    [
+     -22.0,
+     75.0,
+     -22.8
+    ],
+    [
+     -22.0,
+     75.0,
+     -32.3
+    ],
+    [
+     -12.75,
+     75.0,
+     -32.3
+    ],
+    [
+     -12.75,
+     75.0,
+     -30.0
+    ]
+   ],
+   "length": 95,
+   "cut": 110,
+   "clear": 0.1,
+   "ok": true,
+   "note": "霧化片那兩極不分正負",
+   "gpts": null
+  },
+  {
+   "id": "b_k",
+   "name": "彈簧線 黑 → 霧化驅動板輸出 2",
+   "color": "#26262a",
+   "step": 5,
+   "frm": "CORD_BOT",
+   "to": "DRV_O2",
+   "pts": [
+    [
+     -19.4,
+     51.2,
+     19.4
+    ],
+    [
+     -19.4,
+     50.7,
+     19.4
+    ],
+    [
+     -20.93,
+     50.7,
+     20.93
+    ],
+    [
+     -23.09,
+     50.7,
+     18.52
+    ],
+    [
+     -24.98,
+     50.7,
+     15.88
+    ],
+    [
+     -26.57,
+     50.7,
+     13.05
+    ],
+    [
+     -27.84,
+     50.7,
+     10.07
+    ],
+    [
+     -28.77,
+     50.7,
+     6.96
+    ],
+    [
+     -29.36,
+     50.7,
+     3.77
+    ],
+    [
+     -29.6,
+     50.7,
+     0.54
+    ],
+    [
+     -29.48,
+     50.7,
+     -2.7
+    ],
+    [
+     -29.0,
+     50.7,
+     -5.91
+    ],
+    [
+     -28.18,
+     50.7,
+     -9.05
+    ],
+    [
+     -27.03,
+     50.7,
+     -12.07
+    ],
+    [
+     -25.54,
+     50.7,
+     -14.96
+    ],
+    [
+     -23.75,
+     50.7,
+     -17.66
+    ],
+    [
+     -21.68,
+     50.7,
+     -20.15
+    ],
+    [
+     -20.8,
+     50.7,
+     -19.34
+    ],
+    [
+     -20.8,
+     56.0,
+     -19.34
+    ],
+    [
+     -20.8,
+     56.0,
+     -22.8
+    ],
+    [
+     -20.8,
+     75.0,
+     -22.8
+    ],
+    [
+     -20.8,
+     75.0,
+     -31.05
+    ],
+    [
+     -15.25,
+     75.0,
+     -31.05
+    ],
+    [
+     -15.25,
+     75.0,
+     -30.0
+    ]
+   ],
+   "length": 92,
+   "cut": 110,
+   "clear": 0.1,
+   "ok": true,
+   "note": "",
+   "gpts": null
+  },
+  {
+   "id": "u1",
+   "name": "霧化驅動板 VIN → USB 2P 插頭（往下穿承板左孔）",
+   "color": "#d23a2c",
+   "step": 5,
+   "frm": "DRV_VIN",
+   "to": "JST_USB",
+   "pts": [
+    [
+     4.25,
+     57.8,
+     -27.02
+    ],
+    [
+     4.41,
+     57.8,
+     -28.06
+    ],
+    [
+     4.41,
+     56.0,
+     -28.06
+    ],
+    [
+     4.41,
+     50.7,
+     -28.06
+    ],
+    [
+     4.72,
+     50.7,
+     -30.03
+    ],
+    [
+     1.45,
+     50.7,
+     -30.37
+    ],
+    [
+     -1.83,
+     50.7,
+     -30.34
+    ],
+    [
+     -5.1,
+     50.7,
+     -29.97
+    ],
+    [
+     -8.3,
+     50.7,
+     -29.24
+    ],
+    [
+     -11.41,
+     50.7,
+     -28.18
+    ],
+    [
+     -14.38,
+     50.7,
+     -26.78
+    ],
+    [
+     -17.19,
+     50.7,
+     -25.07
+    ],
+    [
+     -19.8,
+     50.7,
+     -23.07
+    ],
+    [
+     -22.17,
+     50.7,
+     -20.8
+    ],
+    [
+     -24.29,
+     50.7,
+     -18.29
+    ],
+    [
+     -26.12,
+     50.7,
+     -15.56
+    ],
+    [
+     -27.64,
+     50.7,
+     -12.65
+    ],
+    [
+     -28.85,
+     50.7,
+     -9.59
+    ],
+    [
+     -36.55,
+     50.7,
+     -12.15
+    ],
+    [
+     -36.55,
+     52.0,
+     -12.15
+    ],
+    [
+     -36.5,
+     44.0,
+     -12.2
+    ],
+    [
+     -24.0,
+     38.5,
+     -30.0
+    ],
+    [
+     -8.0,
+     35.0,
+     -43.0
+    ],
+    [
+     0.0,
+     34.0,
+     -46.0
+    ]
+   ],
+   "length": 122,
+   "cut": 150,
+   "clear": -0.01,
+   "ok": true,
+   "note": "插頭先留在後面，裝後殼時再插",
+   "gpts": null
+  },
+  {
+   "id": "u2",
+   "name": "霧化驅動板 GND → USB 2P 插頭",
+   "color": "#26262a",
+   "step": 5,
+   "frm": "DRV_GND",
+   "to": "JST_USB",
+   "pts": [
+    [
+     0.75,
+     57.8,
+     -27.02
+    ],
+    [
+     0.79,
+     57.8,
+     -28.39
+    ],
+    [
+     0.79,
+     56.0,
+     -28.39
+    ],
+    [
+     0.79,
+     50.7,
+     -28.39
+    ],
+    [
+     0.75,
+     50.7,
+     -27.19
+    ],
+    [
+     -2.11,
+     50.7,
+     -27.12
+    ],
+    [
+     -4.94,
+     50.7,
+     -26.75
+    ],
+    [
+     -7.73,
+     50.7,
+     -26.08
+    ],
+    [
+     -10.42,
+     50.7,
+     -25.12
+    ],
+    [
+     -13.01,
+     50.7,
+     -23.89
+    ],
+    [
+     -15.44,
+     50.7,
+     -22.39
+    ],
+    [
+     -17.71,
+     50.7,
+     -20.64
+    ],
+    [
+     -19.78,
+     50.7,
+     -18.67
+    ],
+    [
+     -21.63,
+     50.7,
+     -16.49
+    ],
+    [
+     -23.25,
+     50.7,
+     -14.12
+    ],
+    [
+     -24.6,
+     50.7,
+     -11.6
+    ],
+    [
+     -25.68,
+     50.7,
+     -8.95
+    ],
+    [
+     -34.85,
+     50.7,
+     -12.15
+    ],
+    [
+     -34.85,
+     52.0,
+     -12.15
+    ],
+    [
+     -34.9,
+     44.0,
+     -12.2
+    ],
+    [
+     -23.0,
+     38.0,
+     -29.0
+    ],
+    [
+     -7.0,
+     34.6,
+     -42.5
+    ],
+    [
+     0.0,
+     34.0,
+     -46.0
+    ]
+   ],
+   "length": 114,
+   "cut": 140,
+   "clear": 0.1,
+   "ok": true,
+   "note": "",
+   "gpts": null
+  },
+  {
+   "id": "f2",
+   "name": "霧化驅動板 VIN → 燈 2P 插頭 ＋",
+   "color": "#d23a2c",
+   "step": 5,
+   "frm": "DRV_VIN",
+   "to": "JST_LED",
+   "pts": [
+    [
+     4.25,
+     57.8,
+     -27.02
+    ],
+    [
+     4.41,
+     57.8,
+     -28.06
+    ],
+    [
+     4.41,
+     56.0,
+     -28.06
+    ],
+    [
+     4.41,
+     51.9,
+     -28.06
+    ],
+    [
+     4.47,
+     51.9,
+     -28.45
+    ],
+    [
+     1.48,
+     51.9,
+     -28.76
+    ],
+    [
+     -1.54,
+     51.9,
+     -28.76
+    ],
+    [
+     -4.54,
+     51.9,
+     -28.44
+    ],
+    [
+     -7.49,
+     51.9,
+     -27.81
+    ],
+    [
+     -10.36,
+     51.9,
+     -26.87
+    ],
+    [
+     -13.11,
+     51.9,
+     -25.64
+    ],
+    [
+     -15.72,
+     51.9,
+     -24.13
+    ],
+    [
+     -18.16,
+     51.9,
+     -22.36
+    ],
+    [
+     -20.4,
+     51.9,
+     -20.33
+    ],
+    [
+     -22.41,
+     51.9,
+     -18.09
+    ],
+    [
+     -24.18,
+     51.9,
+     -15.65
+    ],
+    [
+     -25.68,
+     51.9,
+     -13.03
+    ],
+    [
+     -26.9,
+     51.9,
+     -10.28
+    ],
+    [
+     -27.83,
+     51.9,
+     -7.41
+    ],
+    [
+     -28.45,
+     51.9,
+     -4.45
+    ],
+    [
+     -28.76,
+     51.9,
+     -1.45
+    ],
+    [
+     -28.76,
+     51.9,
+     1.56
+    ],
+    [
+     -28.44,
+     51.9,
+     4.56
+    ],
+    [
+     -27.8,
+     51.9,
+     7.51
+    ],
+    [
+     -26.87,
+     51.9,
+     10.38
+    ],
+    [
+     -25.63,
+     51.9,
+     13.13
+    ],
+    [
+     -24.12,
+     51.9,
+     15.74
+    ],
+    [
+     -22.34,
+     51.9,
+     18.17
+    ],
+    [
+     -20.32,
+     51.9,
+     20.41
+    ],
+    [
+     -18.07,
+     51.9,
+     22.42
+    ],
+    [
+     -15.63,
+     51.9,
+     24.19
+    ],
+    [
+     -13.01,
+     51.9,
+     25.69
+    ],
+    [
+     -11.55,
+     51.9,
+     22.8
+    ],
+    [
+     -11.55,
+     56.0,
+     22.8
+    ],
+    [
+     -11.55,
+     103.0,
+     22.8
+    ],
+    [
+     -11.55,
+     103.0,
+     30.0
+    ],
+    [
+     -14.5,
+     103.0,
+     30.0
+    ]
+   ],
+   "length": 153,
+   "cut": 180,
+   "clear": 0.4,
+   "ok": true,
+   "note": "燈條和 LOGO 燈共用",
+   "gpts": null
+  },
+  {
+   "id": "f5",
+   "name": "霧化驅動板 GND → 燈 2P 插頭 −",
+   "color": "#26262a",
+   "step": 5,
+   "frm": "DRV_GND",
+   "to": "JST_LED",
+   "pts": [
+    [
+     0.75,
+     57.8,
+     -27.02
+    ],
+    [
+     0.79,
+     57.8,
+     -28.39
+    ],
+    [
+     0.79,
+     56.0,
+     -28.39
+    ],
+    [
+     0.79,
+     51.9,
+     -28.39
+    ],
+    [
+     0.82,
+     51.9,
+     -29.59
+    ],
+    [
+     -2.32,
+     51.9,
+     -29.51
+    ],
+    [
+     -5.45,
+     51.9,
+     -29.09
+    ],
+    [
+     -8.5,
+     51.9,
+     -28.35
+    ],
+    [
+     -11.47,
+     51.9,
+     -27.29
+    ],
+    [
+     -14.3,
+     51.9,
+     -25.92
+    ],
+    [
+     -16.97,
+     51.9,
+     -24.25
+    ],
+    [
+     -19.45,
+     51.9,
+     -22.31
+    ],
+    [
+     -21.71,
+     51.9,
+     -20.12
+    ],
+    [
+     -23.72,
+     51.9,
+     -17.7
+    ],
+    [
+     -25.47,
+     51.9,
+     -15.09
+    ],
+    [
+     -26.93,
+     51.9,
+     -12.3
+    ],
+    [
+     -28.08,
+     51.9,
+     -9.37
+    ],
+    [
+     -28.91,
+     51.9,
+     -6.33
+    ],
+    [
+     -29.42,
+     51.9,
+     -3.23
+    ],
+    [
+     -29.6,
+     51.9,
+     -0.09
+    ],
+    [
+     -29.44,
+     51.9,
+     3.06
+    ],
+    [
+     -28.95,
+     51.9,
+     6.17
+    ],
+    [
+     -28.13,
+     51.9,
+     9.21
+    ],
+    [
+     -27.0,
+     51.9,
+     12.14
+    ],
+    [
+     -25.55,
+     51.9,
+     14.94
+    ],
+    [
+     -23.82,
+     51.9,
+     17.57
+    ],
+    [
+     -21.82,
+     51.9,
+     20.0
+    ],
+    [
+     -19.58,
+     51.9,
+     22.2
+    ],
+    [
+     -17.11,
+     51.9,
+     24.15
+    ],
+    [
+     -14.45,
+     51.9,
+     25.83
+    ],
+    [
+     -12.75,
+     51.9,
+     22.8
+    ],
+    [
+     -12.75,
+     56.0,
+     22.8
+    ],
+    [
+     -12.75,
+     103.0,
+     22.8
+    ],
+    [
+     -12.75,
+     103.0,
+     30.0
+    ],
+    [
+     -14.5,
+     103.0,
+     30.0
+    ]
+   ],
+   "length": 151,
+   "cut": 180,
+   "clear": 0.4,
+   "ok": true,
+   "note": "",
+   "gpts": null
+  },
+  {
+   "id": "fan_r",
+   "name": "風扇紅線 → 22 Ω → 霧化驅動板 VIN（穿承板右孔）",
+   "color": "#d23a2c",
+   "step": 6,
+   "frm": "FAN_W",
+   "to": "DRV_VIN",
+   "pts": [
+    [
+     19.0,
+     15.5,
+     19.0
+    ],
+    [
+     19.0,
+     20.0,
+     17.4
+    ],
+    [
+     19.6,
+     34.6,
+     17.4
+    ],
+    [
+     30.0,
+     40.0,
+     15.0
+    ],
+    [
+     34.9,
+     45.0,
+     12.3
+    ],
+    [
+     34.85,
+     52.0,
+     12.15
+    ],
+    [
+     34.85,
+     50.7,
+     12.15
+    ],
+    [
+     27.19,
+     50.7,
+     9.48
+    ],
+    [
+     28.07,
+     50.7,
+     6.46
+    ],
+    [
+     28.6,
+     50.7,
+     3.35
+    ],
+    [
+     28.8,
+     50.7,
+     0.21
+    ],
+    [
+     28.65,
+     50.7,
+     -2.94
+    ],
+    [
+     28.16,
+     50.7,
+     -6.05
+    ],
+    [
+     27.33,
+     50.7,
+     -9.08
+    ],
+    [
+     26.17,
+     50.7,
+     -12.01
+    ],
+    [
+     24.71,
+     50.7,
+     -14.8
+    ],
+    [
+     22.94,
+     50.7,
+     -17.41
+    ],
+    [
+     20.91,
+     50.7,
+     -19.81
+    ],
+    [
+     18.62,
+     50.7,
+     -21.97
+    ],
+    [
+     16.11,
+     50.7,
+     -23.87
+    ],
+    [
+     13.41,
+     50.7,
+     -25.49
+    ],
+    [
+     10.54,
+     50.7,
+     -26.8
+    ],
+    [
+     7.55,
+     50.7,
+     -27.79
+    ],
+    [
+     4.47,
+     50.7,
+     -28.45
+    ],
+    [
+     4.41,
+     50.7,
+     -28.06
+    ],
+    [
+     4.41,
+     56.0,
+     -28.06
+    ],
+    [
+     4.41,
+     57.8,
+     -28.06
+    ],
+    [
+     4.25,
+     57.8,
+     -27.02
+    ]
+   ],
+   "length": 114,
+   "cut": 140,
+   "clear": 0.1,
+   "ok": true,
+   "note": "22 Ω 電阻串在線上、熱縮包好；風太強換 47 Ω",
+   "gpts": null
+  },
+  {
+   "id": "fan_k",
+   "name": "風扇黑線 → 霧化驅動板 GND",
+   "color": "#26262a",
+   "step": 6,
+   "frm": "FAN_W",
+   "to": "DRV_GND",
+   "pts": [
+    [
+     19.0,
+     15.5,
+     19.0
+    ],
+    [
+     20.2,
+     20.0,
+     17.0
+    ],
+    [
+     20.8,
+     34.6,
+     17.0
+    ],
+    [
+     31.0,
+     40.0,
+     14.2
+    ],
+    [
+     36.5,
+     45.0,
+     12.2
+    ],
+    [
+     36.55,
+     52.0,
+     12.15
+    ],
+    [
+     36.55,
+     50.7,
+     12.15
+    ],
+    [
+     28.09,
+     50.7,
+     9.34
+    ],
+    [
+     28.94,
+     50.7,
+     6.21
+    ],
+    [
+     29.45,
+     50.7,
+     3.0
+    ],
+    [
+     29.6,
+     50.7,
+     -0.24
+    ],
+    [
+     29.4,
+     50.7,
+     -3.47
+    ],
+    [
+     28.84,
+     50.7,
+     -6.67
+    ],
+    [
+     27.94,
+     50.7,
+     -9.79
+    ],
+    [
+     26.7,
+     50.7,
+     -12.78
+    ],
+    [
+     25.14,
+     50.7,
+     -15.63
+    ],
+    [
+     23.28,
+     50.7,
+     -18.29
+    ],
+    [
+     21.14,
+     50.7,
+     -20.72
+    ],
+    [
+     18.74,
+     50.7,
+     -22.91
+    ],
+    [
+     16.12,
+     50.7,
+     -24.82
+    ],
+    [
+     13.31,
+     50.7,
+     -26.44
+    ],
+    [
+     10.34,
+     50.7,
+     -27.74
+    ],
+    [
+     7.24,
+     50.7,
+     -28.7
+    ],
+    [
+     4.05,
+     50.7,
+     -29.32
+    ],
+    [
+     0.82,
+     50.7,
+     -29.59
+    ],
+    [
+     0.79,
+     50.7,
+     -28.39
+    ],
+    [
+     0.79,
+     56.0,
+     -28.39
+    ],
+    [
+     0.79,
+     57.8,
+     -28.39
+    ],
+    [
+     0.75,
+     57.8,
+     -27.02
+    ]
+   ],
+   "length": 121,
+   "cut": 140,
+   "clear": 0.1,
+   "ok": true,
+   "note": "",
+   "gpts": null
+  },
+  {
+   "id": "tl_r",
+   "name": "伸縮管燈 ＋ → 霧化驅動板 VIN（穿承板右孔）",
+   "color": "#d23a2c",
+   "step": 6,
+   "frm": "TL_W",
+   "to": "DRV_VIN",
+   "pts": [
+    [
+     15.41,
+     45.1,
+     15.41
+    ],
+    [
+     21.4,
+     45.1,
+     20.8
+    ],
+    [
+     28.5,
+     45.3,
+     17.5
+    ],
+    [
+     34.0,
+     46.4,
+     14.6
+    ],
+    [
+     34.85,
+     47.6,
+     13.85
+    ],
+    [
+     34.85,
+     52.0,
+     13.85
+    ],
+    [
+     34.85,
+     50.7,
+     13.85
+    ],
+    [
+     25.28,
+     50.7,
+     10.05
+    ],
+    [
+     26.19,
+     50.7,
+     7.33
+    ],
+    [
+     26.82,
+     50.7,
+     4.53
+    ],
+    [
+     27.15,
+     50.7,
+     1.68
+    ],
+    [
+     27.17,
+     50.7,
+     -1.19
+    ],
+    [
+     26.9,
+     50.7,
+     -4.04
+    ],
+    [
+     26.32,
+     50.7,
+     -6.85
+    ],
+    [
+     25.46,
+     50.7,
+     -9.58
+    ],
+    [
+     24.31,
+     50.7,
+     -12.21
+    ],
+    [
+     22.89,
+     50.7,
+     -14.7
+    ],
+    [
+     21.21,
+     50.7,
+     -17.03
+    ],
+    [
+     19.3,
+     50.7,
+     -19.17
+    ],
+    [
+     17.17,
+     50.7,
+     -21.09
+    ],
+    [
+     14.86,
+     50.7,
+     -22.78
+    ],
+    [
+     12.38,
+     50.7,
+     -24.22
+    ],
+    [
+     9.76,
+     50.7,
+     -25.39
+    ],
+    [
+     7.03,
+     50.7,
+     -26.28
+    ],
+    [
+     4.23,
+     50.7,
+     -26.87
+    ],
+    [
+     4.41,
+     50.7,
+     -28.06
+    ],
+    [
+     4.41,
+     56.0,
+     -28.06
+    ],
+    [
+     4.41,
+     57.8,
+     -28.06
+    ],
+    [
+     4.25,
+     57.8,
+     -27.02
+    ]
+   ],
+   "length": 98,
+   "cut": 120,
+   "clear": 0.1,
+   "ok": true,
+   "note": "燈條本身有限流電阻",
+   "gpts": null
+  },
+  {
+   "id": "tl_k",
+   "name": "伸縮管燈 − → 霧化驅動板 GND（穿承板右孔）",
+   "color": "#26262a",
+   "step": 6,
+   "frm": "TL_W",
+   "to": "DRV_GND",
+   "pts": [
+    [
+     15.41,
+     45.1,
+     15.41
+    ],
+    [
+     22.4,
+     45.1,
+     19.8
+    ],
+    [
+     29.2,
+     45.3,
+     16.6
+    ],
+    [
+     35.4,
+     46.4,
+     14.2
+    ],
+    [
+     36.55,
+     47.6,
+     13.85
+    ],
+    [
+     36.55,
+     52.0,
+     13.85
+    ],
+    [
+     36.55,
+     50.7,
+     13.85
+    ],
+    [
+     26.18,
+     50.7,
+     9.92
+    ],
+    [
+     27.08,
+     50.7,
+     7.1
+    ],
+    [
+     27.68,
+     50.7,
+     4.2
+    ],
+    [
+     27.97,
+     50.7,
+     1.25
+    ],
+    [
+     27.95,
+     50.7,
+     -1.71
+    ],
+    [
+     27.61,
+     50.7,
+     -4.65
+    ],
+    [
+     26.96,
+     50.7,
+     -7.55
+    ],
+    [
+     26.02,
+     50.7,
+     -10.35
+    ],
+    [
+     24.78,
+     50.7,
+     -13.04
+    ],
+    [
+     23.26,
+     50.7,
+     -15.59
+    ],
+    [
+     21.48,
+     50.7,
+     -17.96
+    ],
+    [
+     19.47,
+     50.7,
+     -20.13
+    ],
+    [
+     17.23,
+     50.7,
+     -22.07
+    ],
+    [
+     14.8,
+     50.7,
+     -23.77
+    ],
+    [
+     12.21,
+     50.7,
+     -25.2
+    ],
+    [
+     9.48,
+     50.7,
+     -26.35
+    ],
+    [
+     6.64,
+     50.7,
+     -27.2
+    ],
+    [
+     3.73,
+     50.7,
+     -27.75
+    ],
+    [
+     0.78,
+     50.7,
+     -27.99
+    ],
+    [
+     0.79,
+     50.7,
+     -28.39
+    ],
+    [
+     0.79,
+     56.0,
+     -28.39
+    ],
+    [
+     0.79,
+     57.8,
+     -28.39
+    ],
+    [
+     0.75,
+     57.8,
+     -27.02
+    ]
+   ],
+   "length": 103,
+   "cut": 120,
+   "clear": 0.1,
+   "ok": true,
+   "note": "",
+   "gpts": null
+  },
+  {
+   "id": "us1",
+   "name": "USB VBUS → 2P 插頭",
+   "color": "#d23a2c",
+   "step": 7,
+   "frm": "USB_VB",
+   "to": "JST_USB",
+   "pts": [
+    [
+     3.5,
+     20.6,
+     -56.04
+    ],
+    [
+     3.5,
+     22.0,
+     -52.0
+    ],
+    [
+     1.2,
+     32.0,
+     -48.0
+    ],
+    [
+     0.0,
+     34.0,
+     -46.0
+    ]
+   ],
+   "length": 18,
+   "cut": 30,
+   "clear": 8.4,
+   "ok": true,
+   "note": "插頭和第 5 步留的那一半插在一起",
+   "gpts": null
+  },
+  {
+   "id": "us2",
+   "name": "USB GND → 2P 插頭",
+   "color": "#26262a",
+   "step": 7,
+   "frm": "USB_GND",
+   "to": "JST_USB",
+   "pts": [
+    [
+     -3.5,
+     20.6,
+     -56.04
+    ],
+    [
+     -3.5,
+     22.0,
+     -52.0
+    ],
+    [
+     -1.2,
+     32.0,
+     -48.0
+    ],
+    [
+     0.0,
+     34.0,
+     -46.0
+    ]
+   ],
+   "length": 18,
+   "cut": 30,
+   "clear": 8.4,
+   "ok": true,
+   "note": "",
+   "gpts": null
+  },
+  {
+   "id": "l1",
+   "name": "燈條 ＋ → 燈 2P 插頭",
+   "color": "#d23a2c",
+   "step": 8,
+   "frm": "LED_5V",
+   "to": "JST_LED",
+   "pts": [
+    [
+     -1.6,
+     114.6,
+     34.6
+    ],
+    [
+     -1.6,
+     114.6,
+     31.0
+    ],
+    [
+     -10.5,
+     114.6,
+     31.0
+    ],
+    [
+     -10.5,
+     107.0,
+     31.0
+    ],
+    [
+     -14.5,
+     103.0,
+     30.0
+    ]
+   ],
+   "length": 26,
+   "cut": 30,
+   "clear": 0.62,
+   "ok": true,
+   "note": "",
+   "gpts": null
+  },
+  {
+   "id": "l3",
+   "name": "燈條 − → 燈 2P 插頭",
+   "color": "#26262a",
+   "step": 8,
+   "frm": "LED_GND",
+   "to": "JST_LED",
+   "pts": [
+    [
+     1.6,
+     114.6,
+     34.6
+    ],
+    [
+     1.6,
+     117.0,
+     31.0
+    ],
+    [
+     -12.9,
+     117.0,
+     31.0
+    ],
+    [
+     -12.9,
+     108.0,
+     31.0
+    ],
+    [
+     -14.5,
+     103.0,
+     30.0
+    ]
+   ],
+   "length": 33,
+   "cut": 40,
+   "clear": 0.22,
+   "ok": true,
+   "note": "",
+   "gpts": null
+  },
+  {
+   "id": "lg1",
+   "name": "LOGO 燈長腳 → 220 Ω → 燈 2P 插頭 ＋",
+   "color": "#d23a2c",
+   "step": 8,
+   "frm": "LL_5V",
+   "to": "JST_LED",
+   "pts": [
+    [
+     -3.1,
+     105.6,
+     32.03
+    ],
+    [
+     -3.6,
+     105.6,
+     33.6
+    ],
+    [
+     -11.0,
+     105.6,
+     33.6
+    ],
+    [
+     -14.5,
+     103.0,
+     30.0
+    ]
+   ],
+   "length": 15,
+   "cut": 20,
+   "clear": 0.8,
+   "ok": true,
+   "note": "220 Ω 串在線上、熱縮包好",
+   "gpts": null
+  },
+  {
+   "id": "lg3",
+   "name": "LOGO 燈短腳 → 燈 2P 插頭 −",
+   "color": "#26262a",
+   "step": 8,
+   "frm": "LL_GND",
+   "to": "JST_LED",
+   "pts": [
+    [
+     -3.1,
+     102.4,
+     32.03
+    ],
+    [
+     -3.6,
+     102.4,
+     33.6
+    ],
+    [
+     -11.0,
+     102.4,
+     33.6
+    ],
+    [
+     -14.5,
+     103.0,
+     30.0
+    ]
+   ],
+   "length": 14,
+   "cut": 20,
+   "clear": 0.8,
+   "ok": true,
+   "note": "",
+   "gpts": null
+  }
+ ],
+ "terms": {
+  "CORD_BOT": {
+   "label": "彈簧線下端",
+   "p": [
+    -19.4,
+    51.2,
+    19.4
+   ],
+   "part": "CORD"
+  },
+  "DRV_GND": {
+   "label": "霧化驅動板 GND",
+   "p": [
+    0.75,
+    57.8,
+    -27.02
+   ],
+   "part": "DRV"
+  },
+  "DRV_O1": {
+   "label": "霧化驅動板 輸出 1",
+   "p": [
+    -12.75,
+    75.0,
+    -30.0
+   ],
+   "part": "DRV"
+  },
+  "DRV_O2": {
+   "label": "霧化驅動板 輸出 2",
+   "p": [
+    -15.25,
+    75.0,
+    -30.0
+   ],
+   "part": "DRV"
+  },
+  "DRV_VIN": {
+   "label": "霧化驅動板 VIN（5 V）",
+   "p": [
+    4.25,
+    57.8,
+    -27.02
+   ],
+   "part": "DRV"
+  },
+  "FAN_W": {
+   "label": "風扇出線",
+   "p": [
+    19.0,
+    15.5,
+    19.0
+   ],
+   "part": "FAN"
+  },
+  "JST_LED": {
+   "label": "燈 2P 插頭",
+   "p": [
+    -14.5,
+    103.0,
+    30.0
+   ],
+   "part": null
+  },
+  "JST_USB": {
+   "label": "USB 2P 插頭",
+   "p": [
+    0.0,
+    34.0,
+    -46.0
+   ],
+   "part": null
+  },
+  "LED_5V": {
+   "label": "燈條 ＋",
+   "p": [
+    -1.6,
+    114.6,
+    34.6
+   ],
+   "part": "LED"
+  },
+  "LED_GND": {
+   "label": "燈條 −",
+   "p": [
+    1.6,
+    114.6,
+    34.6
+   ],
+   "part": "LED"
+  },
+  "LL_5V": {
+   "label": "LOGO 燈長腳",
+   "p": [
+    -3.1,
+    105.6,
+    32.03
+   ],
+   "part": "LLED"
+  },
+  "LL_GND": {
+   "label": "LOGO 燈短腳",
+   "p": [
+    -3.1,
+    102.4,
+    32.03
+   ],
+   "part": "LLED"
+  },
+  "TL_W": {
+   "label": "伸縮管燈出線",
+   "p": [
+    15.41,
+    45.1,
+    15.41
+   ],
+   "part": "TLIGHT"
+  },
+  "USB_GND": {
+   "label": "USB 板 GND",
+   "p": [
+    -3.5,
+    20.6,
+    -56.04
+   ],
+   "part": "USB"
+  },
+  "USB_VB": {
+   "label": "USB 板 VBUS",
+   "p": [
+    3.5,
+    20.6,
+    -56.04
+   ],
+   "part": "USB"
+  }
+ },
+ "joints": [
+  {
+   "id": "J01",
+   "a": "M3NUT",
+   "b": "FRAME",
+   "act": "press",
+   "kind": "fit",
+   "desc": "M3 螺母推進鎖柱側槽",
+   "contact": 139.6,
+   "depth": 0.0,
+   "gap": 0.05,
+   "note": "最小間隙 0.05 mm；接觸 140 mm²",
+   "ok": true,
+   "label": "壓入",
+   "cat": "fit"
+  },
+  {
+   "id": "J02",
+   "a": "TUBE",
+   "b": "FRAME",
+   "act": "push",
+   "kind": "fit",
+   "desc": "伸縮管在套筒／導引段裡滑動（要有間隙）",
+   "contact": 0.0,
+   "depth": 0.0,
+   "gap": 0.3,
+   "note": "最小間隙 0.30 mm",
+   "ok": true,
+   "label": "推入",
+   "cat": "fit"
+  },
+  {
+   "id": "J05",
+   "a": "BALL",
+   "b": "FRAME",
+   "act": "detent",
+   "kind": "snap",
+   "desc": "鋼珠被彈簧頂進套筒 V 形凹槽",
+   "contact": 2.6,
+   "depth": 0.0,
+   "gap": 0.054,
+   "note": "",
+   "ok": true,
+   "label": "段落卡位",
+   "cat": "snap"
+  },
+  {
+   "id": "J06",
+   "a": "COLLAR",
+   "b": "TUBE",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "頭座插管外圓周＋內底底面 ↔ 伸縮管內壁＋管口",
+   "contact": 1385.2,
+   "depth": 0.0,
+   "gap": 0.0,
+   "need": 500,
+   "note": "接觸面積 1385 mm²（需要 ≥ 500）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J60",
+   "a": "EXT",
+   "b": "COLLAR",
+   "act": "hot",
+   "kind": "wire",
+   "desc": "延長線穿過頭座插管 180° 缺口，熱熔膠封住",
+   "contact": 0.0,
+   "depth": 0.0,
+   "gap": 0.434,
+   "note": "",
+   "ok": true,
+   "label": "熱熔膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J08",
+   "a": "CUP",
+   "b": "COLLAR",
+   "act": "place",
+   "kind": "fit",
+   "desc": "集液杯凸緣坐在頭座內底；3 條定位肋貼插管（不黏，可拿起來洗）",
+   "contact": 243.2,
+   "depth": 0.0,
+   "gap": 0.0,
+   "note": "最小間隙 0.00 mm；接觸 243 mm²",
+   "ok": true,
+   "label": "放上",
+   "cat": "fit"
+  },
+  {
+   "id": "J62",
+   "a": "WICK",
+   "b": "CUP",
+   "act": "thread",
+   "kind": "fit",
+   "desc": "棉棒插進霧化片座的導管，站在杯底小井",
+   "contact": 20.8,
+   "depth": 0.0,
+   "gap": 0.0,
+   "note": "最小間隙 0.00 mm；接觸 21 mm²",
+   "ok": true,
+   "label": "穿線",
+   "cat": "fit"
+  },
+  {
+   "id": "J61",
+   "a": "MESH",
+   "b": "CUP",
+   "act": "place",
+   "kind": "fit",
+   "desc": "霧化片連矽膠圈放進霧化片座，線從 180° 缺口和杯緣線槽出去",
+   "contact": 251.8,
+   "depth": 0.0,
+   "gap": 0.0,
+   "note": "最小間隙 0.00 mm；接觸 252 mm²",
+   "ok": true,
+   "label": "放上",
+   "cat": "fit"
+  },
+  {
+   "id": "J63",
+   "a": "MESH",
+   "b": "EXT",
+   "act": "plug",
+   "kind": "wire",
+   "desc": "霧化片的 PH2.0 公頭插進延長線母座",
+   "contact": 1.4,
+   "depth": 2.069,
+   "gap": 0.004,
+   "note": "",
+   "ok": true,
+   "label": "插頭",
+   "cat": "wire"
+  },
+  {
+   "id": "J64",
+   "a": "UMB",
+   "b": "CUP",
+   "act": "place",
+   "kind": "fit",
+   "desc": "傘架 3 支腳站在集液杯凸緣上，內側貼杯壁定位",
+   "contact": 28.4,
+   "depth": 0.0,
+   "gap": 0.0,
+   "note": "最小間隙 0.00 mm；接觸 28 mm²",
+   "ok": true,
+   "label": "放上",
+   "cat": "fit"
+  },
+  {
+   "id": "J65",
+   "a": "SEAT",
+   "b": "UMB",
+   "act": "place",
+   "kind": "fit",
+   "desc": "瓶座坐在傘架套環台階上，定位鍵進鍵槽",
+   "contact": 491.7,
+   "depth": 0.0,
+   "gap": 0.0,
+   "note": "最小間隙 0.00 mm；接觸 492 mm²",
+   "ok": true,
+   "label": "放上",
+   "cat": "fit"
+  },
+  {
+   "id": "J43",
+   "a": "ORING",
+   "b": "SEAT",
+   "act": "place",
+   "kind": "fit",
+   "desc": "O 形環放在瓶座提緣裡",
+   "contact": 20.6,
+   "depth": 0.0,
+   "gap": 0.084,
+   "note": "最小間隙 0.08 mm；接觸 21 mm²",
+   "ok": true,
+   "label": "放上",
+   "cat": "fit"
+  },
+  {
+   "id": "J44",
+   "a": "BOTTLE",
+   "b": "SEAT",
+   "act": "twist",
+   "kind": "fit",
+   "desc": "空藥瓶螺紋轉進瓶座",
+   "contact": 36.7,
+   "depth": 0.0,
+   "gap": 0.097,
+   "note": "最小間隙 0.10 mm；接觸 37 mm²",
+   "ok": true,
+   "label": "轉入鎖住",
+   "cat": "snap"
+  },
+  {
+   "id": "J15",
+   "a": "RING",
+   "b": "COLLAR",
+   "act": "snap",
+   "kind": "snap",
+   "desc": "6 根卡爪的倒鉤通過殼頂開口後扣在下緣",
+   "contact": 339.1,
+   "depth": 0.0,
+   "gap": 0.1,
+   "note": "",
+   "ok": true,
+   "label": "卡扣",
+   "cat": "snap"
+  },
+  {
+   "id": "J17",
+   "a": "HOOD",
+   "b": "RING",
+   "act": "place",
+   "kind": "fit",
+   "desc": "TPU 導流罩小口撐開套住旋轉環",
+   "contact": 758.6,
+   "depth": 0.405,
+   "gap": 0.0,
+   "note": "最小間隙 0.00 mm；接觸 759 mm²",
+   "ok": true,
+   "label": "放上",
+   "cat": "fit"
+  },
+  {
+   "id": "J22",
+   "a": "DRV",
+   "b": "FRAME",
+   "act": "tape",
+   "kind": "glue",
+   "desc": "霧化驅動板背面 ↔ 安裝座（1 mm 泡棉膠）",
+   "contact": 680.0,
+   "depth": 0.0,
+   "gap": 0.0,
+   "need": 150,
+   "note": "接觸面積 680 mm²（需要 ≥ 150）",
+   "ok": true,
+   "label": "泡棉膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J23",
+   "a": "DUCT",
+   "b": "FRAME",
+   "act": "place",
+   "kind": "clamp",
+   "desc": "風道喇叭口頂住承板底面（被風扇往上頂）",
+   "contact": 475.4,
+   "depth": 0.0,
+   "gap": 0.0,
+   "note": "夾緊面積 475 mm²",
+   "ok": true,
+   "label": "放上",
+   "cat": "fit"
+  },
+  {
+   "id": "J66",
+   "a": "TLIGHT",
+   "b": "DUCT",
+   "act": "place",
+   "kind": "fit",
+   "desc": "燈環坐在風道接管喇叭口斜面上；線穿過 315° 小孔",
+   "contact": 28.8,
+   "depth": 0.0,
+   "gap": 0.044,
+   "note": "最小間隙 0.04 mm；接觸 29 mm²",
+   "ok": true,
+   "label": "放上",
+   "cat": "fit"
+  },
+  {
+   "id": "J24",
+   "a": "FAN",
+   "b": "DUCT",
+   "act": "place",
+   "kind": "clamp",
+   "desc": "風扇出風面頂住風道法蘭",
+   "contact": 166.4,
+   "depth": 0.0,
+   "gap": 0.0,
+   "note": "夾緊面積 166 mm²",
+   "ok": true,
+   "label": "放上",
+   "cat": "fit"
+  },
+  {
+   "id": "J25",
+   "a": "FAN",
+   "b": "COVER",
+   "act": "tape",
+   "kind": "glue",
+   "desc": "風扇四角泡棉 ↔ 底蓋",
+   "contact": 252.8,
+   "depth": 0.0,
+   "gap": 0.0,
+   "need": 60,
+   "note": "接觸面積 253 mm²（需要 ≥ 60）",
+   "ok": true,
+   "label": "泡棉膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J27",
+   "a": "USB",
+   "b": "SHB_IN",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "USB 板兩側板邊＋底邊 ↔ 夾條與托條",
+   "contact": 34.1,
+   "depth": 0.0,
+   "gap": 0.05,
+   "need": 10,
+   "note": "接觸面積 34 mm²（需要 ≥ 10）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J28",
+   "a": "SHB_IN",
+   "b": "SHB_OUT",
+   "act": "uv",
+   "kind": "glue",
+   "desc": "後殼內層外表面 ↔ 外層內表面",
+   "contact": 29695.0,
+   "depth": 0.0,
+   "gap": 0.004,
+   "need": 5000,
+   "note": "接觸面積 29695 mm²（需要 ≥ 5000）",
+   "ok": true,
+   "label": "UV 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J29",
+   "a": "MAG_B",
+   "b": "SHB_IN",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "磁鐵 ↔ 磁鐵座穴",
+   "contact": 290.7,
+   "depth": 0.0,
+   "gap": 0.05,
+   "need": 40,
+   "note": "接觸面積 291 mm²（需要 ≥ 40）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J30",
+   "a": "FOOT_B",
+   "b": "SHB_OUT",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "腳環後半頂面 ↔ 後殼外層底緣",
+   "contact": 1174.2,
+   "depth": 0.0,
+   "gap": 0.05,
+   "need": 300,
+   "note": "接觸面積 1174 mm²（需要 ≥ 300）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J31",
+   "a": "SHB_IN",
+   "b": "FRAME",
+   "act": "hook",
+   "kind": "fit",
+   "desc": "卡唇水平勾進骨架環槽",
+   "contact": 59.0,
+   "depth": 0.0,
+   "gap": 0.1,
+   "note": "最小間隙 0.10 mm；接觸 59 mm²",
+   "ok": true,
+   "label": "勾入",
+   "cat": "snap"
+  },
+  {
+   "id": "J32",
+   "a": "SHF_IN",
+   "b": "SHF_OUT",
+   "act": "uv",
+   "kind": "glue",
+   "desc": "前殼內層 ↔ 外層",
+   "contact": 29610.0,
+   "depth": 0.0,
+   "gap": 0.001,
+   "need": 5000,
+   "note": "接觸面積 29610 mm²（需要 ≥ 5000）",
+   "ok": true,
+   "label": "UV 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J33",
+   "a": "MAG_F",
+   "b": "SHF_IN",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "磁鐵 ↔ 磁鐵座穴",
+   "contact": 305.0,
+   "depth": 0.0,
+   "gap": 0.05,
+   "need": 40,
+   "note": "接觸面積 305 mm²（需要 ≥ 40）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J34",
+   "a": "FOOT_F",
+   "b": "SHF_OUT",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "腳環前半 ↔ 前殼外層底緣",
+   "contact": 1214.8,
+   "depth": 0.0,
+   "gap": 0.05,
+   "need": 300,
+   "note": "接觸面積 1215 mm²（需要 ≥ 300）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J35",
+   "a": "SHF_IN",
+   "b": "FRAME",
+   "act": "hook",
+   "kind": "fit",
+   "desc": "卡唇勾進環槽",
+   "contact": 60.0,
+   "depth": 0.0,
+   "gap": 0.1,
+   "note": "最小間隙 0.10 mm；接觸 60 mm²",
+   "ok": true,
+   "label": "勾入",
+   "cat": "snap"
+  },
+  {
+   "id": "J36",
+   "a": "MAG_F",
+   "b": "MAG_B",
+   "act": "magnet",
+   "kind": "fit",
+   "desc": "前後殼磁鐵隔著接縫相吸",
+   "contact": 0.0,
+   "depth": 0.0,
+   "gap": 0.2,
+   "note": "最小間隙 0.20 mm",
+   "ok": true,
+   "label": "磁吸",
+   "cat": "snap"
+  },
+  {
+   "id": "J37",
+   "a": "LED",
+   "b": "SHF_OUT",
+   "act": "uv",
+   "kind": "glue",
+   "desc": "燈條正面 ↔ 外層內表面（透明 UV 膠填滿燈窗）",
+   "contact": 438.2,
+   "depth": 0.0,
+   "gap": 0.433,
+   "need": 0,
+   "note": "接觸面積 438 mm²（需要 ≥ 0）",
+   "ok": true,
+   "label": "UV 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J46",
+   "a": "LBOX",
+   "b": "SHF_IN",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "遮光盒前緣 ↔ 前殼內層背面",
+   "contact": 79.7,
+   "depth": 0.0,
+   "gap": 0.0,
+   "need": 30,
+   "note": "接觸面積 80 mm²（需要 ≥ 30）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J47",
+   "a": "LLED",
+   "b": "LBOX",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "LOGO 燈 ↔ 遮光盒盒底",
+   "contact": 39.6,
+   "depth": 0.0,
+   "gap": 0.0,
+   "need": 20,
+   "note": "接觸面積 40 mm²（需要 ≥ 20）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J39",
+   "a": "NUTS",
+   "b": "COVER",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "12 顆配重螺帽 ↔ 底蓋的六角淺槽",
+   "contact": 1831.6,
+   "depth": 0.0,
+   "gap": 0.0,
+   "need": 1000,
+   "note": "接觸面積 1832 mm²（需要 ≥ 1000）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J40",
+   "a": "SCREWS",
+   "b": "M3NUT",
+   "act": "screw",
+   "kind": "screw",
+   "desc": "M3 螺絲穿過底蓋孔＋兩片卡耳的半孔，鎖進螺母",
+   "contact": 19.1,
+   "depth": 0.147,
+   "gap": 0.002,
+   "note": "",
+   "ok": true,
+   "label": "鎖螺絲",
+   "cat": "screw"
+  },
+  {
+   "id": "J41",
+   "a": "FCAP",
+   "b": "COVER",
+   "act": "twist",
+   "kind": "snap",
+   "desc": "濾網蓋卡耳從入口上推、轉 36° 坐在卡槽台階上",
+   "contact": 18.4,
+   "depth": 0.0,
+   "gap": 0.1,
+   "note": "",
+   "ok": true,
+   "label": "轉入鎖住",
+   "cat": "snap"
+  },
+  {
+   "id": "J42",
+   "a": "PADS",
+   "b": "COVER",
+   "act": "stick",
+   "kind": "glue",
+   "desc": "止滑墊背膠 ↔ 底蓋底面",
+   "contact": 326.5,
+   "depth": 0.0,
+   "gap": 0.0,
+   "need": 200,
+   "note": "接觸面積 326 mm²（需要 ≥ 200）",
+   "ok": true,
+   "label": "背膠",
+   "cat": "glue"
+  }
+ ],
+ "snap": {
+  "ring": {
+   "hook_r": 18.45,
+   "lip_r": 18.0,
+   "interference": 0.45,
+   "L": 9.5,
+   "t": 0.8,
+   "w": 7.5,
+   "strain": 0.6,
+   "F_radial_each": 1.11,
+   "push_N": 7.3,
+   "pull_N": 27.2,
+   "ok": true
+  },
+  "ball": {
+   "ball_tip_r": 22.3,
+   "sleeve_r": 21.9,
+   "push_in": 0.4,
+   "groove_depth": 0.75,
+   "ok": true
+  },
+  "bayonet": {
+   "tab_z": [
+    4.8,
+    5.3
+   ],
+   "floor_z": 4.7,
+   "entry_deg": 19,
+   "tab_deg": 16,
+   "turn_deg": 36,
+   "ok": true
+  },
+  "screw": {
+   "engage": 2.4,
+   "nut_z": [
+    9.1,
+    11.5
+   ],
+   "ok": true
+  }
+ },
+ "paths": [
+  {
+   "step": 1,
+   "what": "內骨架",
+   "dir": "鑷子／手放",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 1,
+   "what": "M3 螺母 ×2",
+   "dir": "鑷子／手放",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 2,
+   "what": "伸縮管、定位彈簧＋鋼珠",
+   "dir": "Z-",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 3,
+   "what": "2 芯彈簧線",
+   "dir": "鑷子／手放",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 3,
+   "what": "延長線＋PH2.0 母座",
+   "dir": "鑷子／手放",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 4,
+   "what": "頭座（收腰殼）",
+   "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 5,
+   "what": "霧化驅動板",
+   "dir": "Y+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 6,
+   "what": "風道接管、伸縮管燈（燈環＋3 顆燈）",
+   "dir": "Z-",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 6,
+   "what": "4010 風扇",
+   "dir": "Z-",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 7,
+   "what": "後殼內層、後殼外層、磁鐵（後殼）×4、腳環（後半）、USB-C 插座板",
+   "dir": "Y+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 8,
+   "what": "前殼內層、前殼外層、磁鐵（前殼）×4、腳環（前半）、LED 燈條（5 V）、LOGO 燈、LOGO 遮光盒",
+   "dir": "Y-",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 9,
+   "what": "底蓋、配重螺帽 ×12",
+   "dir": "Z-",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 9,
+   "what": "M3 螺絲 ×2",
+   "dir": "Z-",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 10,
+   "what": "濾網蓋",
+   "dir": "Z-",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 10,
+   "what": "止滑墊 ×4",
+   "dir": "Z-",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 11,
+   "what": "集液杯",
+   "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 12,
+   "what": "棉棒 Ø5",
+   "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 12,
+   "what": "霧化片 16 mm（含矽膠圈、線）",
+   "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 13,
+   "what": "傘架（套環＋擋滴傘）",
+   "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 13,
+   "what": "瓶座",
+   "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 13,
+   "what": "O 形環",
+   "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 15,
+   "what": "空藥瓶",
+   "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 16,
+   "what": "旋轉環",
+   "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 16,
+   "what": "導流罩",
+   "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  }
+ ],
+ "interference": [
+  {
+   "a": "SCREWS",
+   "b": "M3NUT",
+   "depth": 0.147,
+   "area": 33.6,
+   "where": [
+    -44.0,
+    -1.4,
+    10.3
+   ],
+   "ok": true,
+   "why": "螺紋咬合（螺絲外徑 3.0 > 螺母內徑 2.5）"
+  },
+  {
+   "a": "CORD",
+   "b": "EXT",
+   "depth": 1.086,
+   "area": 8.4,
+   "where": [
+    -10.5,
+    -0.0,
+    150.2
+   ],
+   "ok": true,
+   "why": "焊點＋熱縮（彈簧線和延長線接在一起）"
+  },
+  {
+   "a": "HOOD",
+   "b": "RING",
+   "depth": 0.405,
+   "area": 170.7,
+   "where": [
+    -21.1,
+    -4.2,
+    249.0
+   ],
+   "ok": true,
+   "why": "TPU 導流罩小口撐開，包住旋轉環擋邊"
+  },
+  {
+   "a": "ORING",
+   "b": "BOTTLE",
+   "depth": 0.301,
+   "area": 49.8,
+   "where": [
+    1.4,
+    9.6,
+    244.6
+   ],
+   "ok": true,
+   "why": "O 形環套在瓶頸上被撐開（密封）"
+  },
+  {
+   "a": "MESH",
+   "b": "EXT",
+   "depth": 2.069,
+   "area": 20.4,
+   "where": [
+    -19.7,
+    -0.2,
+    225.6
+   ],
+   "ok": true,
+   "why": "PH2.0 公頭插在母座裡"
+  }
+ ],
+ "fix": [
+  "原型版 v3：只展示「空藥瓶轉進去、伸縮、發光、噴霧」；外型、尺寸照量產版第十一輪 F。",
+  "不裝電池、充電板、升壓板、主控板、陀螺儀、觸控：一條 USB-C 線（線上有開關）供 5 V，霧化驅動板、風扇、燈條、LOGO 燈一起開關。",
+  "霧化驅動板改買「通電就噴」的款，VIN、GND 當配電點；風扇串 22 Ω 電阻降速。",
+  "燈條改用 5 V 單色燈條（不用主控板控制）；LOGO 燈改 3 mm LED＋220 Ω。",
+  "加回伸縮管燈（原本設計的「霧面光柱」）：燈環卡在風道接管喇叭口，3 顆燈朝上照進伸縮管；燈固定在底座，不用跟著管子拉線。",
+  "頭部改成第十一輪 F：集液杯（漏斗杯底、6 個進風窗、霧化片往上噴）＋傘架（套環＋擋滴傘）兩件，都不黏，可以拿起來洗。",
+  "量產版的杯底彈簧接點，原型簡化成霧化片自帶線＋PH2.0 插頭＋延長線（走頭座插管 180° 缺口）；拆集液杯時先拔 PH2.0。",
+  "加水：轉下空藥瓶，從瓶座口用針筒注水 → 擋滴傘 → 集液杯（電腦用射線檢查過路徑）。",
+  "藥瓶：第十一輪 Ø32 斜角、瓶底改淺圓弧（減少導流罩裡的尾流），原型是空瓶、不裝滴流塞。"
+ ],
+ "fixlog": [
+  "底蓋外徑 103 → 98.8（離殼底緣 0.6）；配重螺帽圈 r40 → r39；第八輪的走線孔、卡耳孔重切（清掉孔中心殘留細棒）",
+  "鎖柱 Ø3.3 通孔＋M3 六角穴 z9.0–11.6（對邊 5.6）＋朝中心側槽；底蓋 Ø3.4 螺絲孔",
+  "伸縮管改成半透明樹脂一體列印：管子＋管底塞＋止脫環一件，Ø4.2 鋼珠孔、Ø3.4 彈簧孔直接印出來（不用鑽、少 2 處 AB 膠）",
+  "套筒 3 道 V 形凹槽（深 0.75）；承板入口倒角",
+  "套筒 225° 捲線槽 寬 4.4、z48.8–56（收合時線從管底下方 49.2–51.6 通過）",
+  "頭座＝收腰殼＋插管＋內底板一體：插管 Ø35.8 進伸縮管（膠面 r17.9×10）；內底板 z215.6–217.6 坐在管口；180° 走線缺口",
+  "母頭底座外緣 r12–17 坐在集液杯口（r15.5–17）；180° 線溝；頂針 A r5.6@150°（陶瓷環）、B r3.3@210°（鋼片）；內壁 90° 鍵槽",
+  "內襯杯外徑 23.7（和母頭 24.0 留間隙）＋90° 定位鍵 2×1.3",
+  "旋轉環：外徑 42（導流罩內徑剛好包住）＋頂端擋邊；6 根卡爪扣在殼頂下緣（軸向間隙 0.45）。導流罩偵測拿掉：不貼銅箔、不裝頂針（沒裝導流罩也能用）",
+  "模組照市售尺寸重做：充電板 29.5×17.5×5、升壓板 37.5×17.5×7、霧化驅動板 36×20×17（買常見的 35×19 款，改橫放）、陀螺儀往上移 2 mm",
+  "5 個安裝座做成馬鞍形（貼 1 mm 泡棉膠，板子位置不變）",
+  "承板加一圈線槽（外緣 r31–32.2、高 4.6，12 個卡勾）；照重力模擬把套筒兩側的線夾改成 8 條模組旁直槽（槽寬 5.6、深 4.4，卡唇開口 1 mm）",
+  "USB-C 板：膠面＝兩側板邊 2×(1.0×6)＋底邊 12×1.0，插拔力由 AB 膠承受",
+  "內層實際內表面＝r_in -0.067 mm",
+  "觸控 LOGO：內層挖穿 LOGO 筆畫（UV 膠填滿透光）；內層背面貼 Ø16 銅箔電極（筆畫處挖空）；遮光盒 Ø19 黏在 LOGO 後面，盒底貼 LOGO 燈；TTP223 貼在遮光盒背面，短線接銅箔耳朵",
+  "接縫磁鐵座 ×8（左右 × z30／z120 × 前後），Ø6.1 穴深 3.2",
+  "捲線上端 → 頭座 180° 缺口 → 杯外環狀空間 z225 分線；下端 → 伸縮管管底中央 → 管底下方 z50.4 → 225° 長槽出 r32"
+ ],
+ "anchors": [],
+ "tools": [
+  "烙鐵與焊錫",
+  "三用電表",
+  "斜口鉗、剝線鉗",
+  "2.5 mm 六角扳手",
+  "鑷子",
+  "UV 燈",
+  "熱熔膠槍",
+  "剪刀（剪棉棒）"
+ ],
+ "misc": [
+  {
+   "name": "26 AWG 矽膠線",
+   "size": "紅、黑",
+   "qty": "各 2 m",
+   "use": "延長線、驅動板配電、燈、風扇"
+  },
+  {
+   "name": "熱縮套管",
+   "size": "Ø1.5、Ø2.5",
+   "qty": "各 30 cm",
+   "use": "每個焊點、電阻都要套"
+  },
+  {
+   "name": "電阻 1 W",
+   "size": "10／22／47 Ω",
+   "qty": "各 1–2 顆",
+   "use": "風扇降速（先用 22 Ω）"
+  },
+  {
+   "name": "電阻",
+   "size": "220 Ω",
+   "qty": "1 顆",
+   "use": "LOGO 燈"
+  },
+  {
+   "name": "JST-PH 2.0 插頭",
+   "size": "2P × 3（公母成對）",
+   "qty": "3 組",
+   "use": "USB、燈、霧化片"
+  },
+  {
+   "name": "泡棉雙面膠",
+   "size": "1 mm 厚（VHB 類）",
+   "qty": "1 卷",
+   "use": "驅動板、風扇四角"
+  },
+  {
+   "name": "半透明 TPU 線材",
+   "size": "1.75 mm、85A–95A",
+   "qty": "約 60 g",
+   "use": "導流罩（唯一的 FDM 件；其他全部光固化）"
+  },
+  {
+   "name": "AB 膠",
+   "size": "5 分鐘或 30 分鐘型",
+   "qty": "1 組",
+   "use": "頭座、磁鐵、螺帽、腳環、遮光盒"
+  },
+  {
+   "name": "透明 UV 膠＋UV 燈",
+   "size": "—",
+   "qty": "1 組",
+   "use": "外殼內外層、燈條"
+  },
+  {
+   "name": "熱熔膠槍",
+   "size": "小支",
+   "qty": "1 支",
+   "use": "封住頭座缺口和套筒長槽"
+  },
+  {
+   "name": "砂紙",
+   "size": "400、800 號",
+   "qty": "各 2 張",
+   "use": "外殼外層、藥瓶、伸縮管打磨"
+  },
+  {
+   "name": "10 mL 針筒",
+   "size": "—",
+   "qty": "1 支",
+   "use": "加水"
+  },
+  {
+   "name": "USB-C 線",
+   "size": "線上有開關",
+   "qty": "1 條",
+   "use": "整台的電源開關"
+  }
+ ],
+ "wiring": [
+  {
+   "a": "彈簧線 紅",
+   "b": "霧化驅動板輸出 1",
+   "note": "霧化片那兩極不分正負",
+   "color": "#d23a2c",
+   "cut": 110,
+   "step": 5
+  },
+  {
+   "a": "彈簧線 黑",
+   "b": "霧化驅動板輸出 2",
+   "note": "",
+   "color": "#26262a",
+   "cut": 110,
+   "step": 5
+  },
+  {
+   "a": "霧化驅動板 VIN",
+   "b": "USB 2P 插頭（往下穿承板左孔）",
+   "note": "插頭先留在後面，裝後殼時再插",
+   "color": "#d23a2c",
+   "cut": 150,
+   "step": 5
+  },
+  {
+   "a": "霧化驅動板 GND",
+   "b": "USB 2P 插頭",
+   "note": "",
+   "color": "#26262a",
+   "cut": 140,
+   "step": 5
+  },
+  {
+   "a": "霧化驅動板 VIN",
+   "b": "燈 2P 插頭 ＋",
+   "note": "燈條和 LOGO 燈共用",
+   "color": "#d23a2c",
+   "cut": 180,
+   "step": 5
+  },
+  {
+   "a": "霧化驅動板 GND",
+   "b": "燈 2P 插頭 −",
+   "note": "",
+   "color": "#26262a",
+   "cut": 180,
+   "step": 5
+  },
+  {
+   "a": "風扇紅線",
+   "b": "霧化驅動板 VIN（穿承板右孔）",
+   "note": "22 Ω 電阻串在線上、熱縮包好；風太強換 47 Ω",
+   "color": "#d23a2c",
+   "cut": 140,
+   "step": 6
+  },
+  {
+   "a": "風扇黑線",
+   "b": "霧化驅動板 GND",
+   "note": "",
+   "color": "#26262a",
+   "cut": 140,
+   "step": 6
+  },
+  {
+   "a": "伸縮管燈 ＋",
+   "b": "霧化驅動板 VIN（穿承板右孔）",
+   "note": "燈條本身有限流電阻",
+   "color": "#d23a2c",
+   "cut": 120,
+   "step": 6
+  },
+  {
+   "a": "伸縮管燈 −",
+   "b": "霧化驅動板 GND（穿承板右孔）",
+   "note": "",
+   "color": "#26262a",
+   "cut": 120,
+   "step": 6
+  },
+  {
+   "a": "USB VBUS",
+   "b": "2P 插頭",
+   "note": "插頭和第 5 步留的那一半插在一起",
+   "color": "#d23a2c",
+   "cut": 30,
+   "step": 7
+  },
+  {
+   "a": "USB GND",
+   "b": "2P 插頭",
+   "note": "",
+   "color": "#26262a",
+   "cut": 30,
+   "step": 7
+  },
+  {
+   "a": "燈條 ＋",
+   "b": "燈 2P 插頭",
+   "note": "",
+   "color": "#d23a2c",
+   "cut": 30,
+   "step": 8
+  },
+  {
+   "a": "燈條 −",
+   "b": "燈 2P 插頭",
+   "note": "",
+   "color": "#26262a",
+   "cut": 40,
+   "step": 8
+  },
+  {
+   "a": "LOGO 燈長腳",
+   "b": "燈 2P 插頭 ＋",
+   "note": "220 Ω 串在線上、熱縮包好",
+   "color": "#d23a2c",
+   "cut": 20,
+   "step": 8
+  },
+  {
+   "a": "LOGO 燈短腳",
+   "b": "燈 2P 插頭 −",
+   "note": "",
+   "color": "#26262a",
+   "cut": 20,
+   "step": 8
+  }
+ ],
+ "acts": {
+  "press": {
+   "label": "壓入",
+   "cat": "fit"
+  },
+  "push": {
+   "label": "推入",
+   "cat": "fit"
+  },
+  "place": {
+   "label": "放上",
+   "cat": "fit"
+  },
+  "thread": {
+   "label": "穿線",
+   "cat": "fit"
+  },
+  "drill": {
+   "label": "鑽孔",
+   "cat": "tool"
+  },
+  "cut": {
+   "label": "剪",
+   "cat": "tool"
+  },
+  "strip": {
+   "label": "剝線",
+   "cat": "tool"
+  },
+  "measure": {
+   "label": "量測",
+   "cat": "tool"
+  },
+  "flip": {
+   "label": "翻面",
+   "cat": "tool"
+  },
+  "ab": {
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  "uv": {
+   "label": "UV 膠",
+   "cat": "glue"
+  },
+  "hot": {
+   "label": "熱熔膠",
+   "cat": "glue"
+  },
+  "tape": {
+   "label": "泡棉膠",
+   "cat": "glue"
+  },
+  "stick": {
+   "label": "背膠",
+   "cat": "glue"
+  },
+  "snap": {
+   "label": "卡扣",
+   "cat": "snap"
+  },
+  "hook": {
+   "label": "勾入",
+   "cat": "snap"
+  },
+  "twist": {
+   "label": "轉入鎖住",
+   "cat": "snap"
+  },
+  "detent": {
+   "label": "段落卡位",
+   "cat": "snap"
+  },
+  "magnet": {
+   "label": "磁吸",
+   "cat": "snap"
+  },
+  "screw": {
+   "label": "鎖螺絲",
+   "cat": "screw"
+  },
+  "solder": {
+   "label": "焊接",
+   "cat": "wire"
+  },
+  "plug": {
+   "label": "插頭",
+   "cat": "wire"
+  },
+  "tie": {
+   "label": "束帶",
+   "cat": "wire"
+  },
+  "shrink": {
+   "label": "熱縮套管",
+   "cat": "wire"
+  }
+ },
+ "summary": {
+  "joints_ok": 37,
+  "joints": 37,
+  "paths_ok": 24,
+  "paths": 24,
+  "interf_bad": 0,
+  "wires_ok": 16,
+  "wires": 16
+ }
+}

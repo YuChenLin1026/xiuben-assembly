@@ -1,0 +1,1350 @@
+<meta charset="utf-8">
+<title>岫本組裝台・原型版 v3</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* 原型版 v3（照第九輪網站）：每一步拆成動作（放、卡、黏、鎖、焊、綁），可以播放模擬；每個接合處都附驗證結果 */
+:root{
+  --bg:#EEEDE8; --bar:#F7F6F2; --panel:#FBFAF7; --card:#FFFFFF; --ink:#1C1F1A; --muted:#666B60; --line:#DEDBD2; --line2:#E8E5DD;
+  --sage:#5E7A55; --sage-2:#7E9A70; --sage-tint:#E4EBDF; --champ:#B08D57; --champ-tint:#F1E8D8; --ok:#3E7D52; --bad:#B4432F;
+  --stage-a:#FAFAF7; --stage-b:#D9D6CD; --chip:#EFECE4; --shadow:rgba(40,48,36,.14);
+  --c-fit:#5E7A55; --c-glue:#C08A1E; --c-snap:#3D6FB6; --c-screw:#5F6670; --c-wire:#C2452F; --c-tool:#7A6E5E;
+  --t-fit:#E4EBDF; --t-glue:#F6EBD2; --t-snap:#E1E9F5; --t-screw:#E7E8EA; --t-wire:#F6E2DD; --t-tool:#EEEAE3;
+  --f:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif; --fs:"Noto Serif TC","Noto Sans TC",serif; --fm:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141614; --bar:#191C19; --panel:#1C1F1C; --card:#232724; --ink:#E8E6DF; --muted:#9EA296; --line:#30352F; --line2:#2A2E2A;
+  --sage:#8FAE82; --sage-2:#A4C196; --sage-tint:#2A3427; --champ:#D1AC72; --champ-tint:#3A3122; --ok:#6CC08E; --bad:#EE7B69;
+  --stage-a:#2C302C; --stage-b:#161916; --chip:#2B2F2B; --shadow:rgba(0,0,0,.4); color-scheme:dark;
+  --c-fit:#9DBB8F; --c-glue:#E3B252; --c-snap:#86A9E0; --c-screw:#A9B0B9; --c-wire:#EE8A74; --c-tool:#B9AD9B;
+  --t-fit:#263023; --t-glue:#3A3020; --t-snap:#212B3A; --t-screw:#2A2D31; --t-wire:#3A2522; --t-tool:#2E2B26}}
+:root[data-theme="dark"]{
+  --bg:#141614; --bar:#191C19; --panel:#1C1F1C; --card:#232724; --ink:#E8E6DF; --muted:#9EA296; --line:#30352F; --line2:#2A2E2A;
+  --sage:#8FAE82; --sage-2:#A4C196; --sage-tint:#2A3427; --champ:#D1AC72; --champ-tint:#3A3122; --ok:#6CC08E; --bad:#EE7B69;
+  --stage-a:#2C302C; --stage-b:#161916; --chip:#2B2F2B; --shadow:rgba(0,0,0,.4); color-scheme:dark;
+  --c-fit:#9DBB8F; --c-glue:#E3B252; --c-snap:#86A9E0; --c-screw:#A9B0B9; --c-wire:#EE8A74; --c-tool:#B9AD9B;
+  --t-fit:#263023; --t-glue:#3A3020; --t-snap:#212B3A; --t-screw:#2A2D31; --t-wire:#3A2522; --t-tool:#2E2B26}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:14px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px;box-sizing:border-box}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid var(--champ);outline-offset:2px}
+.app{display:flex;flex-direction:column;gap:12px;height:100%;min-height:640px}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;padding:12px 18px;border:1px solid var(--line);border-radius:16px;background:var(--bar)}
+.brand{display:flex;align-items:center;gap:12px;margin-right:auto}
+.brand b{font-family:var(--fs);font-size:20px;letter-spacing:.08em}
+.brand small{display:block;font-size:12px;color:var(--muted)}
+.prog{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.prog .n{font-family:var(--fm);font-size:15px;color:var(--ink)}
+.prog .track{width:140px;height:8px;border-radius:99px;background:var(--chip);overflow:hidden}
+.prog .track i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--sage),var(--sage-2));transition:width .45s ease}
+.btn{height:40px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);white-space:nowrap;transition:border-color .15s,background .15s}
+.btn:hover{border-color:var(--champ)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn[aria-pressed="true"]{background:var(--sage-tint);border-color:var(--sage-2)}
+.btn.go{background:var(--sage);border-color:var(--sage);color:#fff;font-weight:600}
+.btn.gold{background:var(--champ);border-color:var(--champ);color:#fff;font-weight:600}
+.btn.sm{height:34px;padding:0 12px;font-size:13px;border-radius:9px}
+.btn.ico{display:inline-flex;align-items:center;gap:6px}
+.btn.snd .x{display:none}.btn.snd[aria-pressed="false"] .x{display:inline}.btn.snd[aria-pressed="false"] .w{display:none}.btn.snd[aria-pressed="false"]{color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.main{display:flex;gap:14px;flex:1;min-height:0}
+/* 零件區 */
+.lib{flex:0 0 380px;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;overflow:hidden}
+.lib .hd{padding:16px 18px 8px;display:grid;gap:4px}
+.lib h2{margin:0;font-family:var(--fs);font-size:20px;display:flex;align-items:baseline;gap:10px}
+.lib h2 span{font-family:var(--f);font-size:12px;color:var(--muted);font-weight:400}
+.lib p{margin:0;font-size:13px;color:var(--muted);line-height:1.6}
+.filters{display:flex;flex-wrap:wrap;gap:6px;padding:4px 18px 14px;border-bottom:1px solid var(--line2)}
+.filters button{height:34px;padding:0 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:13px}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.grid{overflow-y:auto;padding:14px 18px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-content:start;flex:1;min-height:0}
+.card{position:relative;display:flex;flex-direction:column;gap:4px;padding:8px 8px 9px;border-radius:14px;border:1px solid var(--line);background:var(--card);text-align:left;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 22px var(--shadow);border-color:var(--sage-2)}
+.card.open{border-color:var(--champ);box-shadow:0 0 0 1px var(--champ)}
+.card.now{border-color:var(--sage-2)}
+.card.used{opacity:.55;cursor:pointer}
+.card .nm{font-size:12.5px;line-height:1.35;min-height:34px}
+.card .k{position:absolute;top:8px;left:8px;font-size:11px;padding:1px 6px;border-radius:6px;background:var(--chip);color:var(--muted)}
+.card .k.buy{background:var(--sage-tint);color:var(--sage)}
+.card .s{position:absolute;top:8px;right:9px;font-size:11px;color:var(--muted)}
+.card.used .s{color:var(--ok);font-weight:600}
+.card.loading .s{color:var(--champ)}
+.spin{position:relative;overflow:hidden;aspect-ratio:1;border-radius:10px;background:radial-gradient(circle at 50% 45%,var(--card),var(--chip))}
+.spin img{position:absolute;left:0;top:0;height:100%;width:2400%;max-width:none;pointer-events:none;-webkit-user-drag:none}
+.card:hover .spin img,.spin.auto img{animation:spin 1.6s steps(24) infinite}
+.spin.auto img{animation-duration:3.2s}
+@keyframes spin{to{transform:translateX(-100%)}}
+.detail{grid-column:1/-1;border:1px solid var(--champ);border-radius:16px;background:var(--card);padding:14px;display:grid;gap:12px;animation:drop .26s ease-out both}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.detail .hd2{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.detail .spin{width:150px;flex-shrink:0;border-radius:12px}
+.detail h3{margin:0;font-family:var(--fs);font-size:18px}
+.detail dl{display:grid;grid-template-columns:72px 1fr;gap:6px 10px;margin:0;font-size:13px;line-height:1.5}
+.detail dt{color:var(--muted)} .detail dd{margin:0;overflow-wrap:anywhere}
+.pill{font-size:12px;padding:2px 8px;border-radius:99px;background:var(--chip)}
+.pill.buy{background:var(--sage-tint);color:var(--sage)} .pill.step{background:var(--champ-tint);color:var(--champ)}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+/* 工作區 */
+.stage{flex:1;min-width:0;position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at 45% 62%,var(--stage-a) 0%,var(--stage-b) 100%)}
+.stage canvas{display:block;width:100%;height:100%;touch-action:none}
+.views{position:absolute;left:14px;top:14px;display:flex;flex-wrap:wrap;gap:6px;max-width:calc(100% - 420px);z-index:3}
+.views .btn{height:34px;padding:0 11px;font-size:13px;background:color-mix(in srgb,var(--card) 85%,transparent)}
+.empty{position:absolute;inset:0 400px 0 0;display:grid;place-items:center;pointer-events:none;text-align:center}
+.empty .ring{position:relative;width:300px;height:300px;display:grid;place-items:center}
+.empty .ring::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px dashed color-mix(in srgb,var(--sage) 50%,transparent);animation:rot 18s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.empty b{font-family:var(--fs);font-size:22px;display:block;margin-bottom:6px}
+.empty span{display:block;font-size:14px;color:var(--muted);line-height:1.7}
+.busy{position:absolute;left:14px;bottom:14px;padding:6px 12px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:12px;color:var(--muted);z-index:3}
+.selbar{position:absolute;left:calc(50% - 200px);bottom:14px;transform:translateX(-50%);display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 10px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 26px var(--shadow);max-width:calc(100% - 440px);z-index:3}
+.selbar .nm{font-weight:600;font-size:13px}.selbar .sub{font-size:12px;color:var(--muted)}
+.toast{position:absolute;left:calc(50% - 200px);top:58px;transform:translateX(-50%);width:max-content;max-width:min(520px,calc(100% - 440px));padding:10px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 28px var(--shadow);font-size:13.5px;animation:tin .3s ease-out both;z-index:6}
+.toast.ok{border-color:var(--sage-2)} .toast.bad{border-color:var(--bad);color:var(--bad)}
+@keyframes tin{from{opacity:0;margin-top:-10px}to{opacity:1;margin-top:0}}
+.float{position:fixed;width:96px;height:96px;padding:6px;border-radius:14px;background:var(--card);border:1px solid var(--champ);box-shadow:0 18px 36px var(--shadow);pointer-events:none;z-index:60;transform:rotate(-4deg)}
+.float img{width:100%;height:100%;object-fit:contain}
+/* 3D 上的動作標記 */
+.marks{position:absolute;inset:0;pointer-events:none;z-index:2}
+.mk{position:absolute;left:0;top:0;transform:translate(-50%,-50%);pointer-events:auto;display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 9px 0 4px;border-radius:99px;border:1.5px solid var(--cc);background:color-mix(in srgb,var(--card) 92%,transparent);font-size:12px;white-space:nowrap;box-shadow:0 4px 12px var(--shadow);transition:opacity .2s,transform .2s}
+.mk i{font-style:normal;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--cc);color:#fff;font-family:var(--fm);font-size:11px}
+.mk.done{opacity:.6}.mk.done i{background:var(--ok)}
+.mk{flex-direction:column;align-items:flex-start;height:auto;min-height:30px;padding:5px 12px 6px 6px;border-radius:14px;max-width:260px;white-space:normal}
+.mk .t1{display:flex;align-items:center;gap:6px;font-weight:700;font-size:13px}
+.mk .t2{font-size:12px;line-height:1.45;color:var(--ink);padding-left:26px}
+.mk::after{content:"";position:absolute;left:50%;bottom:-7px;width:12px;height:12px;margin-left:-6px;background:inherit;border-right:1.5px solid var(--cc);border-bottom:1.5px solid var(--cc);transform:rotate(45deg)}
+.mk{transform:translate(-50%,calc(-100% - 10px))!important}
+.mk.act{transform:translate(-50%,-50%) scale(1.12);box-shadow:0 0 0 4px color-mix(in srgb,var(--cc) 30%,transparent),0 6px 16px var(--shadow)}
+.mk.hide{opacity:0;pointer-events:none}
+.solder{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);z-index:7;width:min(620px,calc(100% - 28px));padding:9px 12px;border-radius:16px;background:var(--card);border:1.5px solid var(--c-wire);box-shadow:0 14px 34px var(--shadow);display:grid;gap:8px}
+.solder .sh{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.solder .sh b{color:var(--c-wire);font-size:13px}
+.solder .q{font-size:15px;line-height:1.6}
+.solder .q .sw{width:28px;height:10px;margin-right:4px}
+.solder .q em{font-style:normal;font-weight:700;color:var(--c-wire)}
+.solder .row .btn{height:34px}
+.tip{position:absolute;z-index:6;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px rgba(0,0,0,.35),0 6px 14px rgba(0,0,0,.3);cursor:grab;touch-action:none;animation:tipb 1.2s ease-in-out infinite}
+.tip:active{cursor:grabbing;animation:none}
+@keyframes tipb{50%{transform:scale(1.18)}}
+.padtag{position:absolute;z-index:5;transform:translate(-50%,-135%);padding:2px 7px;border-radius:7px;background:rgba(28,31,26,.88);color:#fff;font-size:12px;font-weight:600;white-space:nowrap;pointer-events:none;border:1px solid rgba(255,255,255,.35)}
+.padtag.dn{transform:translate(-50%,40%)}
+.padtag.hot{background:#FF9A1A;color:#2a1600}
+.padtag.off{display:none}
+.padlab{position:absolute;z-index:6;transform:translate(-50%,-150%);padding:3px 8px;border-radius:8px;background:#1C1F1A;color:#fff;font-size:12px;white-space:nowrap;pointer-events:none}
+.padlab.ok{background:var(--ok)} .padlab.bad{background:var(--bad)}
+.hold{position:absolute;z-index:6;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;border:0;background:conic-gradient(var(--c-wire) calc(var(--p,0)*1turn),color-mix(in srgb,var(--card) 80%,transparent) 0);box-shadow:0 0 0 3px #fff,0 8px 20px rgba(0,0,0,.35);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--ink);touch-action:none}
+.hold span{width:48px;height:48px;border-radius:50%;background:var(--card);display:grid;place-items:center;line-height:1.2;text-align:center}
+.acts .doit{grid-column:2;justify-self:start;height:30px;padding:0 12px;border-radius:9px;border:1px solid var(--c-wire);background:var(--t-wire);color:var(--c-wire);font-size:12.5px;font-weight:700}
+.xleg{position:absolute;left:14px;top:100px;z-index:3;width:210px;max-height:calc(100% - 190px);display:flex;flex-direction:column;background:color-mix(in srgb,var(--card) 94%,transparent);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px var(--shadow);overflow:hidden}
+.xleg .xh{padding:8px 10px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line2);line-height:1.5}
+.xleg .xl{overflow-y:auto;padding:4px}
+.xleg button{display:flex;align-items:center;gap:8px;width:100%;padding:5px 6px;border:0;border-radius:8px;background:none;font-size:12.5px;text-align:left}
+.xleg button:hover{background:var(--chip)}
+.xleg button.on{background:#FFE7C2;color:#7A4300;font-weight:700}
+.xleg i{flex:0 0 14px;height:14px;border-radius:4px;border:1px solid rgba(0,0,0,.15)}
+.xleg button.on i{background:#FF9A1A!important}
+@media (max-width:860px){.xleg{top:56px;width:160px;max-height:42%}}
+.c-fit{--cc:var(--c-fit);--ct:var(--t-fit)} .c-glue{--cc:var(--c-glue);--ct:var(--t-glue)} .c-snap{--cc:var(--c-snap);--ct:var(--t-snap)}
+.c-screw{--cc:var(--c-screw);--ct:var(--t-screw)} .c-wire{--cc:var(--c-wire);--ct:var(--t-wire)} .c-tool{--cc:var(--c-tool);--ct:var(--t-tool)}
+/* 說明書 */
+.manual{position:absolute;right:14px;top:14px;width:380px;max-height:calc(100% - 28px);display:flex;flex-direction:column;background:color-mix(in srgb,var(--panel) 97%,transparent);border:1px solid var(--line);border-radius:18px;box-shadow:0 16px 40px var(--shadow);overflow:hidden;z-index:4}
+.manual .mh{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line2)}
+.manual .mh .t{font-size:12px;color:var(--muted);margin-right:auto}
+.manual .mh .t b{font-family:var(--fm);font-weight:500;color:var(--ink)}
+.anim{position:relative;height:170px;background:radial-gradient(ellipse at 50% 60%,var(--card),var(--chip));flex-shrink:0}
+.anim img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.anim .mx{animation:mx 3.2s ease-in-out infinite}.anim .ma{animation:ma 3.2s ease-in-out infinite}
+@keyframes mx{0%,30%{opacity:1}50%,88%{opacity:0}100%{opacity:1}}
+@keyframes ma{0%,30%{opacity:0}50%,88%{opacity:1}100%{opacity:0}}
+.manual .mb{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;min-height:0}
+.manual h3{margin:0;font-family:var(--fs);font-size:19px;display:flex;align-items:baseline;gap:8px}
+.manual h3 em{font-style:normal;font-family:var(--f);font-size:12px;color:var(--ok);font-weight:600}
+.acts{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.acts li{display:grid;grid-template-columns:auto 1fr;gap:4px 8px;align-items:start;padding:8px 9px;border-radius:12px;border:1px solid var(--line2);background:var(--card);cursor:pointer;transition:border-color .15s,background .15s}
+.acts li:hover{border-color:var(--cc)}
+.acts li.cur{border-color:var(--cc);background:var(--ct);box-shadow:0 0 0 1px var(--cc)}
+.acts li.done .tx{color:var(--muted)}
+.badge{display:inline-flex;align-items:center;gap:4px;height:22px;padding:0 8px;border-radius:99px;background:var(--ct);color:var(--cc);font-size:11.5px;font-weight:700;white-space:nowrap;border:1px solid color-mix(in srgb,var(--cc) 35%,transparent)}
+.badge .n{font-family:var(--fm);font-weight:500}
+.acts li.done .badge{background:var(--sage-tint);color:var(--ok);border-color:transparent}
+.acts .tx{font-size:13px;line-height:1.6}
+.acts .ck{grid-column:2;font-size:11.5px;color:var(--ok);display:flex;gap:4px;align-items:baseline}
+.acts .ck.no{color:var(--bad)}
+.acts .hint{grid-column:2;font-size:11.5px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:4px}
+.legend span{font-size:11px;padding:1px 7px;border-radius:99px;background:var(--ct);color:var(--cc);font-weight:600}
+.chip{height:28px;padding:0 10px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:12px}
+.chip.ok{background:var(--sage-tint);border-color:var(--sage-2)}
+.dots{display:flex;gap:4px;justify-content:center;align-items:center;flex-wrap:wrap}
+.dots button{width:8px;height:8px;border-radius:99px;border:0;padding:0;background:var(--line);transition:width .25s,background .25s}
+.dots button.done{background:var(--sage-2)} .dots button.cur{width:22px;background:var(--champ)}
+.manual .nav{display:flex;gap:8px}.manual .nav .btn{flex:1;height:40px}
+.manual.min .anim,.manual.min .mb{display:none}
+.simbar{display:flex;gap:6px}
+.simbar .btn{flex:1}
+/* 清單 */
+.sheet{position:fixed;inset:0;z-index:50;background:color-mix(in srgb,#000 38%,transparent);display:grid;place-items:center;padding:16px}
+.sheet .box{width:min(1240px,100%);max-height:calc(100vh - 32px);background:var(--panel);border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column;overflow:hidden;animation:drop .26s ease-out both}
+.sheet .sh{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:16px 22px;border-bottom:1px solid var(--line2)}
+.sheet .sh h2{margin:0 auto 0 0;font-family:var(--fs);font-size:21px}
+.seg{display:flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:12px;background:var(--chip)}
+.seg button{height:34px;padding:0 14px;border-radius:9px;border:0;background:none}
+.seg button[aria-pressed="true"]{background:var(--card);font-weight:600;box-shadow:0 1px 3px var(--shadow)}
+.sheet .note{margin:0;padding:10px 22px 0;font-size:13px;color:var(--muted);line-height:1.6;max-width:90ch}
+.sheet .in{overflow:auto;padding:10px 22px 22px}
+.sheet table{border-collapse:collapse;width:100%;min-width:820px;font-size:13px}
+.sheet th{text-align:left;font-size:12px;color:var(--muted);padding:8px;position:sticky;top:0;background:var(--panel);z-index:1}
+.sheet td{padding:6px 8px;border-top:1px solid var(--line2);vertical-align:middle}
+.sheet td img{width:52px;height:52px;object-fit:contain;border-radius:8px;background:var(--chip)}
+.sheet td.m{font-family:var(--fm);font-size:12px}
+.sw{display:inline-block;width:22px;height:8px;border-radius:99px;vertical-align:middle;border:1px solid var(--line)}
+.vsum{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.vsum div{padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.vsum b{display:block;font-family:var(--fm);font-size:22px;color:var(--ok)}
+.vsum span{font-size:12.5px;color:var(--muted)}
+.vgrp{margin:16px 0 6px;font-size:15px;display:flex;align-items:center;gap:8px}
+.ok-t{color:var(--ok);font-weight:600}.bad-t{color:var(--bad);font-weight:600}
+.fixlist{margin:0;padding-left:20px;display:grid;gap:4px;font-size:13px;line-height:1.6}
+.calc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.calc div{padding:12px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line);font-size:13px;line-height:1.7}
+.misc{display:flex;flex-wrap:wrap;gap:24px}
+.misc .col{flex:1 1 480px;display:grid;align-content:start}
+.misc .it{display:grid;grid-template-columns:150px 170px 70px 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--line2);font-size:13px}
+.err{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;background:var(--panel);z-index:9}
+[hidden]{display:none!important}
+@media (max-width:1180px){.lib{flex-basis:320px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.manual{width:340px}.views{max-width:calc(100% - 380px)}.empty{inset:0 360px 0 0}}
+@media (max-width:860px){
+  .app{height:auto}
+  .main{flex-direction:column}
+  .stage{flex:none;height:66vh;min-height:440px;order:-1}
+  .lib{flex:none}
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}
+  .views{max-width:none;right:14px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.views::-webkit-scrollbar{display:none}.views .btn{flex-shrink:0}
+  .empty{inset:0 0 70px 0}
+  .toast{left:50%;max-width:calc(100% - 24px)}
+  .selbar{left:12px;right:12px;transform:none;max-width:none;bottom:76px;flex-wrap:nowrap;overflow-x:auto}
+  .manual{top:auto;bottom:12px;left:12px;right:12px;width:auto;max-height:calc(100% - 64px)}
+  .manual.min .mh{border-bottom:0}
+  .manual .anim{height:140px}
+  .vsum,.calc{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mk{height:24px;font-size:11px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.anim .ma{opacity:1}.anim .mx{opacity:0}}
+</style>
+
+<div class="app">
+  <div class="top">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M4 27 L13 12 L18 19 L22 14 L30 27 Z" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linejoin="round"/><path d="M9 9 Q13 5 17 9 Q21 6 24 9" fill="none" stroke="var(--champ)" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><b>岫本組裝台</b><small id="brandSub">原型版 v3 · 每一步都可以播放模擬</small></div>
+    </div>
+    <div class="prog"><span>已組好</span><span class="n" id="pN">0 / 0</span><div class="track"><i id="pBar"></i></div></div>
+    <div class="row">
+      <button class="btn" id="bManual" aria-pressed="true">說明書</button>
+      <button class="btn" id="bSheet">清單・接線・驗證</button>
+      <button class="btn ico snd" id="bSound" aria-pressed="true" aria-label="音效"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 7h3l4-3.5v11L6 11H3z" fill="currentColor"/><path class="w" d="M12.5 6.2a4 4 0 0 1 0 5.6M14.6 4.2a7 7 0 0 1 0 9.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path class="x" d="M12.5 6.5l4 5M16.5 6.5l-4 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>音效</span></button>
+      <button class="btn" id="bClear">清空重來</button>
+    </div>
+  </div>
+  <div class="main">
+    <section class="lib" aria-label="零件區">
+      <div class="hd"><h2>零件區 <span id="libCount"></span></h2><p id="libHint">滑過卡片會轉一圈；點開看說明；按住拖到右邊工作區。</p></div>
+      <div class="filters" id="filters">
+        <button data-f="now" aria-pressed="true">這一步要用的</button><button data-f="all" aria-pressed="false">全部</button>
+        <button data-f="left" aria-pressed="false">還沒拿出來</button><button data-f="print" aria-pressed="false">列印件</button><button data-f="buy" aria-pressed="false">購買件</button>
+      </div>
+      <div class="grid" id="grid"><p style="grid-column:1/-1;color:var(--muted)">正在讀取零件清單…</p></div>
+    </section>
+    <section class="stage" id="stage" aria-label="工作區">
+      <div class="empty" id="empty"><div class="ring"><div><b>工作區是空的</b><span>從零件區把零件拖進來</span><span>或按說明書的「▶ 模擬這一步」</span></div></div></div>
+      <div class="marks" id="marks"></div>
+      <div class="views" id="views">
+        <button class="btn" data-v="iso">斜看</button><button class="btn" data-v="front">正面</button><button class="btn" data-v="back">背面</button>
+        <button class="btn" data-v="head">頭部特寫</button><button class="btn" data-v="bottom">底部</button>
+        <button class="btn" id="bXray" aria-pressed="false">結構模式</button><button class="btn" id="bGhost" aria-pressed="false">外殼半透明</button><button class="btn" id="bWire" aria-pressed="true">電線</button><button class="btn" id="bGrav" aria-pressed="true" title="線受重力實際垂下來的樣子（電腦模擬）">重力狀態</button><button class="btn" id="bMarks" aria-pressed="true">動作標記</button>
+      </div>
+      <aside class="manual" id="manual" aria-label="說明書">
+        <div class="mh"><span class="t">說明書 · 步驟 <b id="mNo">1 / 16</b></span><button class="btn sm" id="mMin">收合</button></div>
+        <div class="anim" id="mAnim"><img class="mx" id="mX" alt=""><img class="ma" id="mA" alt=""></div>
+        <div class="mb">
+          <h3 id="mTitle"></h3>
+          <div class="tags" id="mParts"></div>
+          <div class="legend"><span class="c-fit">放／壓入</span><span class="c-snap">卡扣／勾入</span><span class="c-glue">黏</span><span class="c-screw">鎖</span><span class="c-wire">焊／接線</span><span class="c-tool">工具</span></div>
+          <ol class="acts" id="mActs"></ol>
+          <div class="simbar"><button class="btn go" id="mSim">▶ 模擬這一步</button><button class="btn" id="mSimAll">從這步模擬到最後</button></div>
+          <div class="dots" id="mDots"></div>
+          <div class="nav"><button class="btn" id="mPrev">上一步</button><button class="btn gold" id="mNext">下一步</button></div>
+        </div>
+      </aside>
+      <div class="xleg" id="xleg" hidden></div>
+      <div class="selbar" id="selbar" hidden></div>
+      <div class="busy" id="busy" hidden></div>
+      <div class="toast" id="toast" hidden></div>
+      <div class="solder" id="solder" hidden></div>
+    </section>
+  </div>
+</div>
+<div class="sheet" id="sheet" hidden>
+  <div class="box">
+    <div class="sh"><h2 id="sTitle">零件清單</h2>
+      <div class="seg" id="sTabs"><button data-t="bom" aria-pressed="true">零件清單</button><button data-t="wire" aria-pressed="false">接線表</button><button data-t="verify" aria-pressed="false">接合驗證</button><button data-t="misc" aria-pressed="false">工具與耗材</button></div>
+      <button class="btn" id="bCopy">複製表格</button><button class="btn go" id="bCloseSheet">回到組裝台</button>
+    </div>
+    <p class="note" id="sNote"></p>
+    <div class="in" id="sIn"></div>
+  </div>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+const $ = s => document.querySelector(s);
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const sleep = ms => new Promise(r => setTimeout(r, RM ? Math.min(ms, 60) : ms));
+
+// ================= 0. 音效（全部用 Web Audio 合成，不用外部檔案）
+const SND = (() => {
+  let ctx = null, master = null, on = true;
+  try { on = localStorage.getItem('xiuben-asm-sound') !== '0'; } catch (e) {}
+  const init = () => {
+    if (ctx) return ctx;
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
+    ctx = new AC(); master = ctx.createGain(); master.gain.value = .55;
+    const comp = ctx.createDynamicsCompressor(); master.connect(comp); comp.connect(ctx.destination); return ctx;
+  };
+  const unlock = () => { if (init() && ctx.state !== 'running') ctx.resume(); };
+  ['pointerdown', 'touchend', 'keydown'].forEach(ev => addEventListener(ev, unlock, { capture: true, passive: true }));
+  function tone(f, t, dur, o = {}) {
+    const osc = ctx.createOscillator(), g = ctx.createGain(); osc.type = o.type || 'sine'; osc.frequency.setValueAtTime(f, t);
+    if (o.f2) osc.frequency.exponentialRampToValueAtTime(o.f2, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(o.vol || .15, t + (o.a || .006)); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    osc.connect(g); g.connect(master); osc.start(t); osc.stop(t + dur + .03);
+  }
+  function noise(t, dur, o = {}) {
+    const n = Math.max(1, Math.floor(ctx.sampleRate * dur)), b = ctx.createBuffer(1, n, ctx.sampleRate), d = b.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, o.decay || 2);
+    const s = ctx.createBufferSource(); s.buffer = b; const f = ctx.createBiquadFilter(); f.type = o.type || 'bandpass'; f.frequency.value = o.freq || 2000; f.Q.value = o.q || 1;
+    const g = ctx.createGain(); g.gain.value = o.vol || .12; s.connect(f); f.connect(g); g.connect(master); s.start(t);
+  }
+  const FX = {
+    tap: t => noise(t, .025, { vol: .07, freq: 3400, q: 2 }),
+    pick: t => tone(520, t, .09, { vol: .1, f2: 780, type: 'triangle' }),
+    place: t => { tone(170, t, .17, { vol: .22, f2: 95 }); noise(t, .05, { vol: .06, freq: 900 }); },
+    select: t => tone(880, t, .07, { vol: .06, type: 'triangle' }),
+    near: t => tone(1320, t, .06, { vol: .045 }),
+    snap: t => { noise(t, .02, { vol: .3, freq: 2600, q: 4 }); tone(320, t, .1, { vol: .16, f2: 210, type: 'triangle' }); tone(1046.5, t + .05, .32, { vol: .06 }); },
+    detach: t => { tone(420, t, .12, { vol: .1, f2: 260, type: 'triangle' }); noise(t, .03, { vol: .07, freq: 1800 }); },
+    bad: t => { tone(330, t, .14, { vol: .1, type: 'triangle', f2: 300 }); tone(247, t + .12, .2, { vol: .1, type: 'triangle' }); },
+    step: t => [659.25, 880].forEach((f, i) => tone(f, t + i * .11, .45, { vol: .09 })),
+    done: t => [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => tone(f, t + i * .12, .7, { vol: .09 })),
+    glue: t => { noise(t, .22, { vol: .08, freq: 700, q: .8, decay: 1 }); tone(240, t, .2, { vol: .05, f2: 180 }); },
+    screw: t => { for (let i = 0; i < 6; i++) noise(t + i * .07, .018, { vol: .12, freq: 4200, q: 6 }); },
+    solder: t => { noise(t, .35, { vol: .06, freq: 6000, q: .6, type: 'highpass', decay: 1.2 }); tone(1900, t, .05, { vol: .03 }); },
+    tie: t => { for (let i = 0; i < 9; i++) noise(t + i * .022, .012, { vol: .09, freq: 5200, q: 8 }); },
+    drill: t => { tone(180, t, .5, { vol: .06, type: 'sawtooth', f2: 200, a: .04 }); noise(t, .5, { vol: .04, freq: 3000, q: .5, decay: .5 }); },
+    magnet: t => { noise(t, .015, { vol: .3, freq: 1800, q: 3 }); tone(140, t, .08, { vol: .18, f2: 90 }); },
+    whoosh: t => noise(t, .35, { vol: .05, freq: 900, q: .7, decay: .8 }),
+  };
+  return {
+    play(n) { if (!on || !init()) return; if (ctx.state !== 'running') ctx.resume(); try { FX[n] && FX[n](ctx.currentTime + .01); } catch (e) {} },
+    get on() { return on; }, set on(v) { on = v; try { localStorage.setItem('xiuben-asm-sound', v ? '1' : '0'); } catch (e) {} }
+  };
+})();
+const SFX_OF = { place: 'place', push: 'place', press: 'place', thread: 'whoosh', drill: 'drill', cut: 'tap', strip: 'tap', measure: 'tap', flip: 'whoosh',
+  ab: 'glue', uv: 'glue', hot: 'glue', tape: 'glue', stick: 'glue', snap: 'snap', hook: 'snap', twist: 'snap', detent: 'snap', magnet: 'magnet',
+  screw: 'screw', solder: 'solder', plug: 'snap', tie: 'tie', shrink: 'solder' };
+
+// ================= 1. 介面（只需要 parts.json 和圖片，不等 3D）
+let DATA;
+try { DATA = await fetch('parts.json').then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+catch (e) { $('#grid').innerHTML = '<p style="grid-column:1/-1;color:var(--bad)">零件清單讀取失敗，請重新整理頁面。</p>'; throw e; }
+const P = {}, IDS = [], STEPS = DATA.steps, stepOf = {}, WIRE = {}, JOINT = {};
+DATA.parts.forEach(p => { P[p.id] = p; IDS.push(p.id); p.img = `renders/${p.id}_512.webp`; p.spinImg = `renders/${p.id}_spin.webp`; });
+DATA.wires.forEach(w => WIRE[w.id] = w);
+DATA.joints.forEach(j => JOINT[j.id] = j);
+STEPS.forEach((s, i) => {
+  s.parts.forEach(id => stepOf[id] = i);
+  const n = String(i + 1).padStart(2, '0'); s.x = `steps/step${n}_x_s.webp`; s.a = `steps/step${n}_a_s.webp`;
+  s.unitOf = {}; (s.units || []).forEach((u, k) => u.parts.forEach(id => s.unitOf[id] = k));
+});
+const name = id => P[id].name;
+const S = { inScene: new Set(), t: {}, gid: {}, nextG: 1, sel: null, open: null, filter: 'now', step: 0, ghost: false, wires: true, marks: true,
+  loading: new Set(), actDone: new Set(), wiresOn: new Set(), curAct: -1, sim: null };
+const KEY = 'xiuben-asm-p3a';   // 原型版 v3 的進度（和第九輪分開）
+let three = null;
+$('#brandSub').textContent = `原型版 v3 · ${IDS.length} 個零件 · ${STEPS.length} 步 · ${STEPS.reduce((n, s) => n + s.acts.length, 0)} 個動作`;
+
+function toast(msg, kind, ms) { const t = $('#toast'); t.textContent = msg; t.className = 'toast ' + (kind || ''); t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, ms || (kind === 'bad' ? 6000 : 3200)); if (kind === 'bad') SND.play('bad'); }
+function groupIds(id) { return IDS.filter(x => S.inScene.has(x) && S.gid[x] === S.gid[id]); }
+const mainG = () => S.inScene.has('FRAME') ? S.gid.FRAME : -1;
+function bigGroup() { const g = mainG(); return g < 0 ? 0 : IDS.filter(x => S.inScene.has(x) && S.gid[x] === g).length; }
+
+// ---- 動作完成判斷（手動模式）：有零件的動作＝零件已經組上；單元的「裝上去」＝單元已經接到骨架；其他動作＝點一下
+function actAuto(k, i) {
+  const s = STEPS[k], a = s.acts[i];
+  if (a.install) { const u = s.units[s.unitOf[a.parts[0]] ?? findUnit(s, i)]; return !!u && u.parts.every(id => S.inScene.has(id) && S.gid[id] === mainG()); }
+  if (a.parts.length) return a.parts.every(id => S.inScene.has(id) && (id === 'FRAME' || groupIds(id).length > 1));
+  return null;
+}
+function findUnit(s, i) { for (let j = i; j >= 0; j--) { const p = s.acts[j].parts.find(id => s.unitOf[id] !== undefined); if (p) return s.unitOf[p]; } return 0; }
+const actDone = (k, i) => S.actDone.has(k + ':' + i) || actAuto(k, i) === true;
+function nextAct(k) { if (S.curAct >= 0 && k === S.step) return S.curAct; const n = STEPS[k].acts.findIndex((a, i) => !actDone(k, i)); return n; }
+function stepDone(k) {
+  for (let j = 0; j <= k; j++) { for (let i = 0; i < STEPS[j].acts.length; i++) if (!actDone(j, i)) return false; }
+  const g = mainG(); return g >= 0 && STEPS.slice(0, k + 1).flatMap(s => s.parts).every(id => S.inScene.has(id) && S.gid[id] === g);
+}
+
+// ---- 零件區
+function cardHTML(id) {
+  const p = P[id], used = S.inScene.has(id), now = stepOf[id] === S.step, ld = S.loading.has(id);
+  return `<button type="button" class="card${used ? ' used' : ''}${now && !used ? ' now' : ''}${S.open === id ? ' open' : ''}${ld ? ' loading' : ''}" data-id="${id}" aria-label="${esc(p.name)}">
+    <div class="spin"><img src="${p.spinImg}" alt="" loading="lazy" draggable="false"></div><span class="nm">${esc(p.name)}</span>
+    <span class="k ${p.kind}">${p.kind === 'buy' ? '購買' : '列印'}</span><span class="s">${ld ? '載入中' : used ? '已拿出' : '步驟 ' + (stepOf[id] + 1)}</span></button>`;
+}
+function detailHTML(id) {
+  const p = P[id], b = p.bom, used = S.inScene.has(id);
+  const rows = [['規格', b.spec], ['尺寸', b.size], ['數量', b.qty]];
+  if (b.buy) rows.push(['怎麼買', b.buy]); if (b.mat) rows.push(['怎麼印', b.mat]); if (b.note) rows.push(['說明', b.note]);
+  const js = DATA.joints.filter(j => j.a === id || j.b === id);
+  if (js.length) rows.push(['怎麼固定', js.map(j => `${j.label}：${j.desc}`).join('；')]);
+  return `<div class="detail" id="detail"><div class="hd2"><div class="spin auto"><img src="${p.spinImg}" alt="${esc(p.name)} 外觀"></div>
+    <div style="display:grid;gap:6px;flex:1 1 140px;min-width:0"><h3>${esc(p.name)}</h3><div class="tags"><span class="pill ${p.kind}">${p.kind === 'buy' ? '購買件' : '列印件'}</span><span class="pill step">步驟 ${stepOf[id] + 1}：${esc(STEPS[stepOf[id]].title)}</span></div>
+    <span style="font-size:12px;color:var(--muted)">轉動中的是 Blender 渲染的實際模型</span></div></div>
+    <dl>${rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+    <div class="row">${used ? `<button class="btn sm" data-act="find">在工作區選它</button><button class="btn sm" data-act="back">放回零件區</button>` : `<button class="btn sm go" data-act="add">放到工作區</button>`}<button class="btn sm" data-act="close">收起</button></div></div>`;
+}
+function visibleIds() { return IDS.filter(id => S.filter === 'all' || (S.filter === 'now' && stepOf[id] === S.step) || (S.filter === 'left' && !S.inScene.has(id)) || P[id].kind === S.filter); }
+let lastDown = 'mouse';
+function renderGrid() {
+  const grid = $('#grid'), ids = visibleIds(), cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length || 3;
+  let html = '';
+  ids.forEach((id, i) => {
+    html += cardHTML(id);
+    const s0 = Math.floor(i / cols) * cols, end = Math.min(ids.length - 1, s0 + cols - 1);
+    if (S.open && i === end && ids.slice(s0, end + 1).includes(S.open)) html += detailHTML(S.open);
+  });
+  grid.innerHTML = html || '<p style="grid-column:1/-1;color:var(--muted)">這個分類沒有零件。</p>';
+  $('#libCount').textContent = `${ids.length} 件`;
+  grid.querySelectorAll('.card').forEach(c => {
+    const id = c.dataset.id;
+    c.addEventListener('pointerdown', e => cardDown(e, id));
+    c.addEventListener('click', () => { if (lastDown !== 'drag') openCard(id); lastDown = ''; });
+  });
+  const det = $('#detail');
+  if (det) det.querySelectorAll('[data-act]').forEach(b => b.onclick = () => {
+    const a = b.dataset.act, id = S.open;
+    if (a === 'add') addSomewhere(id);
+    if (a === 'find') { select(id); focusOn(id); }
+    if (a === 'back') { putBack(id); save(); }
+    if (a === 'close') { S.open = null; renderGrid(); }
+  });
+}
+function openCard(id, force) {
+  S.open = S.open === id && !force ? null : id;
+  if (force && !visibleIds().includes(id)) { S.filter = 'all'; syncFilters(); }
+  renderGrid();
+  if (S.open) $('#detail')?.scrollIntoView({ block: 'nearest', behavior: RM ? 'auto' : 'smooth' });
+}
+function syncFilters() { document.querySelectorAll('#filters button').forEach(b => b.setAttribute('aria-pressed', b.dataset.f === S.filter)); }
+document.querySelectorAll('#filters button').forEach(b => b.onclick = () => { S.filter = b.dataset.f; syncFilters(); renderGrid(); });
+
+// ---- 說明書
+function setStep(k, quiet) {
+  S.step = Math.max(0, Math.min(STEPS.length - 1, k)); S.curAct = -1;
+  const s = STEPS[S.step];
+  $('#mNo').textContent = `${S.step + 1} / ${STEPS.length}`;
+  $('#mX').src = s.x; $('#mA').src = s.a; $('#mA').alt = `${s.title}：裝好的樣子`;
+  [$('#mX'), $('#mA')].forEach(im => { im.style.animation = 'none'; void im.offsetWidth; im.style.animation = ''; });
+  $('#mPrev').disabled = S.step === 0; $('#mNext').disabled = S.step === STEPS.length - 1;
+  renderManualState(); renderGrid();
+  if (!quiet && three) three.view(s.view, true);
+  save();
+}
+function renderManualState() {
+  const k = S.step, s = STEPS[k];
+  $('#mTitle').innerHTML = `${esc(s.title)}${stepDone(k) ? '<em>已完成</em>' : ''}`;
+  $('#mParts').innerHTML = s.parts.map(id => `<button type="button" class="chip${S.inScene.has(id) ? ' ok' : ''}" data-id="${id}">${S.inScene.has(id) ? '✓ ' : ''}${esc(name(id))}</button>`).join('');
+  $('#mParts').querySelectorAll('.chip').forEach(c => c.onclick = () => { const id = c.dataset.id; if (three && S.inScene.has(id)) { select(id); focusOn(id); } openCard(id, true); });
+  $('#mActs').innerHTML = s.acts.map((a, i) => {
+    const d = actDone(k, i), auto = actAuto(k, i);
+    const ck = a.check ? `<div class="ck${a.check.ok ? '' : ' no'}">${a.check.ok ? '✓ 電腦已驗證（你不用量）' : '✗ 未通過'}：${esc(a.check.note)}</div>` : '';
+    const hint = d ? '' : auto === null ? '<div class="hint">做完點這一項打勾</div>' : a.install ? '<div class="hint">把整組拖到機身上對好就會打勾</div>' : '<div class="hint">把零件拖進工作區組上就會打勾</div>';
+    const doit = a.wires.length ? `<button type="button" class="doit" data-solder="${i}">✋ ${d ? '再練一次' : a.t === 'plug' ? '自己接接看' : '自己焊焊看'}（${a.wires.length} 條）</button>` : '';
+    return `<li class="c-${a.cat}${d ? ' done' : ''}${nextAct(k) === i ? ' cur' : ''}" data-i="${i}"><span class="badge"><span class="n">${d ? '✓' : i + 1}</span>${esc(a.label)}</span><span class="tx">${esc(a.text)}</span>${ck}${a.wires.length && !d ? '<div class="hint">把線頭拖到正確的焊點，再按住焊點 1 秒焊上；也可以直接點這一項打勾</div>' : hint}${doit}</li>`;
+  }).join('');
+  $('#mActs').querySelectorAll('li').forEach(li => li.onclick = () => clickAct(+li.dataset.i));
+  $('#mActs').querySelectorAll('[data-solder]').forEach(b => b.onclick = e => { e.stopPropagation(); if (!three) return toast('3D 工作區還在準備，請稍等一下。'); three.solder(S.step, +b.dataset.solder); });
+  $('#mDots').innerHTML = STEPS.map((x, j) => `<button type="button" class="${j === k ? 'cur' : stepDone(j) ? 'done' : ''}" aria-label="第 ${j + 1} 步：${esc(x.title)}" data-k="${j}"></button>`).join('');
+  $('#mDots').querySelectorAll('button').forEach(b => b.onclick = () => { if (!S.sim && !S.prac) { SND.play('tap'); goStep(+b.dataset.k); } });
+  $('#mSim').textContent = S.sim ? '■ 停止模擬' : '▶ 模擬這一步';
+  $('#mSimAll').disabled = !!S.sim;
+}
+function clickAct(i) {
+  if (S.sim || S.prac) return;
+  const k = S.step, a = STEPS[k].acts[i];
+  S.curAct = i;
+  if (three && a.at) three.focusAt(a.at, STEPS[k].view);
+  if (actAuto(k, i) === null) {
+    const key = k + ':' + i;
+    if (!S.actDone.has(key)) { S.actDone.add(key); S.curAct = -1; SND.play(SFX_OF[a.t] || 'tap'); a.wires.forEach(w => S.wiresOn.add(w)); if (three) three.effect(a, a.at); }
+    else SND.play('select');
+    if (three) three.syncWires(a.wires);
+  } else if (!actDone(k, i)) {
+    toast(a.install ? '這一項要把整組拖到機身上對好，或按「▶ 模擬這一步」看一次。' : `這一項要把「${a.parts.map(name).join('、')}」拖進工作區組上。`, '');
+  }
+  refresh(); save();
+}
+// 往回走：那一步（含）之後的零件自己回到零件區、動作和電線一起取消，回到那一步開始之前的樣子
+function goStep(k) {
+  k = Math.max(0, Math.min(STEPS.length - 1, k));
+  if (k < S.step) rewindTo(k);
+  setStep(k);
+}
+function rewindTo(k) {
+  const ids = STEPS.slice(k).flatMap(s => s.parts).filter(id => S.inScene.has(id));
+  STEPS.forEach((s, j) => { if (j >= k) s.acts.forEach((a, i) => { S.actDone.delete(j + ':' + i); a.wires.forEach(w => S.wiresOn.delete(w)); }); });
+  if (three) three.rewind(ids); else ids.forEach(id => S.inScene.delete(id));
+  if (ids.length) { SND.play('detach'); toast(`回到第 ${k + 1} 步開始之前：${ids.length} 個零件放回零件區。`, 'ok'); }
+  refresh(); save();
+}
+$('#mPrev').onclick = () => { if (!S.sim && !S.prac) { SND.play('tap'); goStep(S.step - 1); } };
+$('#mNext').onclick = () => { if (!S.sim) { SND.play('tap'); setStep(S.step + 1); } };
+$('#mMin').onclick = () => { const m = $('#manual'); m.classList.toggle('min'); $('#mMin').textContent = m.classList.contains('min') ? '展開' : '收合'; SND.play('tap'); };
+$('#bManual').onclick = e => { const m = $('#manual'); m.hidden = !m.hidden; e.currentTarget.setAttribute('aria-pressed', !m.hidden); SND.play('tap'); };
+$('#mSim').onclick = () => { if (S.prac) return; if (!three) return toast('3D 工作區還在準備，請稍等一下。'); if (S.sim) { S.sim.stop = true; return; } three.simulate(S.step, false); };
+$('#mSimAll').onclick = () => { if (!three) return toast('3D 工作區還在準備，請稍等一下。'); if (!S.sim) three.simulate(S.step, true); };
+if (matchMedia('(max-width: 860px)').matches) { $('#manual').classList.add('min'); $('#mMin').textContent = '展開'; }
+if (matchMedia('(pointer: coarse)').matches) $('#libHint').textContent = '點卡片看外觀和說明，再按「放到工作區」；在工作區用手指拖動零件，拖空白處轉視角。';
+const sb = $('#bSound'); sb.setAttribute('aria-pressed', SND.on);
+sb.onclick = () => { SND.on = !SND.on; sb.setAttribute('aria-pressed', SND.on); if (SND.on) SND.play('select'); };
+
+// ---- 清單、接線表、驗證
+let SHEET = 'bom';
+const CATN = { snap: '卡扣、勾入、轉入（不用膠）', glue: '黏合（每一處都量過有面可以黏）', screw: '鎖螺絲', fit: '放上、壓入、滑配（量間隙）', wire: '接線', tool: '工具' };
+function openSheet(t) { SHEET = t || SHEET; $('#sheet').hidden = false; renderSheet(); SND.play('tap'); }
+function sheetRows() {
+  if (SHEET === 'bom') return [['名稱', '類別', '規格型號', '尺寸', '數量', '怎麼買／怎麼印', '說明'], ...DATA.parts.map(p => [p.name, p.kind === 'buy' ? '購買' : '列印', p.bom.spec, p.bom.size, p.bom.qty, p.bom.buy || p.bom.mat || '', p.bom.note || ''])];
+  if (SHEET === 'wire') return [['步驟', '電線', '剪多長', '說明'], ...DATA.wires.map(w => [w.step, w.name, w.cut + ' mm', w.note])];
+  if (SHEET === 'verify') return [['編號', '方式', '零件', '說明', '量測', '結果'], ...DATA.joints.map(j => [j.id, j.label, name(j.a) + ' ↔ ' + name(j.b), j.desc, j.note, j.ok ? '通過' : '未通過'])];
+  return [['品項', '規格', '數量', '用途'], ...DATA.misc.map(m => [m.name, m.size, m.qty, m.use]), ...DATA.tools.map(t => [t, '', '', '工具'])];
+}
+function renderSheet() {
+  document.querySelectorAll('#sTabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.t === SHEET));
+  $('#sTitle').textContent = { bom: '零件清單', wire: '接線表', verify: '接合驗證', misc: '工具與耗材' }[SHEET];
+  const sm = DATA.summary;
+  $('#sNote').textContent = {
+    bom: `${IDS.length} 項零件。寫「預留」的是模型留給它的空間：買到先量，超過就把安裝座改大再印。外殼半片約 136 × 68 × 212 mm，光固化機的列印範圍要夠大。`,
+    wire: '每一條線都畫在 3D 裡（說明書做到焊接那一項就會出現），路徑已經檢查過不會穿過零件。「剪多長」只是參考，不用量：線先剪長一點，照 3D 的走法拉到位再把多的剪掉。',
+    verify: '這些數字是我在 Blender 裡用模型算的，用來確認設計做得出來，你組裝時不用量：黏的地方量接觸面積、滑的地方量間隙、卡扣量倒鉤干涉並算卡爪變形、每個零件照步驟順序檢查推進來的路上會不會被已經裝好的擋住、每條電線檢查不會穿過零件。',
+    misc: '這些不在 3D 模型裡，但組裝時一定會用到。' }[SHEET];
+  const In = $('#sIn');
+  if (SHEET === 'bom') In.innerHTML = `<div style="overflow-x:auto"><table><thead><tr><th></th><th>名稱</th><th>類別</th><th>規格型號</th><th>尺寸</th><th>數量</th><th>怎麼買／怎麼印</th></tr></thead><tbody>${DATA.parts.map(p => `<tr><td><img src="${p.img}" alt="" loading="lazy"></td><td><b style="font-weight:500">${esc(p.name)}</b><div style="font-size:12px;color:var(--muted)">${esc(p.bom.note || '')}</div></td><td><span class="pill ${p.kind}">${p.kind === 'buy' ? '購買' : '列印'}</span></td><td>${esc(p.bom.spec)}</td><td class="m">${esc(p.bom.size)}</td><td>${esc(p.bom.qty)}</td><td style="color:var(--sage)">${esc(p.bom.buy || p.bom.mat || '')}</td></tr>`).join('')}</tbody></table></div>`;
+  else if (SHEET === 'wire') In.innerHTML = `<div style="overflow-x:auto"><table><thead><tr><th>步驟</th><th>顏色</th><th>從 → 到</th><th>剪多長</th><th>說明</th><th></th></tr></thead><tbody>${DATA.wires.map(w => `<tr><td class="m">${w.step}</td><td><span class="sw" style="background:${w.color}"></span></td><td>${esc(w.name)}</td><td class="m">${w.cut} mm</td><td style="color:var(--muted)">${esc(w.note)}</td><td><button class="btn sm" data-w="${w.id}">在 3D 裡看</button></td></tr>`).join('')}</tbody></table></div>`;
+  else if (SHEET === 'verify') {
+    const by = {}; DATA.joints.forEach(j => (by[j.cat] = by[j.cat] || []).push(j));
+    const sn = DATA.snap;
+    In.innerHTML = `<div class="vsum"><div><b>${sm.joints_ok} / ${sm.joints}</b><span>接合處通過</span></div><div><b>${sm.paths_ok} / ${sm.paths}</b><span>安裝路徑通過（照步驟順序）</span></div><div><b>${sm.wires_ok} / ${sm.wires}</b><span>電線路徑通過</span></div><div><b>${sm.interf_bad}</b><span>處不該有的干涉</span></div></div>
+      <div class="vgrp">原型版 v3 和量產版的差別</div><ol class="fixlist">${DATA.fix.map(f => `<li>${esc(f)}</li>`).join('')}</ol>
+      <div class="vgrp">卡扣與螺絲計算</div><div class="calc">
+        <div><b>旋轉環 6 根卡爪</b><br>倒鉤 r${sn.ring.hook_r} 對殼頂開口 r${sn.ring.lip_r} → 要往內彎 ${sn.ring.interference} mm<br>卡爪長 ${sn.ring.L}、厚 ${sn.ring.t} mm → 應變 ${sn.ring.strain}%（樹脂可承受約 2%）<br>壓上去約 ${sn.ring.push_N} N（不到 1 公斤力），拔起來約 ${sn.ring.pull_N} N <span class="${sn.ring.ok ? 'ok-t' : 'bad-t'}">${sn.ring.ok ? '通過' : '未通過'}</span></div>
+        <div><b>伸縮柱定位鋼珠</b><br>鋼珠外緣 r${sn.ball.ball_tip_r}、套筒內壁 r${sn.ball.sleeve_r} → 推進去時彈簧壓縮 ${sn.ball.push_in} mm<br>凹槽深 ${sn.ball.groove_depth} mm（V 形，往上下推都能退出） <span class="${sn.ball.ok ? 'ok-t' : 'bad-t'}">${sn.ball.ok ? '通過' : '未通過'}</span></div>
+        <div><b>濾網蓋旋轉卡口</b><br>卡耳 z${sn.bayonet.tab_z[0]}–${sn.bayonet.tab_z[1]} 坐在卡槽台階 z${sn.bayonet.floor_z} 上面<br>入口寬 ${sn.bayonet.entry_deg}° ＞ 卡耳 ${sn.bayonet.tab_deg}°，轉 ${sn.bayonet.turn_deg}° 鎖住 <span class="${sn.bayonet.ok ? 'ok-t' : 'bad-t'}">${sn.bayonet.ok ? '通過' : '未通過'}</span></div>
+        <div><b>底蓋 M3 螺絲</b><br>螺母在 z${sn.screw.nut_z[0]}–${sn.screw.nut_z[1]}，螺絲吃進螺母 ${sn.screw.engage} mm（整顆螺母厚度） <span class="${sn.screw.ok ? 'ok-t' : 'bad-t'}">${sn.screw.ok ? '通過' : '未通過'}</span></div></div>
+      ${['snap', 'glue', 'screw', 'fit'].filter(c => by[c]).map(c => `<div class="vgrp"><span class="badge c-${c}">${esc(CATN[c].split('（')[0])}</span>${esc(CATN[c].includes('（') ? '（' + CATN[c].split('（')[1] : '')}</div>
+        <div style="overflow-x:auto"><table><thead><tr><th>編號</th><th>方式</th><th>零件</th><th>怎麼固定</th><th>電腦在模型上量的</th><th>結果</th></tr></thead><tbody>${by[c].map(j => `<tr><td class="m">${j.id}</td><td><span class="badge c-${j.cat}">${esc(j.label)}</span></td><td>${esc(name(j.a))} ↔ ${esc(name(j.b))}</td><td>${esc(j.desc)}</td><td class="m">${esc(j.note)}</td><td class="${j.ok ? 'ok-t' : 'bad-t'}">${j.ok ? '✓ 通過' : '✗'}</td></tr>`).join('')}</tbody></table></div>`).join('')}
+      <div class="vgrp">安裝順序（在桌上先組好的會一起檢查）</div><div style="overflow-x:auto"><table><thead><tr><th>步驟</th><th>零件</th><th>方向</th><th>結果</th></tr></thead><tbody>${DATA.paths.map(p => `<tr><td class="m">${p.step}</td><td>${esc(p.what)}</td><td class="m">${esc(p.dir)}</td><td class="${p.ok ? 'ok-t' : 'bad-t'}">${p.ok ? '✓ 推得進去' : '✗ 被擋住：' + esc(p.blocked.map(x => x.join('←')).join('、'))}</td></tr>`).join('')}</tbody></table></div>
+      <div class="vgrp">預期的彈性變形（不是撞到）</div><ul class="fixlist">${DATA.interference.map(x => `<li>${esc(name(x.a))} ↔ ${esc(name(x.b))}：${x.depth} mm，${esc(x.why || '')}</li>`).join('')}</ul>
+      <div class="vgrp">買到零件後要先量的</div><ul class="fixlist">
+        <li>霧化片：底面白色陶瓷環、和環中間露出的鋼片，兩點之間用三用電表量要不通（兩極），兩根頂針才會各碰一極。</li>
+        <li>彈簧頂針：要「帶肩」的款式，針筒 Ø1.5、行程約 1 mm。</li>
+        <li>定位彈簧：伸縮柱拉到最高放手不會自己掉下來；會掉就換線徑粗一點的彈簧。</li>
+        <li>USB 彈簧線：線徑 ≤ 3.5 mm（要穿過 4 mm 的缺口和 4.4 mm 的長槽）。</li>
+        <li>18650 電池盒、5 塊模組：照零件清單的「預留」尺寸量，超過就要改安裝座。</li>
+        <li>磁鐵：8 顆裝之前前後兩組先疊在一起，確認吸的那面朝外。</li></ul>`;
+    In.querySelectorAll('[data-w]').forEach(b => b.onclick = () => { $('#sheet').hidden = true; if (three) three.showWire(b.dataset.w); });
+  } else In.innerHTML = `<div class="misc"><div class="col"><h3 style="margin:0 0 6px;font-size:15px">耗材</h3>${DATA.misc.map(m => `<div class="it"><b style="font-weight:600">${esc(m.name)}</b><span>${esc(m.size)}</span><span>${esc(m.qty)}</span><span style="color:var(--muted)">${esc(m.use)}</span></div>`).join('')}</div><div class="col" style="flex:0 1 300px"><h3 style="margin:0 0 6px;font-size:15px">工具</h3>${DATA.tools.map(t => `<div class="it" style="grid-template-columns:1fr">${esc(t)}</div>`).join('')}</div></div>`;
+  if (SHEET === 'wire') In.querySelectorAll('[data-w]').forEach(b => b.onclick = () => { $('#sheet').hidden = true; if (three) three.showWire(b.dataset.w); });
+}
+document.querySelectorAll('#sTabs button').forEach(b => b.onclick = () => { SHEET = b.dataset.t; renderSheet(); SND.play('tap'); });
+$('#bSheet').onclick = () => openSheet('bom');
+$('#bCloseSheet').onclick = () => { $('#sheet').hidden = true; SND.play('tap'); };
+$('#sheet').addEventListener('click', e => { if (e.target.id === 'sheet') $('#sheet').hidden = true; });
+$('#bCopy').onclick = () => navigator.clipboard.writeText(sheetRows().map(r => r.join('\t')).join('\n')).then(() => toast('已複製，可以直接貼到試算表。', 'ok')).catch(() => toast('瀏覽器不允許複製，請直接選取表格文字。', 'bad'));
+
+// ---- 進度
+function refresh() {
+  const big = bigGroup();
+  $('#pN').textContent = `${big} / ${IDS.length}`; $('#pBar').style.width = (big / IDS.length * 100) + '%';
+  $('#empty').hidden = S.inScene.size > 0 || S.loading.size > 0 || !!S.sim;
+  $('#busy').hidden = !S.loading.size; $('#busy').textContent = `正在載入 ${[...S.loading].map(name).join('、')}…`;
+  if (big === IDS.length && !S.done) { toast('全部零件都組好了！', 'ok', 6000); SND.play('done'); }
+  S.done = big === IDS.length;
+  renderGrid(); renderSel(); renderManualState(); checkSteps();
+  if (three && three.legend) three.legend();
+}
+function checkSteps() {
+  if (S.sim || S.advancing || !stepDone(S.step) || S.step >= STEPS.length - 1) return;
+  S.advancing = true;
+  setTimeout(() => { S.advancing = false; if (!S.sim && stepDone(S.step)) { SND.play('step'); setStep(S.step + 1); toast(`這一步完成了，接著做「${STEPS[S.step].title}」。`, 'ok', 3500); } }, 1100);
+}
+function save() {
+  if (!S.ready || S.sim) return;
+  try { localStorage.setItem(KEY, JSON.stringify({ in: [...S.inScene].map(id => [id, S.t[id] ? S.t[id].toArray() : [0, 0, 0], S.gid[id]]), step: S.step, acts: [...S.actDone], wires: [...S.wiresOn] })); } catch (e) {}
+}
+
+let select = () => {}, focusOn = () => {}, renderSel = () => {}, putBack = () => {}, addSomewhere = id => toast('3D 工作區還在準備，請稍等一下。');
+function cardDown(e, id) { lastDown = e.pointerType; if (three && !S.sim && e.pointerType === 'mouse' && e.button === 0) { lastDown = 'drag'; three.cardDown(e, id); } }
+$('#bClear').onclick = () => {
+  const b = $('#bClear');
+  if (S.sim) return;
+  if (b.dataset.arm !== '1') { b.dataset.arm = '1'; b.textContent = '再按一次確定清空'; SND.play('tap'); setTimeout(() => { b.dataset.arm = ''; b.textContent = '清空重來'; }, 3000); return; }
+  b.dataset.arm = ''; b.textContent = '清空重來';
+  if (three) three.clearAll(); S.inScene.clear(); S.actDone.clear(); S.wiresOn.clear(); S.sel = null; SND.play('detach'); setStep(0); refresh(); save();
+};
+let saved = null;
+try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+S.step = saved?.step || 0;
+(saved?.acts || []).forEach(a => S.actDone.add(a));
+(saved?.wires || []).forEach(w => WIRE[w] && S.wiresOn.add(w));
+setStep(S.step, true); refresh();
+
+// ================= 2. 3D 工作區
+try {
+  const THREE = await import('three');
+  const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+  const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+  const { RoomEnvironment } = await import('three/addons/environments/RoomEnvironment.js');
+  const MOBILE = matchMedia('(max-width: 860px), (pointer: coarse)').matches;
+  const V3 = a => new THREE.Vector3(...a);
+  IDS.forEach(id => { const p = P[id]; p.min = V3(p.bbMin); p.max = V3(p.bbMax); p.ctr = p.min.clone().add(p.max).multiplyScalar(.5); p.d = p.dir ? V3(p.dir) : new THREE.Vector3(0, 1, 0); p.adjS = new Set(p.adj); p.blkS = new Set(p.blockers); });
+  const stage = $('#stage');
+  const renderer = new THREE.WebGLRenderer({ antialias: !MOBILE, alpha: false, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, MOBILE ? 1.5 : 2));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  stage.prepend(renderer.domElement);
+  const scene = new THREE.Scene();
+  scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), .04).texture;
+  function bg() {
+    const cs = getComputedStyle(document.documentElement), c = document.createElement('canvas'); c.width = c.height = 512;
+    const x = c.getContext('2d'), gr = x.createRadialGradient(240, 310, 20, 256, 300, 430);
+    gr.addColorStop(0, cs.getPropertyValue('--stage-a').trim()); gr.addColorStop(1, cs.getPropertyValue('--stage-b').trim());
+    x.fillStyle = gr; x.fillRect(0, 0, 512, 512); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; scene.background = t;
+  }
+  bg(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', bg);
+  new MutationObserver(bg).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  const camera = new THREE.PerspectiveCamera(35, 1, 2, 6000);
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  const VIEWS = { iso: [[0, 110, 0], [520, 420, 640]], front: [[0, 120, 0], [0, 200, 760]], back: [[0, 120, 0], [0, 200, -760]], side: [[0, 120, 0], [760, 200, 0]],
+    head: [[0, 230, 0], [170, 320, 230]], bottom: [[0, 40, 0], [420, -560, 520]], top: [[0, 120, 0], [0, 900, 2]] };
+  camera.position.set(...VIEWS.iso[1]); controls.target.set(MOBILE ? 0 : 60, 110, 0);
+  const key = new THREE.DirectionalLight(0xffffff, 1.5); key.position.set(320, 700, 420); key.castShadow = true;
+  key.shadow.mapSize.set(MOBILE ? 1024 : 2048, MOBILE ? 1024 : 2048); Object.assign(key.shadow.camera, { left: -500, right: 500, top: 500, bottom: -500, near: 10, far: 2000 }); key.shadow.bias = -.0004;
+  const fill = new THREE.DirectionalLight(0xffffff, .55); fill.position.set(-300, -200, -300);
+  scene.add(key, fill, new THREE.HemisphereLight(0xffffff, 0x9c958a, .45));
+  const floor = new THREE.Mesh(new THREE.CircleGeometry(900, 64), new THREE.ShadowMaterial({ opacity: .16 }));
+  floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+  const ring = new THREE.Mesh(new THREE.RingGeometry(298, 300, 96), new THREE.MeshBasicMaterial({ color: 0x8c8a82, transparent: true, opacity: .25 }));
+  ring.rotation.x = -Math.PI / 2; ring.position.y = .2; scene.add(ring);
+  const resize = () => { const r = stage.getBoundingClientRect(); renderer.setSize(r.width, r.height, false); camera.aspect = r.width / Math.max(1, r.height); camera.fov = camera.aspect < 1 ? 35 / Math.max(.55, camera.aspect) : 35; camera.updateProjectionMatrix(); };
+  new ResizeObserver(resize).observe(stage); resize();
+
+  // ---- 鏡頭平滑移動
+  let camTw = null;
+  function camTo(target, pos, ms = 700) { camTw = { t0: performance.now(), ms: RM ? 1 : ms, a0: controls.target.clone(), p0: camera.position.clone(), a1: target.clone(), p1: pos.clone() }; }
+  function viewPose(v) { const [t, p] = VIEWS[v] || VIEWS.iso; return [V3(t), V3(p)]; }
+  function view(v, smooth) { const [t, p] = viewPose(v); if (smooth) camTo(t, p); else { controls.target.copy(t); camera.position.copy(p); } }
+  function focusAt(at, v, dist) {
+    const t = Array.isArray(at) ? V3(at) : at.clone();
+    const dir = camera.position.clone().sub(controls.target).normalize();
+    const d = dist || (v === 'head' ? 170 : 330);
+    camTo(t, t.clone().addScaledVector(dir, d));
+  }
+
+  // ---- 單一零件 3D 檔（內嵌 base64 的 glTF → 自己組成 GLB 再解析；發佈頁不准 fetch data: 網址）
+  const loader = new GLTFLoader(), SRC = {}, MAIN = {}, PENDING = {};
+  async function fetchGLB(id) {
+    let r, err;
+    for (let k = 0; k < 2; k++) { try { r = await fetch(`parts/${id}.json`); if (r.ok) break; err = new Error('HTTP ' + r.status); } catch (e) { err = e; } r = null; }
+    if (!r) throw err;
+    const j = await r.json(), buf = j.buffers[0], s = atob(buf.uri.slice(buf.uri.indexOf(',') + 1));
+    const bin = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) bin[i] = s.charCodeAt(i);
+    delete buf.uri; buf.byteLength = bin.length;
+    const js = new TextEncoder().encode(JSON.stringify(j)), jl = (js.length + 3) & ~3, bl = (bin.length + 3) & ~3;
+    const out = new ArrayBuffer(28 + jl + bl), dv = new DataView(out), u8 = new Uint8Array(out);
+    dv.setUint32(0, 0x46546C67, true); dv.setUint32(4, 2, true); dv.setUint32(8, out.byteLength, true);
+    dv.setUint32(12, jl, true); dv.setUint32(16, 0x4E4F534A, true); u8.set(js, 20); u8.fill(0x20, 20 + js.length, 20 + jl);
+    dv.setUint32(20 + jl, bl, true); dv.setUint32(24 + jl, 0x004E4942, true); u8.set(bin, 28 + jl);
+    return out;
+  }
+  function loadPart(id) {
+    if (MAIN[id]) return Promise.resolve(MAIN[id]);
+    if (PENDING[id]) return PENDING[id];
+    S.loading.add(id); refresh();
+    const fail = err => { S.loading.delete(id); delete PENDING[id]; refresh(); toast(`「${name(id)}」的 3D 檔載入失敗，請再試一次。`, 'bad'); console.error('loadPart', id, err); };
+    PENDING[id] = fetchGLB(id).catch(e => { fail(e); throw e; }).then(glb => new Promise((res, rej) => loader.parse(glb, '', g => {
+      const n = g.scene.getObjectByName(id) || g.scene; SRC[id] = n;
+      const c = n.clone(true);
+      c.traverse(o => { if (o.isMesh) { o.material = o.material.clone(); o.castShadow = true; o.receiveShadow = true; o.userData.base = { e: o.material.emissive.clone(), ei: o.material.emissiveIntensity ?? 1, op: o.material.opacity, tr: o.material.transparent }; } });
+      c.userData.id = id; c.visible = false; c.position.set(0, 0, 0); scene.add(c); MAIN[id] = c;
+      c.traverse(o => { if (o.isMesh) o.userData.orig = o.material; });
+      if (S.ghost && /^(SH[BF]_|MAG_|FOOT_)/.test(id)) ghostPart(id, true);
+      if (S.xray) applyLook(id);
+      S.loading.delete(id); refresh(); res(c);
+    }, err => { fail(err); rej(err); })));
+    return PENDING[id];
+  }
+  const loadAll = ids => Promise.all(ids.map(id => loadPart(id).catch(() => null)));
+  const anim = (id, to) => { if (RM) { S.t[id].copy(to); MAIN[id].userData.to = null; } else MAIN[id].userData.to = to.clone(); };
+  const setT = (id, v) => { S.t[id].copy(v); MAIN[id].userData.to = null; };
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+  const setRay = e => { const r = renderer.domElement.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1); ray.setFromCamera(ndc, camera); };
+  const screenPt = v => { const p = v.clone().project(camera), r = renderer.domElement.getBoundingClientRect(); return [(p.x + 1) / 2 * r.width, (1 - p.y) / 2 * r.height, p.z]; };
+  const floorPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+  const floorPoint = e => { setRay(e); const p = new THREE.Vector3(); return ray.ray.intersectPlane(floorPlane, p) ? p : null; };
+  function hitPart(e) {
+    setRay(e);
+    const hits = ray.intersectObjects([...S.inScene].filter(id => MAIN[id]).map(id => MAIN[id]), true);
+    const f = hits.map(h => { let o = h.object; while (o && !o.userData.id) o = o.parent; return o ? { id: o.userData.id, point: h.point } : null; }).filter(Boolean);
+    if (S.xray) {
+      const seen = [], uniq = f.filter(x => !seen.includes(x.id) && seen.push(x.id));
+      if (!uniq.length) return null;
+      const k = uniq.findIndex(x => x.id === S.sel);
+      return k >= 0 ? Object.assign({}, uniq[k], { next: uniq[(k + 1) % uniq.length].id }) : uniq[0];
+    }
+    return (S.ghost && f.find(x => !/^(SH[BF]_|MAG_|FOOT_)/.test(x.id))) || f[0] || null;
+  }
+
+  // ---- 放進工作區
+  function placeAt(id, at) {
+    const p = P[id];
+    S.inScene.add(id); S.gid[id] = S.nextG++;
+    S.t[id] = new THREE.Vector3(at.x - p.ctr.x, -p.min.y + .5, at.z - p.ctr.z);
+    MAIN[id].visible = true; MAIN[id].position.copy(S.t[id]);
+  }
+  addSomewhere = async id => {
+    if (S.inScene.has(id) || S.sim) return;
+    await loadPart(id);
+    const n = S.inScene.size, a = n * 2.39996;
+    placeAt(id, MOBILE ? new THREE.Vector3(Math.cos(a) * 90, 0, 120 + Math.sin(a) * 60) : new THREE.Vector3(Math.cos(a) * (130 + n * 3), 0, 180 + Math.sin(a) * 80));
+    select(id); refresh(); save(); SND.play('place'); toast(`「${name(id)}」放進工作區了，拖動它對準機身就會吸住。`, 'ok');
+  };
+  putBack = id => {
+    if (!S.inScene.has(id)) return;
+    if (groupIds(id).length > 1 && !detach(id, true)) return;
+    S.inScene.delete(id); MAIN[id].visible = false; MAIN[id].userData.to = null;
+    if (S.sel === id) S.sel = null; SND.play('detach'); refresh();
+  };
+  function detach(id, quiet) {
+    const g = new Set(groupIds(id));
+    if (g.size <= 1) return true;
+    g.delete(id);
+    const bl = [...P[id].blkS].filter(b => g.has(b));
+    if (bl.length) { toast(`「${name(id)}」拆不下來：被 ${bl.map(b => '「' + name(b) + '」').join('、')} 擋住，要先拆它們。`, 'bad'); return false; }
+    const left = new Set(g);
+    while (left.size) {
+      const first = [...left][0], comp = new Set([first]), stack = [first]; left.delete(first);
+      while (stack.length) { const x = stack.pop(); for (const y of P[x].adjS) if (left.has(y)) { left.delete(y); comp.add(y); stack.push(y); } }
+      const ng = S.nextG++; comp.forEach(x => S.gid[x] = ng);
+    }
+    S.gid[id] = S.nextG++;
+    const out = S.t[id].clone().addScaledVector(P[id].d, 70);
+    if (P[id].min.y + out.y < 0) { const side = new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld, 0).setY(0).normalize(); out.y = -P[id].min.y + .5; out.addScaledVector(side, 140); }
+    anim(id, out);
+    if (!quiet) { toast(`已拆下「${name(id)}」。`, 'ok'); SND.play('detach'); }
+    refresh(); return true;
+  }
+
+  // ---- 吸附
+  function canJoin(A, G) {
+    const a = []; A.forEach(x => P[x].blkS.forEach(b => { if (G.has(b)) a.push([x, b]); }));
+    if (!a.length) return { ok: true };
+    const g = []; G.forEach(x => P[x].blkS.forEach(b => { if (A.has(b)) g.push([x, b]); }));
+    if (!g.length) return { ok: true };
+    return { ok: false, why: `裝不進去：「${name(a[0][0])}」的路徑被「${name(a[0][1])}」擋住。先把「${name(a[0][1])}」拆下來，或改一下順序。` };
+  }
+  function bestSnap(A) {
+    let best = null;
+    A.forEach(a => P[a].adjS.forEach(b => {
+      if (!S.inScene.has(b) || A.has(b)) return;
+      const tb = S.t[b], s1 = screenPt(P[a].ctr.clone().add(S.t[a])), s2 = screenPt(P[a].ctr.clone().add(tb));
+      const px = Math.hypot(s1[0] - s2[0], s1[1] - s2[1]), d3 = S.t[a].distanceTo(tb), sc = Math.min(px, d3 * 2);
+      if (!best || sc < best.sc) best = { a, b, tb: tb.clone(), px, d3, sc };
+    }));
+    if (best) Object.assign(best, canJoin(A, new Set(groupIds(best.b))));
+    return best;
+  }
+  const ghostOk = new THREE.MeshBasicMaterial({ color: 0x3fae6a, transparent: true, opacity: .3, depthWrite: false });
+  const ghostBad = new THREE.MeshBasicMaterial({ color: 0xd2503c, transparent: true, opacity: .3, depthWrite: false });
+  const ghost = new THREE.Group(); scene.add(ghost);
+  const glow = new THREE.Mesh(new THREE.RingGeometry(1, 1.12, 64), new THREE.MeshBasicMaterial({ color: 0x7e9a70, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide }));
+  glow.renderOrder = 20; scene.add(glow);
+  function buildGhost(A) { ghost.clear(); A.forEach(id => { const c = SRC[id].clone(true); c.traverse(o => { if (o.isMesh) o.material = ghostOk; }); ghost.add(c); }); ghost.visible = false; }
+  function setGhost(sn, ready) {
+    if (!sn || sn.sc > 150) { ghost.visible = false; return; }
+    ghost.visible = true; ghost.position.copy(sn.tb); const m = sn.ok ? ghostOk : ghostBad; m.opacity = ready ? .5 : .28; ghost.traverse(o => { if (o.isMesh) o.material = m; });
+  }
+  function pulse(at, r, color) {
+    glow.material.color.set(color || 0x7e9a70);
+    glow.position.copy(at); glow.scale.setScalar(r); glow.lookAt(camera.position); glow.userData.t0 = performance.now();
+  }
+  function join(A, sn) {
+    const g = S.gid[sn.b];
+    A.forEach(x => { S.gid[x] = g; anim(x, sn.tb); });
+    pulse(P[sn.a].ctr.clone().add(sn.tb), Math.max(30, P[sn.a].max.distanceTo(P[sn.a].min) * .6));
+    SND.play('snap'); toast(`組上了：「${name(sn.a)}」接到「${name(sn.b)}」。`, 'ok');
+    refresh(); save();
+  }
+
+  // ---- 選取：被選到的那一件變黃色（只有那一件）
+  const YEL = new THREE.Color(0xffbf1f);
+  function paint(x, on) { MAIN[x] && MAIN[x].traverse(o => { if (o.isMesh) { const b = o.userData.base, m = o.userData.orig || o.material; m.emissive.copy(on ? YEL : b.e); m.emissiveIntensity = on ? .5 : b.ei; } }); }
+  // 結構模式：每個零件一個顏色（避開橘黃，橘黃留給選到的那一件）
+  const XPAL = {};
+  (() => { let k = 0; IDS.forEach(id => { let h; do { h = (k * 137.508 + 200) % 360; k++; } while (h > 18 && h < 64); XPAL[id] = new THREE.Color().setHSL(h / 360, .6, .55); }); })();
+  const XM = {}, xSel = new THREE.MeshStandardMaterial({ color: 0xff9a1a, emissive: 0xff6a00, emissiveIntensity: .35, roughness: .45, metalness: 0 });
+  const xLine = new THREE.LineBasicMaterial({ color: 0x1c1f1a, transparent: true, opacity: .32, depthWrite: false });
+  const noRay = () => {};
+  function xMat(id) { return XM[id] || (XM[id] = new THREE.MeshStandardMaterial({ color: XPAL[id], roughness: .6, metalness: 0, transparent: true, opacity: .4, depthWrite: false })); }
+  function applyLook(id) {
+    const root = MAIN[id]; if (!root) return;
+    const sel = id === S.sel;
+    root.traverse(o => {
+      if (!o.isMesh) return;
+      if (!o.userData.orig) o.userData.orig = o.material;
+      if (!S.xray) { o.material = o.userData.orig; o.castShadow = true; if (o.userData.edge) o.userData.edge.visible = false; return; }
+      o.material = sel ? xSel : xMat(id); o.castShadow = sel; o.renderOrder = sel ? 2 : 1;
+      if (!o.userData.edge) { const e = new THREE.LineSegments(new THREE.EdgesGeometry(o.geometry, 28), xLine); e.raycast = noRay; o.add(e); o.userData.edge = e; }
+      o.userData.edge.visible = !sel;
+    });
+  }
+  function applyAll() {
+    Object.values(XM).forEach(m => m.opacity = S.sel ? .13 : .4);
+    IDS.forEach(id => applyLook(id));
+  }
+  select = id => {
+    S.sel = id;
+    IDS.forEach(x => { if (MAIN[x] && MAIN[x].userData.lit !== (x === id)) { paint(x, x === id); MAIN[x].userData.lit = x === id; } });
+    if (S.xray) applyAll();
+    renderSel(); legend();
+  };
+  function legend() {
+    const el = $('#xleg');
+    if (!S.xray || S.prac) { el.hidden = true; return; }
+    const ids = IDS.filter(id => S.inScene.has(id) && MAIN[id]);
+    el.hidden = false;
+    el.innerHTML = `<div class="xh"><b style="color:var(--ink)">顏色對照</b>・點名稱或在 3D 裡點零件；同一個地方再點一次會選到裡面那一件</div><div class="xl">${ids.map(id => `<button type="button" data-id="${id}" class="${S.sel === id ? 'on' : ''}"><i style="background:#${XPAL[id].getHexString()}"></i>${esc(name(id))}</button>`).join('') || '<div style="padding:8px;font-size:12px;color:var(--muted)">工作區還沒有零件</div>'}</div>`;
+    el.querySelectorAll('button').forEach(b => b.onclick = () => { SND.play('select'); select(b.dataset.id === S.sel ? null : b.dataset.id); if (S.sel) focusOn(S.sel); });
+  }
+  renderSel = () => {
+    const bar = $('#selbar'), id = S.sel;
+    if (!id || !S.inScene.has(id) || S.sim) { bar.hidden = true; return; }
+    const n = groupIds(id).length; bar.hidden = false;
+    bar.innerHTML = `<div style="margin-right:auto"><div class="nm">${esc(name(id))}</div><div class="sub">${n > 1 ? `跟另外 ${n - 1} 個零件組在一起` : '單獨一件 · 拖動它對準機身'}</div></div>
+      ${n > 1 ? '<button class="btn sm" id="sDetach">拆下這件</button>' : ''}<button class="btn sm" id="sBack">放回零件區</button><button class="btn sm" id="sInfo">看說明</button>`;
+    if ($('#sDetach')) $('#sDetach').onclick = () => { detach(id); save(); };
+    $('#sBack').onclick = () => { putBack(id); save(); };
+    $('#sInfo').onclick = () => { SND.play('tap'); openCard(id, true); };
+  };
+  focusOn = id => { const c = P[id].ctr.clone().add(S.t[id]); focusAt(c, null, Math.max(140, P[id].max.distanceTo(P[id].min) * 3)); };
+
+  // ---- 電線（3D 管子，做到焊接那一項才出現）
+  const WM = {};
+  function wireMesh(id) {
+    if (WM[id]) return WM[id];
+    const w = WIRE[id], pts = ((S.grav !== false && w.gpts) || w.pts).map(V3);
+    const curve = new THREE.CatmullRomCurve3(pts, false, 'centripetal', .5);
+    const len = pts.reduce((s, p, i) => i ? s + p.distanceTo(pts[i - 1]) : 0, 0);
+    const segs = Math.max(12, Math.round(len / 1.6));
+    const geo = new THREE.TubeGeometry(curve, segs, .62, 6, false);
+    const m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: w.color, roughness: .55, metalness: 0 }));
+    m.castShadow = true; m.userData.n = geo.index.count; m.visible = false; wireRoot.add(m); WM[id] = m; return m;
+  }
+  const wireAnim = [];
+  function syncWires(ids, animate) {
+    (ids || Object.keys(WIRE)).forEach(id => {
+      const on = S.wires && S.wiresOn.has(id), m = on || WM[id] ? wireMesh(id) : null;
+      if (!m) return;
+      if (on && !m.visible && animate && !RM) { m.geometry.setDrawRange(0, 0); wireAnim.push({ m, t0: performance.now() }); }
+      else if (on) m.geometry.setDrawRange(0, m.userData.n);
+      m.visible = on;
+    });
+  }
+  function showWire(id) {
+    const w = WIRE[id]; S.wiresOn.add(id); S.wires = true; $('#bWire').setAttribute('aria-pressed', true); syncWires([id], true);
+    const pts = w.pts.map(V3), c = pts[Math.floor(pts.length / 2)];
+    focusAt(c, null, 220); toast(`${w.name}（剪 ${w.cut} mm）`, 'ok', 5000); save();
+  }
+
+  // ---- 動作效果（膠、卡扣、螺絲、焊點…）
+  const fxGroup = new THREE.Group(); scene.add(fxGroup);
+  // 機身（骨架那一組）可能被拖到別的位置：電線、標記、效果都跟著它走
+  const wireRoot = new THREE.Group(); scene.add(wireRoot);
+  const ZERO = new THREE.Vector3();
+  const frameOff = () => (S.inScene.has('FRAME') && S.t.FRAME) ? S.t.FRAME : ZERO;
+  const FXC = { fit: 0x5e7a55, glue: 0xe0a83a, snap: 0x4a7fd0, screw: 0x9aa1aa, wire: 0xe0573e, tool: 0xa08f78 };
+  function effect(a, at) {
+    if (!at) return;
+    const p = Array.isArray(at) ? V3(at).add(frameOff()) : at.clone(), col = FXC[a.cat] || 0x888888;
+    if (a.cat === 'glue') {
+      const m = new THREE.Mesh(new THREE.SphereGeometry(4, 20, 14), new THREE.MeshStandardMaterial({ color: col, transparent: true, opacity: .6, roughness: .2, emissive: col, emissiveIntensity: .25 }));
+      m.position.copy(p); m.userData = { t0: performance.now(), kind: 'blob', life: 1600 }; fxGroup.add(m);
+    } else if (a.cat === 'wire') {
+      for (let k = 0; k < 3; k++) { const m = new THREE.Mesh(new THREE.SphereGeometry(1.6, 10, 8), new THREE.MeshBasicMaterial({ color: 0xffe2a0, transparent: true })); m.position.copy(p).add(new THREE.Vector3((Math.random() - .5) * 6, (Math.random() - .5) * 6, (Math.random() - .5) * 6)); m.userData = { t0: performance.now() + k * 120, kind: 'spark', life: 500 }; fxGroup.add(m); }
+    }
+    pulse(p, a.cat === 'screw' ? 10 : a.cat === 'snap' ? 22 : 16, col);
+  }
+
+  // ---- 動作標記（HTML，跟著 3D 位置走）
+  const marksEl = $('#marks');
+  let MK = [];
+  function stageOff(s, unitIdx) {
+    const u = s.units[unitIdx], d = V3(u.dir);
+    if (d.y > .5) return new THREE.Vector3(0, 70, 0);
+    if (d.y < -.5) return new THREE.Vector3(170, 0, 0);
+    return d.clone().multiplyScalar(170);
+  }
+  const UST = {};                                         // 模擬中：哪些單元還在桌上（key: 步驟:單元 → 位移）
+  function actPos(k, i) {
+    const s = STEPS[k], a = s.acts[i]; if (!a.at) return null;
+    const p = V3(a.at).add(frameOff());
+    if (a.bench) { const u = findUnit(s, i), off = UST[k + ':' + u]; if (off) p.add(off); }
+    return p;
+  }
+  function buildMarks() {
+    const k = S.step, s = STEPS[k];
+    marksEl.innerHTML = s.acts.map((a, i) => a.at ? `<button type="button" class="mk c-${a.cat}" data-i="${i}"><span class="t1"><i>${i + 1}</i>${esc(a.label)}</span><span class="t2">${esc(a.text.length > 40 ? a.text.slice(0, 40) + '…' : a.text)}</span></button>` : '').join('');
+    MK = [...marksEl.querySelectorAll('.mk')].map(el => ({ el, i: +el.dataset.i }));
+    MK.forEach(m => m.el.onclick = e => { e.stopPropagation(); clickAct(m.i); });
+    buildMarks.k = k;
+  }
+  function updateMarks() {
+    if (S.prac) { MK.forEach(m => m.el.classList.add('hide')); return; }
+    if (buildMarks.k !== S.step) buildMarks();
+    const r = renderer.domElement.getBoundingClientRect();
+    MK.forEach(m => {
+      const p = actPos(S.step, m.i);
+      if (!p || !S.marks || m.i !== nextAct(S.step)) { m.el.classList.add('hide'); return; }   // 一次只標「現在要做的那一項」
+      const [x, y, z] = screenPt(p);
+      const off = z > 1 || x < -20 || y < -20 || x > r.width + 20 || y > r.height + 20;
+      m.el.classList.toggle('hide', off);
+      m.el.style.left = x + 'px'; m.el.style.top = y + 'px';
+      m.el.classList.toggle('done', actDone(S.step, m.i)); m.el.classList.toggle('act', S.curAct === m.i);
+    });
+  }
+
+  // ---- 模擬：一個動作一個動作播
+  const easeIO = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  function tweenParts(ids, from, to, ms) {
+    return new Promise(res => {
+      if (RM) { ids.forEach(id => setT(id, to[id])); return res(); }
+      const t0 = performance.now();
+      const tick = () => {
+        const k = Math.min(1, (performance.now() - t0) / ms), e = easeIO(k);
+        ids.forEach(id => { S.t[id].lerpVectors(from[id], to[id], e); MAIN[id].userData.to = null; });
+        if (k < 1 && !(S.sim && S.sim.stop)) requestAnimationFrame(tick); else { ids.forEach(id => S.t[id].copy(to[id])); res(); }
+      };
+      tick();
+    });
+  }
+  function ensurePlaced(id, pos, g) {
+    if (!S.inScene.has(id)) { S.inScene.add(id); S.t[id] = pos.clone(); }
+    S.gid[id] = g; MAIN[id].visible = true; MAIN[id].position.copy(S.t[id]);
+  }
+  function recenter() {                                     // 模擬／練習前：把機身那一組移回中央（新零件和電線都放在中央）
+    if (!S.inScene.has('FRAME')) return;
+    if (groupIds('FRAME').every(id => S.t[id].length() < .01)) return;
+    groupIds('FRAME').forEach(id => setT(id, new THREE.Vector3()));
+  }
+  async function completeInstantly(k) {                     // 前面的步驟直接裝好
+    recenter();
+    const ids = STEPS.slice(0, k).flatMap(s => s.parts);
+    await loadAll(ids);
+    const g = S.inScene.has('FRAME') ? S.gid.FRAME : S.nextG++;
+    ids.forEach(id => { if (MAIN[id]) { ensurePlaced(id, new THREE.Vector3(), g); setT(id, new THREE.Vector3()); } });
+    STEPS.slice(0, k).forEach((s, j) => s.acts.forEach((a, i) => { S.actDone.add(j + ':' + i); a.wires.forEach(w => S.wiresOn.add(w)); }));
+    syncWires();
+  }
+  // ---- 焊接練習：自己把線頭拖到焊點，按住 1 秒焊上
+  const TERMS = DATA.terms || {};
+  const padGeo = new THREE.SphereGeometry(1, 14, 10);
+  const padMat = new THREE.MeshBasicMaterial({ color: 0xffffff, depthTest: false, transparent: true, opacity: .95 });
+  const faintMat = new THREE.MeshBasicMaterial({ color: 0x9aa39a, transparent: true, opacity: .05, depthWrite: false });
+  function pracLook(focus) {                                  // 練習時：只有這條線兩端的零件看得清楚
+    IDS.forEach(id => { const r = MAIN[id]; if (!r) return; r.traverse(o => { if (!o.isMesh) return; if (!o.userData.orig) o.userData.orig = o.material; o.material = focus && !focus.has(id) ? faintMat : o.userData.orig; o.castShadow = !focus; if (o.userData.edge) o.userData.edge.visible = false; }); });
+    if (!focus) applyAll();
+  }
+  const shortLab = t => { const k = t.label.indexOf(' '); return k > 0 ? t.label.slice(k + 1) : t.label; };
+  const padHot = new THREE.MeshBasicMaterial({ color: 0xffb020, depthTest: false });
+  const sleeveMat = new THREE.MeshStandardMaterial({ color: 0x151515, roughness: .6 });
+  async function prepAct(k, i) {                             // 前面的步驟和這一步前面的動作先裝好
+    await completeInstantly(k);
+    const s = STEPS[k], ids = [...new Set(s.acts.slice(0, i + 1).flatMap(a => a.parts).concat(s.acts.slice(0, i).some(a => a.install) || s.acts[i].bench ? s.parts : []))];
+    if (s.acts[i].bench) ids.push(...s.parts);
+    await loadAll(ids);
+    const g = S.inScene.has('FRAME') ? S.gid.FRAME : S.nextG++;
+    ids.forEach(id => { if (MAIN[id]) { ensurePlaced(id, new THREE.Vector3(), g); setT(id, new THREE.Vector3()); } });
+    s.acts.slice(0, i).forEach((a, j) => { S.actDone.add(k + ':' + j); a.wires.forEach(w => S.wiresOn.add(w)); });
+    syncWires(); refresh();
+  }
+  async function solder(k, i) {
+    if (S.sim || S.prac) return;
+    const a = STEPS[k].acts[i], list = a.wires.filter(w => WIRE[w] && TERMS[WIRE[w].frm] && TERMS[WIRE[w].to]);
+    if (!list.length) return;
+    select(null);
+    S.prac = { k, i, n: 0, list, xr: S.xray, stop: false, mmin: $('#manual').classList.contains('min') };
+    $('#manual').classList.add('min'); $('#mMin').textContent = '展開';
+    await prepAct(k, i);
+    list.forEach(w => { S.wiresOn.delete(w); }); syncWires();
+    if (S.xray) { S.xray = false; $('#bXray').setAttribute('aria-pressed', false); applyAll(); }
+    S.curAct = i; renderManualState();
+    nextWire();
+  }
+  const panel = $('#solder');
+  let PR = null;                                              // 目前這一條線的練習狀態
+  function endPractice(done) {
+    const p = S.prac; if (!p) return;
+    cleanWire();
+    panel.hidden = true;
+    if (done) { S.actDone.add(p.k + ':' + p.i); S.curAct = -1; SND.play('step'); toast(`這一項 ${p.list.length} 條線都${STEPS[p.k].acts[p.i].t === 'plug' ? '接' : '焊'}好了。`, 'ok', 3500); }
+    S.prac = null;
+    S.xray = p.xr; $('#bXray').setAttribute('aria-pressed', p.xr); pracLook(null);
+    legend();
+    if (!p.mmin) { $('#manual').classList.remove('min'); $('#mMin').textContent = '收合'; }
+    refresh(); save();
+  }
+  function cleanWire() {
+    if (!PR) return;
+    [PR.live, ...PR.pads.map(x => x.m)].forEach(m => { if (m) { scene.remove(m); m.geometry !== padGeo && m.geometry.dispose(); } });
+    [PR.tip, PR.lab, PR.hold, ...PR.pads.map(x => x.tag)].forEach(el => el && el.remove());
+    PR = null;
+  }
+  function nextWire() {
+    const p = S.prac; cleanWire();
+    if (!p) return;
+    if (p.n >= p.list.length) return endPractice(true);
+    const w = WIRE[p.list[p.n]], A = TERMS[w.frm], B = TERMS[w.to], pa = V3(A.p), pb = V3(B.p);
+    const plug = STEPS[p.k].acts[p.i].t === 'plug';
+    // 鏡頭：從板子外側看焊點
+    const out = new THREE.Vector3(pb.x, 0, pb.z); if (out.length() < 6) out.copy(camera.position).sub(controls.target).setY(0);
+    out.normalize();
+    const route = w.pts.map(V3); let acc = 0, base = [route[0]], sp = route[0].clone();
+    for (let q = route.length - 1; q > 0; q--) {               // 沿實際走線，從焊點往回 14 mm 的地方當線頭起點
+      const L = route[q].distanceTo(route[q - 1]);
+      if (acc + L >= 14) { sp = route[q].clone().lerp(route[q - 1], (14 - acc) / L); base = route.slice(0, q).concat([sp]); break; }
+      acc += L;
+    }
+    const start = sp.clone().addScaledVector(out, 5);
+    const tp = B.part, bsz = tp && P[tp] ? P[tp].max.distanceTo(P[tp].min) : 40;
+    const aim = pb.clone().lerp(start, .5);
+    camTo(aim, aim.clone().addScaledVector(out, Math.max(95, Math.min(170, bsz * 1.8))).add(new THREE.Vector3(0, 10, 0)), 600);
+    pracLook(new Set([tp, A.part].filter(Boolean)));
+    // 附近的焊點（正確的那個不特別標出來，要自己找）
+    const pads = Object.entries(TERMS).filter(([id, t]) => id !== w.frm && ((tp && t.part === tp) || V3(t.p).distanceTo(pb) < 14)).map(([id, t]) => {
+      const m = new THREE.Mesh(padGeo, padMat); m.position.copy(V3(t.p)); m.scale.setScalar(1.3); m.renderOrder = 30; scene.add(m);
+      const tag = document.createElement('div'); tag.className = 'padtag'; tag.textContent = shortLab(t); stage.appendChild(tag);
+      tag.dataset.k = id;
+      return { id, t, m, tag };
+    });
+    const tip = document.createElement('div'); tip.className = 'tip'; tip.style.background = w.color; stage.appendChild(tip);
+    const lab = document.createElement('div'); lab.className = 'padlab'; lab.hidden = true; stage.appendChild(lab);
+    pads.sort((x, y) => V3(y.t.p).y - V3(x.t.p).y || V3(x.t.p).x - V3(y.t.p).x).forEach((x, q) => { const close = pads.some(o => o !== x && V3(o.t.p).distanceTo(V3(x.t.p)) < 6 && pads.indexOf(o) < q); if (close) x.tag.classList.add('dn'); });   // 靠很近的焊點：標籤一上一下
+    PR = { w, pa, pb, pads, tip, lab, tipP: start, base, live: null, stage: 'drag', plug };
+    drawLive();
+    panel.hidden = false;
+    panel.innerHTML = `<div class="sh"><b>${plug ? '接插頭' : '焊接練習'}</b><span>第 ${p.n + 1} / ${p.list.length} 條</span><span style="margin-left:auto">${esc(STEPS[p.k].title)}</span></div>
+      <div class="q"><span class="sw" style="background:${w.color}"></span>把 <em>${esc(A.label)}</em> 的線頭（有顏色的圓點）拖到白點上標著 <em>${esc(shortLab(B))}</em> 的那一個${plug ? '' : '，再按住焊點 1 秒焊上'}。<div style="font-size:12.5px;color:var(--muted)">只有「${esc(tp ? name(tp) : B.label)}」${A.part && A.part !== tp ? '和「' + esc(name(A.part)) + '」' : ''}是實心的，其他零件先淡掉。可以拖空白處轉角度。</div></div>
+      <div class="row"><button class="btn sm" id="pHint">提示：亮出位置</button><button class="btn sm" id="pSkip">這條直接接好</button><button class="btn sm" id="pEnd" style="margin-left:auto">結束練習</button></div>`;
+    $('#pHint').onclick = () => { const t = PR && PR.pads.find(x => x.id === w.to); if (t) { t.m.material = padHot; t.m.scale.setScalar(1.8); t.tag.classList.add('hot'); SND.play('select'); } };
+    $('#pSkip').onclick = () => finishWire(true);
+    $('#pEnd').onclick = () => endPractice(false);
+    tip.addEventListener('pointerdown', e => {
+      if (!PR || PR.stage !== 'drag') return;
+      e.preventDefault(); tip.setPointerCapture(e.pointerId); SND.play('pick');
+      const n = new THREE.Vector3(); camera.getWorldDirection(n); const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(n, pb);
+      let near = null;
+      const mv = ev => {
+        setRay(ev); const q = new THREE.Vector3(); if (!ray.ray.intersectPlane(plane, q)) return;
+        PR.tipP.copy(q); near = null; let best = 18;
+        const r = stage.getBoundingClientRect();
+        PR.pads.forEach(x => { const [sx, sy] = screenPt(x.m.position), d = Math.hypot(sx - (ev.clientX - r.left), sy - (ev.clientY - r.top)); if (d < best) { best = d; near = x; } });
+        PR.pads.forEach(x => x.m.scale.setScalar(x === near ? 1.9 : (x.m.material === padHot ? 1.8 : 1.1)));
+        if (near) { PR.tipP.copy(near.m.position); lab.hidden = false; lab.className = 'padlab'; lab.textContent = near.t.label; } else lab.hidden = true;
+        drawLive();
+      };
+      const up = () => {
+        tip.removeEventListener('pointermove', mv); tip.removeEventListener('pointerup', up); tip.removeEventListener('pointercancel', up);
+        if (!near) return;
+        if (near.id === w.to) {
+          PR.tipP.copy(pb); drawLive(); lab.className = 'padlab ok'; lab.textContent = '對了：' + near.t.label; SND.play(plug ? 'snap' : 'near');
+          if (plug) finishWire(false); else startHold();
+        } else { lab.className = 'padlab bad'; lab.textContent = `這是「${near.t.label}」，不是這條要接的地方`; SND.play('bad'); }
+      };
+      tip.addEventListener('pointermove', mv); tip.addEventListener('pointerup', up); tip.addEventListener('pointercancel', up);
+    });
+  }
+  function drawLive() {
+    if (!PR) return;
+    if (PR.live) { scene.remove(PR.live); PR.live.geometry.dispose(); }
+    const pts = PR.base.concat([PR.tipP.clone()]).filter((p, q, A) => !q || p.distanceTo(A[q - 1]) > .3);
+    const g = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, false, 'centripetal', .5), Math.max(24, pts.length * 8), .7, 6, false);
+    PR.live = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: PR.w.color, roughness: .5, depthTest: false })); PR.live.renderOrder = 29; scene.add(PR.live);
+  }
+  function startHold() {
+    PR.stage = 'hold'; PR.tip.hidden = true;
+    const h = document.createElement('button'); h.type = 'button'; h.className = 'hold'; h.innerHTML = '<span>按住<br>1 秒</span>'; stage.appendChild(h); PR.hold = h;
+    let t0 = 0, raf = 0;
+    const tick = () => { const k = Math.min(1, (performance.now() - t0) / 1000); h.style.setProperty('--p', k); if (k >= 1) { cancel(); finishWire(false); } else raf = requestAnimationFrame(tick); };
+    const cancel = () => { cancelAnimationFrame(raf); t0 = 0; };
+    h.addEventListener('pointerdown', e => { e.preventDefault(); h.setPointerCapture(e.pointerId); t0 = performance.now(); SND.play('solder'); tick(); });
+    const rel = () => { if (t0 && PR && PR.stage === 'hold') { cancel(); h.style.setProperty('--p', 0); toast('要按住滿 1 秒，焊錫才會熔進去。', ''); } };
+    h.addEventListener('pointerup', rel); h.addEventListener('pointercancel', rel);
+  }
+  function finishWire(skipped) {
+    const p = S.prac; if (!p || !PR) return;
+    const w = PR.w, pb = PR.pb.clone(), plug = PR.plug;
+    S.wiresOn.add(w.id); syncWires([w.id], true);
+    if (!plug) {                                                // 焊點：火花＋熱縮套管
+      effect({ cat: 'wire' }, pb);
+      const pts = w.pts.map(V3), e1 = pts[pts.length - 1], e0 = pts[pts.length - 2] || pts[0], dir = e1.clone().sub(e0).normalize();
+      const sl = new THREE.Mesh(new THREE.CylinderGeometry(1.05, 1.05, 5, 12), sleeveMat);
+      sl.position.copy(e1.clone().addScaledVector(dir, -3.5)); sl.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); fxGroup.add(sl);
+      sl.userData = { t0: performance.now() + 5e8, kind: 'keep', life: 1 }; WM[w.id] && WM[w.id].add(sl.clone()); fxGroup.remove(sl);
+      SND.play(skipped ? 'tap' : 'snap');
+    }
+    p.n++; PR.stage = 'done';
+    setTimeout(nextWire, skipped ? 200 : 900);
+  }
+  function practiceFrame() {
+    if (!PR) return;
+    const r = stage.getBoundingClientRect();
+    const [x, y] = screenPt(PR.tipP), [hx, hy] = screenPt(PR.pb);
+    if (PR.tip && !PR.tip.hidden) { PR.tip.style.left = Math.max(20, Math.min(r.width - 20, x)) + 'px'; PR.tip.style.top = Math.max(20, Math.min(r.height - 20, y)) + 'px'; }
+    if (PR.lab && !PR.lab.hidden) { PR.lab.style.left = x + 'px'; PR.lab.style.top = y + 'px'; }
+    if (PR.hold) { PR.hold.style.left = hx + 'px'; PR.hold.style.top = hy + 'px'; }
+    PR.pads.forEach(x => { if (!x.tag) return; const [px, py, pz] = screenPt(x.m.position); x.tag.classList.toggle('off', pz > 1 || PR.stage !== 'drag'); x.tag.style.left = px + 'px'; x.tag.style.top = py + 'px'; });
+  }
+  async function simulate(k0, all) {
+    if (S.sim) return;
+    S.sim = { stop: false }; select(null); recenter(); refresh();
+    const missing = STEPS.slice(0, k0).some((s, j) => !stepDone(j));
+    if (missing) { await completeInstantly(k0); toast('前面的步驟先自動裝好了。', 'ok'); }
+    for (let k = k0; k < STEPS.length && !S.sim.stop; k++) {
+      if (S.step !== k) setStep(k, true);
+      const s = STEPS[k];
+      await loadAll(s.parts);
+      view(s.view, true); await sleep(650);
+      const g = S.inScene.has('FRAME') ? S.gid.FRAME : S.nextG++;
+      const ug = {}; (s.units || []).forEach((u, j) => ug[j] = S.nextG++);
+      for (let i = 0; i < s.acts.length && !S.sim.stop; i++) {
+        const a = s.acts[i];
+        S.curAct = i; renderManualState();
+        const ui = a.bench || a.install ? findUnit(s, i) : -1, ukey = k + ':' + ui;
+        if (a.bench && ui >= 0 && !UST[ukey]) UST[ukey] = stageOff(s, ui);
+        const p = actPos(k, i);
+        if (p) focusAt(p, s.view, s.view === 'head' ? 190 : (a.bench && ui >= 0 ? 420 : 300));
+        await sleep(450);
+        // 零件飛進來
+        if (a.parts.length) {
+          const from = {}, to = {}, ids = a.parts.filter(id => MAIN[id]);
+          ids.forEach(id => {
+            const uidx = s.unitOf[id], st = uidx !== undefined && UST[k + ':' + uidx] ? UST[k + ':' + uidx] : null;
+            const tgt = st ? st.clone() : new THREE.Vector3();
+            const off = Math.min(110, Math.max(40, (P[id].travel || 80) * .35));
+            from[id] = tgt.clone().addScaledVector(P[id].dir ? P[id].d : new THREE.Vector3(0, 1, 0), off);
+            to[id] = tgt;
+            ensurePlaced(id, from[id], st ? ug[uidx] : g); setT(id, from[id]);
+          });
+          SND.play('pick'); refresh();
+          await tweenParts(ids, from, to, 900);
+          SND.play(SFX_OF[a.t] || 'place');
+        }
+        // 單元裝上去：從桌上 → 沿安裝方向的入口 → 定位
+        if (a.install && ui >= 0 && UST[ukey]) {
+          const u = s.units[ui], ids = u.parts.filter(id => MAIN[id]), st = UST[ukey], d = V3(u.dir);
+          const top = Math.max(...ids.map(id => P[id].max.y)), entry = d.clone().multiplyScalar(d.y < -.5 ? Math.min(220, Math.max(60, top - 30)) : d.y > .5 ? 70 : 60);
+          const a0 = {}, a1 = {}, a2 = {};
+          ids.forEach(id => { a0[id] = S.t[id].clone(); a1[id] = entry.clone(); a2[id] = new THREE.Vector3(); });
+          if (d.y < -.5) { view('bottom', true); await sleep(500); }
+          SND.play('whoosh');
+          await tweenParts(ids, a0, a1, 800);
+          await tweenParts(ids, a1, a2, 900);
+          ids.forEach(id => S.gid[id] = g);
+          delete UST[ukey];
+          SND.play(SFX_OF[a.t] || 'snap');
+          if (d.y < -.5) view(s.view, true);
+        } else if (!a.parts.length) SND.play(SFX_OF[a.t] || 'tap');
+        if (a.t === 'flip') { view(s.view === 'bottom' ? 'bottom' : 'iso', true); }
+        effect(a, actPos(k, i) || p);
+        // 電線：單元還在桌上就等它裝上去再畫
+        const wl = a.wires.filter(w => WIRE[w]);
+        if (wl.length) {
+          const defer = a.bench && ui >= 0 && UST[ukey];
+          if (!defer) { wl.forEach(w => S.wiresOn.add(w)); syncWires(wl, true); }
+          else S.sim.pend = (S.sim.pend || []).concat(wl);
+        }
+        if (a.install && S.sim.pend) { S.sim.pend.forEach(w => S.wiresOn.add(w)); syncWires(S.sim.pend, true); S.sim.pend = null; }
+        S.actDone.add(k + ':' + i);
+        refresh();
+        await sleep(a.parts.length || a.install ? 700 : 1100);
+      }
+      S.curAct = -1;
+      if (S.sim.stop) break;
+      SND.play('step'); toast(`第 ${k + 1} 步「${s.title}」模擬完成。`, 'ok', 2600);
+      if (!all) break;
+      await sleep(900);
+    }
+    const stopped = S.sim.stop;
+    Object.keys(UST).forEach(kk => {                         // 中途停止：還在桌上的單元直接裝好
+      const [kk1, ui] = kk.split(':').map(Number), u = STEPS[kk1].units[ui];
+      u.parts.forEach(id => { if (S.inScene.has(id)) { setT(id, new THREE.Vector3()); S.gid[id] = S.inScene.has('FRAME') ? S.gid.FRAME : S.gid[id]; } });
+      delete UST[kk];
+    });
+    S.sim = null; refresh(); save();
+    if (stopped) toast('模擬停止了；做到一半的地方可以自己接著做。', '');
+    else if (all || stepDone(S.step)) { if (S.step < STEPS.length - 1 && stepDone(S.step)) setStep(S.step + 1); }
+  }
+
+  // ---- 在工作區拖動（滑鼠或手指；拖空白處＝旋轉視角）
+  let drag = null;
+  stage.addEventListener('pointerdown', e => {
+    if (S.sim || e.target !== renderer.domElement || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    if (S.prac) return;                                     // 練習中：拖空白處只轉視角
+    const h = hitPart(e);
+    if (!h) { const x = e.clientX, y = e.clientY; renderer.domElement.addEventListener('pointerup', ev => { if (Math.hypot(ev.clientX - x, ev.clientY - y) < 6) select(null); }, { once: true }); return; }
+    e.stopPropagation(); e.preventDefault(); select(h.id); SND.play('select');
+    const A = new Set(groupIds(h.id)), n = new THREE.Vector3(); camera.getWorldDirection(n);
+    drag = { A, plane: new THREE.Plane().setFromNormalAndCoplanarPoint(n, h.point), start: h.point.clone(), t0: S.t[h.id].clone(), minY: Math.min(...[...A].map(x => P[x].min.y)), ready: false, x: e.clientX, y: e.clientY, next: h.next && h.next !== h.id ? h.next : null, moved: false };
+    A.forEach(x => MAIN[x].userData.to = null); buildGhost(A);
+    renderer.domElement.setPointerCapture(e.pointerId);
+  }, true);
+  renderer.domElement.addEventListener('pointermove', e => {
+    if (!drag) return;
+    if (!drag.moved && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 6) return;
+    drag.moved = true;
+    setRay(e); const p = new THREE.Vector3(); if (!ray.ray.intersectPlane(drag.plane, p)) return;
+    const t = drag.t0.clone().add(p.sub(drag.start)); t.y = Math.max(t.y, -drag.minY);
+    drag.A.forEach(x => setT(x, t)); drag.snap = bestSnap(drag.A);
+    const ready = !!drag.snap && drag.snap.ok && (drag.snap.px < (MOBILE ? 46 : 34) || drag.snap.d3 < 14);
+    if (ready && !drag.ready) SND.play('near');
+    drag.ready = ready; setGhost(drag.snap, ready);
+  });
+  const endDrag = () => {
+    if (!drag) return;
+    if (!drag.moved) { const nx = drag.next; ghost.visible = false; drag = null; if (nx) { select(nx); SND.play('select'); } return; }
+    const sn = drag.snap; ghost.visible = false;
+    if (sn && (sn.px < (MOBILE ? 46 : 34) || sn.d3 < 14)) { if (sn.ok) join(drag.A, sn); else toast(sn.why, 'bad'); }
+    drag = null; save(); refresh();
+  };
+  renderer.domElement.addEventListener('pointerup', endDrag);
+  renderer.domElement.addEventListener('pointercancel', endDrag);
+
+  // ---- 從零件區拖進來（滑鼠）
+  const floatEl = document.createElement('div'); floatEl.className = 'float'; floatEl.hidden = true; floatEl.innerHTML = '<img alt="">'; document.body.appendChild(floatEl);
+  function ghostPart(id, on) { MAIN[id] && MAIN[id].traverse(o => { if (!o.isMesh) return; const b = o.userData.base, m = o.userData.orig || o.material; m.transparent = on || b.tr; m.opacity = on ? .16 : b.op; m.depthWrite = !on; m.needsUpdate = true; }); }
+  three = {
+    cardDown(e, id) {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      e.preventDefault();
+      const d = { id, x: e.clientX, y: e.clientY, started: false, placed: false };
+      if (!S.inScene.has(id)) loadPart(id).catch(() => {});
+      const mv = ev => {
+        if (!d.started) { if (Math.hypot(ev.clientX - d.x, ev.clientY - d.y) < 6) return; if (S.inScene.has(id)) return; d.started = true; floatEl.querySelector('img').src = P[id].img; SND.play('pick'); }
+        const r = renderer.domElement.getBoundingClientRect(), inside = ev.clientX > r.left && ev.clientX < r.right && ev.clientY > r.top && ev.clientY < r.bottom;
+        const fp = inside ? floorPoint(ev) : null;
+        d.lastFP = fp;
+        if (fp && MAIN[id]) {
+          if (!d.placed) { placeAt(id, fp); d.placed = true; select(id); refresh(); }
+          const p = P[id]; setT(id, new THREE.Vector3(fp.x - p.ctr.x, -p.min.y + .5, fp.z - p.ctr.z)); floatEl.hidden = true;
+        } else if (!d.placed) { floatEl.hidden = false; floatEl.style.left = (ev.clientX - 48) + 'px'; floatEl.style.top = (ev.clientY - 48) + 'px'; }
+      };
+      const up = () => {
+        removeEventListener('pointermove', mv); removeEventListener('pointerup', up); floatEl.hidden = true;
+        if (!d.started) { openCard(id); return; }
+        if (!d.placed && d.lastFP) {
+          const at = d.lastFP.clone();
+          loadPart(id).then(() => { if (S.inScene.has(id)) return; placeAt(id, at); select(id); refresh(); save(); SND.play('place'); toast(`「${name(id)}」放進工作區了。拖動它對準機身就會吸住。`, 'ok'); }).catch(() => {});
+          return;
+        }
+        if (d.placed) { SND.play('place'); toast(`「${name(id)}」放進工作區了。拖動它對準機身就會吸住。`, 'ok'); save(); refresh(); }
+      };
+      addEventListener('pointermove', mv); addEventListener('pointerup', up);
+    },
+    clearAll() { IDS.forEach(id => { if (MAIN[id]) MAIN[id].visible = false; }); Object.values(WM).forEach(m => m.visible = false); },
+    view, focusAt, effect, simulate, syncWires, showWire, solder,
+    rewind(ids) {                                           // 零件沿安裝方向退出，然後回到零件區
+      if (S.sel && ids.includes(S.sel)) select(null);
+      ids.forEach(id => { if (!MAIN[id]) return; const out = S.t[id].clone().addScaledVector(P[id].d, Math.min(90, Math.max(40, (P[id].travel || 80) * .35))); anim(id, out); });
+      syncWires();
+      setTimeout(() => {
+        ids.forEach(id => { if (S.inScene.has(id) && stepOf[id] >= S.step) { S.inScene.delete(id); if (MAIN[id]) { MAIN[id].visible = false; MAIN[id].userData.to = null; } delete S.gid[id]; } });
+        refresh(); save();
+      }, RM ? 0 : 420);
+    }
+  };
+
+  // ---- 工具列
+  document.querySelectorAll('#views [data-v]').forEach(b => b.onclick = () => { SND.play('tap'); view(b.dataset.v, true); });
+  $('#bGhost').onclick = e => {
+    S.ghost = !S.ghost; e.currentTarget.setAttribute('aria-pressed', S.ghost); SND.play('tap');
+    IDS.filter(id => /^(SH[BF]_|MAG_|FOOT_)/.test(id)).forEach(id => ghostPart(id, S.ghost));
+  };
+  $('#bWire').onclick = e => { S.wires = !S.wires; e.currentTarget.setAttribute('aria-pressed', S.wires); SND.play('tap'); syncWires(); };
+  $('#bGrav').onclick = e => {
+    S.grav = S.grav === false; e.currentTarget.setAttribute('aria-pressed', S.grav); SND.play('tap');
+    Object.keys(WM).forEach(id => { const m = WM[id]; wireRoot.remove(m); m.geometry.dispose(); m.material.dispose(); delete WM[id]; });
+    syncWires();
+    const g = DATA.grav && DATA.grav.new, o = DATA.grav && DATA.grav.old;
+    toast(S.grav ? `重力狀態：線受重力實際垂下來的樣子（電腦模擬）。${g ? `套筒周圍最多垂 ${g.max} mm（上一版線夾是 ${o ? o.max : '—'} mm）` : ''}` : '規劃路徑：照說明書拉順時的位置。', 'ok', 6000);
+  };
+  $('#bXray').onclick = e => {
+    S.xray = !S.xray; e.currentTarget.setAttribute('aria-pressed', S.xray); SND.play('tap');
+    applyAll(); legend();
+    toast(S.xray ? '結構模式：每個零件一個顏色、半透明；選到的那一件是實心橘黃色。' : '回到一般外觀。', 'ok');
+  };
+  three.legend = legend;
+  $('#bMarks').onclick = e => { S.marks = !S.marks; e.currentTarget.setAttribute('aria-pressed', S.marks); SND.play('tap'); };
+  addEventListener('keydown', e => {
+    if ((e.key === 'x' || e.key === 'X') && document.activeElement === document.body) $('#bXray').click();
+    if (e.key === 'Escape') { if (S.prac) endPractice(false); else if (S.sim) S.sim.stop = true; else select(null); }
+    if ((e.key === 'Delete' || e.key === 'Backspace') && S.sel && document.activeElement === document.body && !S.sim) { putBack(S.sel); save(); }
+  });
+
+  // ---- 還原上次進度
+  if (saved && Array.isArray(saved.in) && saved.in.length) {
+    const list = saved.in.filter(([id]) => P[id]);
+    await loadAll(list.map(([id]) => id));
+    list.forEach(([id, t, g]) => { if (!MAIN[id]) return; S.inScene.add(id); S.t[id] = new THREE.Vector3(...t); S.gid[id] = g; S.nextG = Math.max(S.nextG, g + 1); MAIN[id].visible = true; MAIN[id].position.copy(S.t[id]); });
+    if (S.inScene.has('FRAME')) groupIds('FRAME').forEach(id => S.t[id].copy(S.t.FRAME));   // 同一組的零件位移要一致（修正舊版存檔）
+  }
+  syncWires(); S.ready = true; refresh(); view('iso', false);
+
+  renderer.setAnimationLoop(now => {
+    S.inScene.forEach(id => {
+      const u = MAIN[id]?.userData; if (!u) return;
+      if (u.to) { S.t[id].lerp(u.to, .22); if (S.t[id].distanceTo(u.to) < .05) { S.t[id].copy(u.to); u.to = null; } }
+      MAIN[id].position.copy(S.t[id]);
+    });
+    if (S.sel && !S.xray && MAIN[S.sel]?.userData.lit && !RM) { const k = .42 + .14 * Math.sin(now / 260); MAIN[S.sel].traverse(o => { if (o.isMesh) (o.userData.orig || o.material).emissiveIntensity = k; }); }
+    if (camTw) { const k = Math.min(1, (now - camTw.t0) / camTw.ms), e = easeIO(k); controls.target.lerpVectors(camTw.a0, camTw.a1, e); camera.position.lerpVectors(camTw.p0, camTw.p1, e); if (k >= 1) camTw = null; }
+    if (glow.userData.t0) { const k = (now - glow.userData.t0) / 900; glow.material.opacity = k < 1 ? .75 * (1 - k) : 0; glow.scale.multiplyScalar(k < 1 ? 1.012 : 1); glow.lookAt(camera.position); if (k >= 1) glow.userData.t0 = 0; }
+    for (let i = wireAnim.length - 1; i >= 0; i--) { const w = wireAnim[i], k = Math.min(1, (now - w.t0) / 800); w.m.geometry.setDrawRange(0, Math.floor(w.m.userData.n * k / 6) * 6); if (k >= 1) wireAnim.splice(i, 1); }
+    fxGroup.children.slice().forEach(m => {
+      const u = m.userData, k = (now - u.t0) / u.life; if (k < 0) { m.visible = false; return; } m.visible = true;
+      if (k >= 1) { fxGroup.remove(m); m.geometry.dispose(); m.material.dispose(); return; }
+      if (u.kind === 'blob') { m.scale.setScalar(.6 + .5 * Math.sin(Math.min(1, k * 2) * Math.PI / 2)); m.material.opacity = .6 * (1 - Math.max(0, k - .6) / .4); }
+      else { m.scale.setScalar(1 + k * 1.5); m.material.opacity = 1 - k; }
+    });
+    wireRoot.position.copy(frameOff());
+    controls.update(); renderer.render(scene, camera); updateMarks(); practiceFrame();
+  });
+} catch (err) {
+  const d = document.createElement('div'); d.className = 'err';
+  d.innerHTML = `<div><b style="font-family:var(--fs);font-size:20px">3D 工作區載入失敗</b><p style="color:var(--muted);line-height:1.7">零件區、說明書和清單都可以照常看。<br>請重新整理頁面再試一次。</p><button class="btn go" id="bReload">重新整理</button></div>`;
+  $('#stage').appendChild(d); $('#bReload').addEventListener('click', () => location.reload()); S.ready = true; console.error(err);
+}
+</script>

@@ -1,9 +1,9 @@
 <meta charset="utf-8">
-<title>岫本組裝台・原型版 v3</title>
+<title>岫本組裝台・第十二輪</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* 原型版 v3（照第九輪網站）：每一步拆成動作（放、卡、黏、鎖、焊、綁），可以播放模擬；每個接合處都附驗證結果 */
+/* 第十二輪（250 mm，照原型 v3 網站）：每一步拆成動作（放、卡、黏、鎖、焊），可以播放模擬；每個接合處都附驗證結果 */
 :root{
   --bg:#EEEDE8; --bar:#F7F6F2; --panel:#FBFAF7; --card:#FFFFFF; --ink:#1C1F1A; --muted:#666B60; --line:#DEDBD2; --line2:#E8E5DD;
   --sage:#5E7A55; --sage-2:#7E9A70; --sage-tint:#E4EBDF; --champ:#B08D57; --champ-tint:#F1E8D8; --ok:#3E7D52; --bad:#B4432F;
@@ -237,7 +237,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--champ);outline-offs
   <div class="top">
     <div class="brand">
       <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M4 27 L13 12 L18 19 L22 14 L30 27 Z" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linejoin="round"/><path d="M9 9 Q13 5 17 9 Q21 6 24 9" fill="none" stroke="var(--champ)" stroke-width="2" stroke-linecap="round"/></svg>
-      <div><b>岫本組裝台</b><small id="brandSub">原型版 v3 · 每一步都可以播放模擬</small></div>
+      <div><b>岫本組裝台</b><small id="brandSub">第十二輪 250 mm · 每一步都可以播放模擬</small></div>
     </div>
     <div class="prog"><span>已組好</span><span class="n" id="pN">0 / 0</span><div class="track"><i id="pBar"></i></div></div>
     <div class="row">
@@ -373,20 +373,20 @@ STEPS.forEach((s, i) => {
 const name = id => P[id].name;
 const S = { inScene: new Set(), t: {}, gid: {}, nextG: 1, sel: null, open: null, filter: 'now', step: 0, ghost: false, wires: true, marks: true,
   loading: new Set(), actDone: new Set(), wiresOn: new Set(), curAct: -1, sim: null };
-const KEY = 'xiuben-asm-p3a';   // 原型版 v3 的進度（和第九輪分開）
+const KEY = 'xiuben-asm-r12a';   // 第十二輪的進度（和原型 v3、第九輪分開）
 let three = null;
-$('#brandSub').textContent = `原型版 v3 · ${IDS.length} 個零件 · ${STEPS.length} 步 · ${STEPS.reduce((n, s) => n + s.acts.length, 0)} 個動作`;
+$('#brandSub').textContent = `第十二輪 250 mm · ${IDS.length} 個零件 · ${STEPS.length} 步 · ${STEPS.reduce((n, s) => n + s.acts.length, 0)} 個動作`;
 
 function toast(msg, kind, ms) { const t = $('#toast'); t.textContent = msg; t.className = 'toast ' + (kind || ''); t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, ms || (kind === 'bad' ? 6000 : 3200)); if (kind === 'bad') SND.play('bad'); }
 function groupIds(id) { return IDS.filter(x => S.inScene.has(x) && S.gid[x] === S.gid[id]); }
-const mainG = () => S.inScene.has('FRAME') ? S.gid.FRAME : -1;
+const mainG = () => S.inScene.has('SLEEVE') ? S.gid.SLEEVE : -1;
 function bigGroup() { const g = mainG(); return g < 0 ? 0 : IDS.filter(x => S.inScene.has(x) && S.gid[x] === g).length; }
 
 // ---- 動作完成判斷（手動模式）：有零件的動作＝零件已經組上；單元的「裝上去」＝單元已經接到骨架；其他動作＝點一下
 function actAuto(k, i) {
   const s = STEPS[k], a = s.acts[i];
   if (a.install) { const u = s.units[s.unitOf[a.parts[0]] ?? findUnit(s, i)]; return !!u && u.parts.every(id => S.inScene.has(id) && S.gid[id] === mainG()); }
-  if (a.parts.length) return a.parts.every(id => S.inScene.has(id) && (id === 'FRAME' || groupIds(id).length > 1));
+  if (a.parts.length) return a.parts.every(id => S.inScene.has(id) && (id === 'SLEEVE' || groupIds(id).length > 1));
   return null;
 }
 function findUnit(s, i) { for (let j = i; j >= 0; j--) { const p = s.acts[j].parts.find(id => s.unitOf[id] !== undefined); if (p) return s.unitOf[p]; } return 0; }
@@ -536,7 +536,7 @@ function renderSheet() {
   $('#sTitle').textContent = { bom: '零件清單', wire: '接線表', verify: '接合驗證', misc: '工具與耗材' }[SHEET];
   const sm = DATA.summary;
   $('#sNote').textContent = {
-    bom: `${IDS.length} 項零件。寫「預留」的是模型留給它的空間：買到先量，超過就把安裝座改大再印。外殼半片約 136 × 68 × 212 mm，光固化機的列印範圍要夠大。`,
+    bom: `${IDS.length} 項零件。每一塊板子都有托、每條長線都有線夾，照 3D 擺上去就對了，不用量。外殼半片約 97 × 48 × 151 mm，光固化機的列印範圍要夠大。`,
     wire: '每一條線都畫在 3D 裡（說明書做到焊接那一項就會出現），路徑已經檢查過不會穿過零件。「剪多長」只是參考，不用量：線先剪長一點，照 3D 的走法拉到位再把多的剪掉。',
     verify: '這些數字是我在 Blender 裡用模型算的，用來確認設計做得出來，你組裝時不用量：黏的地方量接觸面積、滑的地方量間隙、卡扣量倒鉤干涉並算卡爪變形、每個零件照步驟順序檢查推進來的路上會不會被已經裝好的擋住、每條電線檢查不會穿過零件。',
     misc: '這些不在 3D 模型裡，但組裝時一定會用到。' }[SHEET];
@@ -547,23 +547,20 @@ function renderSheet() {
     const by = {}; DATA.joints.forEach(j => (by[j.cat] = by[j.cat] || []).push(j));
     const sn = DATA.snap;
     In.innerHTML = `<div class="vsum"><div><b>${sm.joints_ok} / ${sm.joints}</b><span>接合處通過</span></div><div><b>${sm.paths_ok} / ${sm.paths}</b><span>安裝路徑通過（照步驟順序）</span></div><div><b>${sm.wires_ok} / ${sm.wires}</b><span>電線路徑通過</span></div><div><b>${sm.interf_bad}</b><span>處不該有的干涉</span></div></div>
-      <div class="vgrp">原型版 v3 和量產版的差別</div><ol class="fixlist">${DATA.fix.map(f => `<li>${esc(f)}</li>`).join('')}</ol>
+      <div class="vgrp">第十二輪的設計重點</div><ol class="fixlist">${DATA.fix.map(f => `<li>${esc(f)}</li>`).join('')}</ol>
       <div class="vgrp">卡扣與螺絲計算</div><div class="calc">
-        <div><b>旋轉環 6 根卡爪</b><br>倒鉤 r${sn.ring.hook_r} 對殼頂開口 r${sn.ring.lip_r} → 要往內彎 ${sn.ring.interference} mm<br>卡爪長 ${sn.ring.L}、厚 ${sn.ring.t} mm → 應變 ${sn.ring.strain}%（樹脂可承受約 2%）<br>壓上去約 ${sn.ring.push_N} N（不到 1 公斤力），拔起來約 ${sn.ring.pull_N} N <span class="${sn.ring.ok ? 'ok-t' : 'bad-t'}">${sn.ring.ok ? '通過' : '未通過'}</span></div>
-        <div><b>伸縮柱定位鋼珠</b><br>鋼珠外緣 r${sn.ball.ball_tip_r}、套筒內壁 r${sn.ball.sleeve_r} → 推進去時彈簧壓縮 ${sn.ball.push_in} mm<br>凹槽深 ${sn.ball.groove_depth} mm（V 形，往上下推都能退出） <span class="${sn.ball.ok ? 'ok-t' : 'bad-t'}">${sn.ball.ok ? '通過' : '未通過'}</span></div>
-        <div><b>濾網蓋旋轉卡口</b><br>卡耳 z${sn.bayonet.tab_z[0]}–${sn.bayonet.tab_z[1]} 坐在卡槽台階 z${sn.bayonet.floor_z} 上面<br>入口寬 ${sn.bayonet.entry_deg}° ＞ 卡耳 ${sn.bayonet.tab_deg}°，轉 ${sn.bayonet.turn_deg}° 鎖住 <span class="${sn.bayonet.ok ? 'ok-t' : 'bad-t'}">${sn.bayonet.ok ? '通過' : '未通過'}</span></div>
-        <div><b>底蓋 M3 螺絲</b><br>螺母在 z${sn.screw.nut_z[0]}–${sn.screw.nut_z[1]}，螺絲吃進螺母 ${sn.screw.engage} mm（整顆螺母厚度） <span class="${sn.screw.ok ? 'ok-t' : 'bad-t'}">${sn.screw.ok ? '通過' : '未通過'}</span></div></div>
+        ${(DATA.snapList || []).map(c => `<div><b>${esc(c.title)}</b><br>${c.lines.map(esc).join('<br>')} <span class="${c.ok ? 'ok-t' : 'bad-t'}">${c.ok ? '通過' : '未通過'}</span></div>`).join('')}</div>
       ${['snap', 'glue', 'screw', 'fit'].filter(c => by[c]).map(c => `<div class="vgrp"><span class="badge c-${c}">${esc(CATN[c].split('（')[0])}</span>${esc(CATN[c].includes('（') ? '（' + CATN[c].split('（')[1] : '')}</div>
         <div style="overflow-x:auto"><table><thead><tr><th>編號</th><th>方式</th><th>零件</th><th>怎麼固定</th><th>電腦在模型上量的</th><th>結果</th></tr></thead><tbody>${by[c].map(j => `<tr><td class="m">${j.id}</td><td><span class="badge c-${j.cat}">${esc(j.label)}</span></td><td>${esc(name(j.a))} ↔ ${esc(name(j.b))}</td><td>${esc(j.desc)}</td><td class="m">${esc(j.note)}</td><td class="${j.ok ? 'ok-t' : 'bad-t'}">${j.ok ? '✓ 通過' : '✗'}</td></tr>`).join('')}</tbody></table></div>`).join('')}
       <div class="vgrp">安裝順序（在桌上先組好的會一起檢查）</div><div style="overflow-x:auto"><table><thead><tr><th>步驟</th><th>零件</th><th>方向</th><th>結果</th></tr></thead><tbody>${DATA.paths.map(p => `<tr><td class="m">${p.step}</td><td>${esc(p.what)}</td><td class="m">${esc(p.dir)}</td><td class="${p.ok ? 'ok-t' : 'bad-t'}">${p.ok ? '✓ 推得進去' : '✗ 被擋住：' + esc(p.blocked.map(x => x.join('←')).join('、'))}</td></tr>`).join('')}</tbody></table></div>
       <div class="vgrp">預期的彈性變形（不是撞到）</div><ul class="fixlist">${DATA.interference.map(x => `<li>${esc(name(x.a))} ↔ ${esc(name(x.b))}：${x.depth} mm，${esc(x.why || '')}</li>`).join('')}</ul>
-      <div class="vgrp">買到零件後要先量的</div><ul class="fixlist">
-        <li>霧化片：底面白色陶瓷環、和環中間露出的鋼片，兩點之間用三用電表量要不通（兩極），兩根頂針才會各碰一極。</li>
-        <li>彈簧頂針：要「帶肩」的款式，針筒 Ø1.5、行程約 1 mm。</li>
-        <li>定位彈簧：伸縮柱拉到最高放手不會自己掉下來；會掉就換線徑粗一點的彈簧。</li>
-        <li>USB 彈簧線：線徑 ≤ 3.5 mm（要穿過 4 mm 的缺口和 4.4 mm 的長槽）。</li>
-        <li>18650 電池盒、5 塊模組：照零件清單的「預留」尺寸量，超過就要改安裝座。</li>
-        <li>磁鐵：8 顆裝之前前後兩組先疊在一起，確認吸的那面朝外。</li></ul>`;
+      <div class="vgrp">買到零件後先試裝（不用量）</div><ul class="fixlist">
+        <li>滴流塞：壓進印好的藥瓶口，帽緣要和瓶口齊平；18 牙瓶蓋要轉得上去；藥瓶轉進瓶座大約 1 圈半，瓶口頂到止擋墊就鎖緊。</li>
+        <li>藥瓶倒過來：裝 6 mL 水、塞上滴流塞倒過來，看 1 分鐘滴幾滴；霧化片每分鐘大約要 8–12 滴（估），太慢就改買 1.5 快流速的滴流塞。</li>
+        <li>棉棒：Ø8 剪 37 mm，從霧化頭下面推到頂，不會自己掉下來。</li>
+        <li>電池、ESP32、MOS 模組、S8050 小板、風扇、驅動板：放上它的托或定位肋中間，放得進去就對了。</li>
+        <li>充放電模組：第一次通電前用三用電表把輸出調到 5.0 V（只有這一次要用電表）。</li>
+        <li>藥杯放回機器：最後 4 mm 會「喀」一下；手往上拔要稍微用力（估 1 N），藥杯自己不會滑出來。</li></ul>`;
     In.querySelectorAll('[data-w]').forEach(b => b.onclick = () => { $('#sheet').hidden = true; if (three) three.showWire(b.dataset.w); });
   } else In.innerHTML = `<div class="misc"><div class="col"><h3 style="margin:0 0 6px;font-size:15px">耗材</h3>${DATA.misc.map(m => `<div class="it"><b style="font-weight:600">${esc(m.name)}</b><span>${esc(m.size)}</span><span>${esc(m.qty)}</span><span style="color:var(--muted)">${esc(m.use)}</span></div>`).join('')}</div><div class="col" style="flex:0 1 300px"><h3 style="margin:0 0 6px;font-size:15px">工具</h3>${DATA.tools.map(t => `<div class="it" style="grid-template-columns:1fr">${esc(t)}</div>`).join('')}</div></div>`;
   if (SHEET === 'wire') In.querySelectorAll('[data-w]').forEach(b => b.onclick = () => { $('#sheet').hidden = true; if (three) three.showWire(b.dataset.w); });
@@ -639,8 +636,8 @@ try {
   const camera = new THREE.PerspectiveCamera(35, 1, 2, 6000);
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
-  const VIEWS = { iso: [[0, 110, 0], [520, 420, 640]], front: [[0, 120, 0], [0, 200, 760]], back: [[0, 120, 0], [0, 200, -760]], side: [[0, 120, 0], [760, 200, 0]],
-    head: [[0, 230, 0], [170, 320, 230]], bottom: [[0, 40, 0], [420, -560, 520]], top: [[0, 120, 0], [0, 900, 2]] };
+  const VIEWS = { iso: [[0, 115, 0], [400, 330, 500]], front: [[0, 115, 0], [0, 160, 600]], back: [[0, 115, 0], [0, 160, -600]], side: [[0, 115, 0], [600, 160, 0]],
+    head: [[0, 170, 0], [120, 235, 165]], bottom: [[0, 30, 0], [320, -420, 400]], top: [[0, 115, 0], [0, 700, 2]] };
   camera.position.set(...VIEWS.iso[1]); controls.target.set(MOBILE ? 0 : 60, 110, 0);
   const key = new THREE.DirectionalLight(0xffffff, 1.5); key.position.set(320, 700, 420); key.castShadow = true;
   key.shadow.mapSize.set(MOBILE ? 1024 : 2048, MOBILE ? 1024 : 2048); Object.assign(key.shadow.camera, { left: -500, right: 500, top: 500, bottom: -500, near: 10, far: 2000 }); key.shadow.bias = -.0004;
@@ -885,7 +882,7 @@ try {
   // 機身（骨架那一組）可能被拖到別的位置：電線、標記、效果都跟著它走
   const wireRoot = new THREE.Group(); scene.add(wireRoot);
   const ZERO = new THREE.Vector3();
-  const frameOff = () => (S.inScene.has('FRAME') && S.t.FRAME) ? S.t.FRAME : ZERO;
+  const frameOff = () => (S.inScene.has('SLEEVE') && S.t.SLEEVE) ? S.t.SLEEVE : ZERO;
   const FXC = { fit: 0x5e7a55, glue: 0xe0a83a, snap: 0x4a7fd0, screw: 0x9aa1aa, wire: 0xe0573e, tool: 0xa08f78 };
   function effect(a, at) {
     if (!at) return;
@@ -956,15 +953,15 @@ try {
     S.gid[id] = g; MAIN[id].visible = true; MAIN[id].position.copy(S.t[id]);
   }
   function recenter() {                                     // 模擬／練習前：把機身那一組移回中央（新零件和電線都放在中央）
-    if (!S.inScene.has('FRAME')) return;
-    if (groupIds('FRAME').every(id => S.t[id].length() < .01)) return;
-    groupIds('FRAME').forEach(id => setT(id, new THREE.Vector3()));
+    if (!S.inScene.has('SLEEVE')) return;
+    if (groupIds('SLEEVE').every(id => S.t[id].length() < .01)) return;
+    groupIds('SLEEVE').forEach(id => setT(id, new THREE.Vector3()));
   }
   async function completeInstantly(k) {                     // 前面的步驟直接裝好
     recenter();
     const ids = STEPS.slice(0, k).flatMap(s => s.parts);
     await loadAll(ids);
-    const g = S.inScene.has('FRAME') ? S.gid.FRAME : S.nextG++;
+    const g = S.inScene.has('SLEEVE') ? S.gid.SLEEVE : S.nextG++;
     ids.forEach(id => { if (MAIN[id]) { ensurePlaced(id, new THREE.Vector3(), g); setT(id, new THREE.Vector3()); } });
     STEPS.slice(0, k).forEach((s, j) => s.acts.forEach((a, i) => { S.actDone.add(j + ':' + i); a.wires.forEach(w => S.wiresOn.add(w)); }));
     syncWires();
@@ -986,7 +983,7 @@ try {
     const s = STEPS[k], ids = [...new Set(s.acts.slice(0, i + 1).flatMap(a => a.parts).concat(s.acts.slice(0, i).some(a => a.install) || s.acts[i].bench ? s.parts : []))];
     if (s.acts[i].bench) ids.push(...s.parts);
     await loadAll(ids);
-    const g = S.inScene.has('FRAME') ? S.gid.FRAME : S.nextG++;
+    const g = S.inScene.has('SLEEVE') ? S.gid.SLEEVE : S.nextG++;
     ids.forEach(id => { if (MAIN[id]) { ensurePlaced(id, new THREE.Vector3(), g); setT(id, new THREE.Vector3()); } });
     s.acts.slice(0, i).forEach((a, j) => { S.actDone.add(k + ':' + j); a.wires.forEach(w => S.wiresOn.add(w)); });
     syncWires(); refresh();
@@ -1138,7 +1135,7 @@ try {
       const s = STEPS[k];
       await loadAll(s.parts);
       view(s.view, true); await sleep(650);
-      const g = S.inScene.has('FRAME') ? S.gid.FRAME : S.nextG++;
+      const g = S.inScene.has('SLEEVE') ? S.gid.SLEEVE : S.nextG++;
       const ug = {}; (s.units || []).forEach((u, j) => ug[j] = S.nextG++);
       for (let i = 0; i < s.acts.length && !S.sim.stop; i++) {
         const a = s.acts[i];
@@ -1201,7 +1198,7 @@ try {
     const stopped = S.sim.stop;
     Object.keys(UST).forEach(kk => {                         // 中途停止：還在桌上的單元直接裝好
       const [kk1, ui] = kk.split(':').map(Number), u = STEPS[kk1].units[ui];
-      u.parts.forEach(id => { if (S.inScene.has(id)) { setT(id, new THREE.Vector3()); S.gid[id] = S.inScene.has('FRAME') ? S.gid.FRAME : S.gid[id]; } });
+      u.parts.forEach(id => { if (S.inScene.has(id)) { setT(id, new THREE.Vector3()); S.gid[id] = S.inScene.has('SLEEVE') ? S.gid.SLEEVE : S.gid[id]; } });
       delete UST[kk];
     });
     S.sim = null; refresh(); save();
@@ -1319,7 +1316,7 @@ try {
     const list = saved.in.filter(([id]) => P[id]);
     await loadAll(list.map(([id]) => id));
     list.forEach(([id, t, g]) => { if (!MAIN[id]) return; S.inScene.add(id); S.t[id] = new THREE.Vector3(...t); S.gid[id] = g; S.nextG = Math.max(S.nextG, g + 1); MAIN[id].visible = true; MAIN[id].position.copy(S.t[id]); });
-    if (S.inScene.has('FRAME')) groupIds('FRAME').forEach(id => S.t[id].copy(S.t.FRAME));   // 同一組的零件位移要一致（修正舊版存檔）
+    if (S.inScene.has('SLEEVE')) groupIds('SLEEVE').forEach(id => S.t[id].copy(S.t.SLEEVE));   // 同一組的零件位移要一致（修正舊版存檔）
   }
   syncWires(); S.ready = true; refresh(); view('iso', false);
 
