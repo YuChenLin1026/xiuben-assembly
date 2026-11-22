@@ -155,6 +155,8 @@
     "BATR",
     "CORD",
     "CUP",
+    "MAG_B",
+    "MAG_F",
     "SHB_IN",
     "SHB_OUT",
     "SHF_IN",
@@ -221,14 +223,14 @@
    "dirKey": null,
    "dir": null,
    "bbMin": [
-    -4.5,
-    8.0,
-    -4.5
+    -4.41,
+    8.01,
+    -4.48
    ],
    "bbMax": [
     4.5,
-    38.6,
-    4.5
+    38.59,
+    4.47
    ],
    "blockers": [],
    "adj": [
@@ -255,12 +257,12 @@
     0
    ],
    "bbMin": [
-    -24.4,
+    -27.71,
     3.8,
     -28.9
    ],
    "bbMax": [
-    22.62,
+    26.25,
     21.4,
     23.82
    ],
@@ -274,9 +276,7 @@
    "adj": [
     "BATL",
     "BATR",
-    "CHG",
     "COVER",
-    "DRV",
     "ESP",
     "MOS",
     "SCREWS",
@@ -286,7 +286,7 @@
    "travel": 26.4,
    "bom": {
     "spec": "一體列印：止擋環（上面往內斜 1 mm）、3 支螺絲柱腳、電池／ESP32／MOS 底托、外圈線槽（電池底下的線躺在裡面）、8 個 U 形卡線夾",
-    "size": "47.0 × 52.7 × 17.6 mm",
+    "size": "54.0 × 52.7 × 17.6 mm",
     "qty": 1,
     "mat": "光固化 標準樹脂（灰）",
     "note": "AB 膠黏在導套下端；管子收合時坐在這裡。漏下來的藥水從內緣滴進底蓋擋水圈。"
@@ -373,16 +373,18 @@
     0
    ],
    "bbMin": [
-    16.62,
-    21.2,
+    16.77,
+    21.4,
     -15.0
    ],
    "bbMax": [
-    22.62,
+    22.47,
     61.2,
     15.0
    ],
    "blockers": [
+    "MAG_B",
+    "MAG_F",
     "SHB_IN",
     "SHB_OUT",
     "SHF_IN",
@@ -392,10 +394,10 @@
     "SLEEVE",
     "STOP"
    ],
-   "travel": 36.6,
+   "travel": 36.5,
    "bom": {
     "spec": "603040 聚合物鋰電池 800 mAh 3.7 V",
-    "size": "6 × 30 × 40 mm",
+    "size": "厚 6.0 × 寬 30 × 長 40 mm（頁面，含保護板）",
     "qty": 1,
     "buy": "【環島科技】603040 800 mAh（https://shopee.tw/product/280233910/5866196522，NT$100）",
     "note": "坐在止擋環的電池托上，背面 VHB 貼導套電池托。兩顆並聯 1600 mAh。"
@@ -412,16 +414,18 @@
     0
    ],
    "bbMin": [
-    -22.62,
-    21.2,
+    -22.47,
+    21.4,
     -15.0
    ],
    "bbMax": [
-    -16.62,
+    -16.77,
     61.2,
     15.0
    ],
    "blockers": [
+    "MAG_B",
+    "MAG_F",
     "SHB_IN",
     "SHB_OUT",
     "SHF_IN",
@@ -431,7 +435,7 @@
     "SLEEVE",
     "STOP"
    ],
-   "travel": 36.6,
+   "travel": 36.5,
    "bom": {
     "spec": "603040 聚合物鋰電池 800 mAh 3.7 V",
     "size": "6 × 30 × 40 mm",
@@ -457,8 +461,8 @@
    ],
    "bbMax": [
     9.0,
-    43.7,
-    23.82
+    43.72,
+    23.02
    ],
    "blockers": [
     "SHF_IN",
@@ -471,7 +475,7 @@
    "travel": 34.4,
    "bom": {
     "spec": "ESP32-S3 SuperMini（Wi-Fi、觸控腳）",
-    "size": "22.5 × 18 × 5 mm（估）",
+    "size": "22.52 × 18 mm（頁面）；買「未焊針腳」",
     "qty": 1,
     "buy": "【環島科技】ESP32-S3 SuperMini（https://shopee.tw/product/280233910/28844804153，NT$145）",
     "note": "組裝前先燒好程式；之後用 Wi-Fi 更新。坐在止擋環的 ESP32 托上，VHB 貼導套。"
@@ -490,7 +494,7 @@
    "bbMin": [
     -8.5,
     21.4,
-    -28.9
+    -28.95
    ],
    "bbMax": [
     8.5,
@@ -508,7 +512,7 @@
    "travel": 36.3,
    "bom": {
     "spec": "大功率 MOS 管觸發開關模組（3.3–20 V 觸發）",
-    "size": "34 × 17 × 12 mm",
+    "size": "3.4 × 1.7 × 1.2 cm（頁面）",
     "qty": 1,
     "buy": "【環島科技】MOS 觸發開關模組（https://shopee.tw/product/280233910/6951413445，NT$15）",
     "note": "立在後面，坐在止擋環的 MOS 托上，VHB 貼導套開關板托。"
@@ -527,7 +531,7 @@
    "bbMin": [
     -7.5,
     56.4,
-    -21.9
+    -22.3
    ],
    "bbMax": [
     7.5,
@@ -543,8 +547,8 @@
    ],
    "travel": 36.3,
    "bom": {
-    "spec": "洞洞板＋S8050 ×2＋1 kΩ ×2",
-    "size": "20 × 15 × 5 mm（估）",
+    "spec": "洞洞板＋S8050 ×2（TO-92 躺平焊）＋1 kΩ ×2＋22 Ω ×1（正面燈）",
+    "size": "20 × 15，焊好厚約 5.5 mm（估）",
     "qty": 1,
     "buy": "S8050（https://shopee.tw/product/17188802/44279296129，10 個 NT$10）＋洞洞板、1 kΩ 電阻",
     "note": "在 MOS 模組上方，VHB 貼導套開關板托。"
@@ -559,7 +563,7 @@
    "bbMin": [
     -35.39,
     2.15,
-    -35.6
+    -35.42
    ],
    "bbMax": [
     35.39,
@@ -583,7 +587,7 @@
    "travel": 0.0,
    "bom": {
     "spec": "一體列印：底蓋、擋水圈、2 個排水孔、進風口、彈簧線中心柱、充電板柱 ×2、驅動板／風扇定位肋、2 個 U 形線夾、3 個螺絲沉孔",
-    "size": "70.8 × 71.0 × 10.2 mm",
+    "size": "70.8 × 70.8 × 10.2 mm",
     "qty": 1,
     "mat": "光固化 標準樹脂（灰）",
     "note": "用 3 顆 M2 螺絲鎖在止擋環 3 支腳上；拆 3 顆螺絲就能看到風扇、驅動板、充電板。"
@@ -615,6 +619,7 @@
     "ESP",
     "FLED",
     "HOOD",
+    "MAG_B",
     "SHB_IN",
     "SHB_OUT",
     "SHF_IN",
@@ -663,6 +668,8 @@
     "ESP",
     "HEAD",
     "HOOD",
+    "MAG_B",
+    "MAG_F",
     "SHB_IN",
     "SHB_OUT",
     "SHF_IN",
@@ -701,14 +708,16 @@
     -17.07
    ],
    "bbMax": [
-    37.7,
+    32.69,
     18.0,
-    30.27
+    26.39
    ],
    "blockers": [
     "BATL",
     "HEAD",
     "HOOD",
+    "MAG_B",
+    "MAG_F",
     "SHB_IN",
     "SHB_OUT",
     "SHF_IN",
@@ -718,17 +727,12 @@
    ],
    "adj": [
     "COVER",
-    "SHB_IN",
-    "SHB_OUT",
-    "SHF_IN",
-    "SHF_OUT",
-    "STEEL",
-    "STOP"
+    "STEEL"
    ],
    "travel": 251.0,
    "bom": {
     "spec": "UCI L-10 霧化驅動板 5 V 108 kHz（半圓形）",
-    "size": "45 × 15 × 14 mm",
+    "size": "45 × 15 × 14 mm（頁面；元件位置估）",
     "qty": 1,
     "buy": "UCI電子 L-10（https://shopee.tw/product/2305548/3176417813，NT$99）",
     "note": "放進 3 條定位肋中間，底面 VHB。原廠附的霧化片當備品。"
@@ -745,35 +749,30 @@
     0
    ],
    "bbMin": [
-    -8.5,
+    -12.88,
     12.3,
-    -43.32
+    -41.92
    ],
    "bbMax": [
-    8.5,
+    10.72,
     17.3,
-    -17.32
+    -23.32
    ],
    "blockers": [
-    "HEAD",
     "HOOD",
     "MOS",
     "SHB_IN",
     "SHB_OUT",
     "SLEEVE",
-    "STOP",
-    "TB"
+    "STOP"
    ],
    "adj": [
-    "COVER",
-    "SHB_IN",
-    "SHB_OUT",
-    "STOP"
+    "COVER"
    ],
    "travel": 242.7,
    "bom": {
     "spec": "2A Type-C 充電升壓放電一體模組",
-    "size": "24 × 17 × 5 mm（估）",
+    "size": "18.00 × 23.60 mm（頁面尺寸圖），Type-C 在長邊",
     "qty": 1,
     "buy": "【環島科技】2A Type-C 升壓模組（https://shopee.tw/product/280233910/22122988580，NT$22）",
     "note": "第一次通電前用電表把輸出調到 5.0 V（只有這一次）。放在兩根柱上，Type-C 對準後殼的孔。"
@@ -835,9 +834,7 @@
    ],
    "blockers": [],
    "adj": [
-    "CHG",
     "COVER",
-    "DRV",
     "FOOT_B",
     "FOOT_F",
     "SHB_IN",
@@ -876,9 +873,9 @@
    ],
    "blockers": [],
    "adj": [
-    "CHG",
     "COVER",
-    "DRV",
+    "MAG_B",
+    "MAG_F",
     "SHB_OUT",
     "SHF_IN",
     "SHF_OUT",
@@ -891,6 +888,44 @@
     "qty": 1,
     "mat": "光固化 標準樹脂（鼠尾草綠、霧面）",
     "note": "UV 膠貼進外層。"
+   }
+  },
+  {
+   "id": "MAG_B",
+   "name": "磁鐵（後殼）×4",
+   "kind": "buy",
+   "dirKey": "Y-",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "bbMin": [
+    -36.22,
+    29.0,
+    -3.25
+   ],
+   "bbMax": [
+    36.22,
+    77.0,
+    -0.15
+   ],
+   "blockers": [
+    "MAG_F",
+    "SHF_IN",
+    "SHF_OUT"
+   ],
+   "adj": [
+    "SHB_IN",
+    "SHF_IN"
+   ],
+   "travel": 56.5,
+   "bom": {
+    "spec": "釹鐵硼強力磁鐵 Ø6 × 3 mm",
+    "size": "Ø6 × 3 mm",
+    "qty": 4,
+    "buy": "釹鐵硼 強力磁鐵（https://shopee.tw/product/7116182/16187095848，選「6mm直徑 厚度3mm(圓形)」，NT$8–32）",
+    "note": "超商店到店不能寄磁鐵（評價寫的），要選宅配。AB 膠黏進後殼內層的 4 個磁鐵座；先和前殼磁鐵疊一次，吸的那面朝接縫。"
    }
   },
   {
@@ -951,7 +986,6 @@
    "blockers": [],
    "adj": [
     "COVER",
-    "DRV",
     "FAN",
     "FLED",
     "FOOT_B",
@@ -994,9 +1028,10 @@
    "blockers": [],
    "adj": [
     "COVER",
-    "DRV",
     "FAN",
     "FLED",
+    "MAG_B",
+    "MAG_F",
     "SHB_IN",
     "SHB_OUT",
     "SHF_OUT",
@@ -1010,6 +1045,44 @@
     "qty": 1,
     "mat": "光固化 標準樹脂（鼠尾草綠、霧面）",
     "note": "LOGO 鏤空。"
+   }
+  },
+  {
+   "id": "MAG_F",
+   "name": "磁鐵（前殼）×4",
+   "kind": "buy",
+   "dirKey": "Y+",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "bbMin": [
+    -36.22,
+    29.0,
+    0.15
+   ],
+   "bbMax": [
+    36.22,
+    77.0,
+    3.25
+   ],
+   "blockers": [
+    "MAG_B",
+    "SHB_IN",
+    "SHB_OUT"
+   ],
+   "adj": [
+    "SHB_IN",
+    "SHF_IN"
+   ],
+   "travel": 56.5,
+   "bom": {
+    "spec": "釹鐵硼強力磁鐵 Ø6 × 3 mm",
+    "size": "Ø6 × 3 mm",
+    "qty": 4,
+    "buy": "同後殼磁鐵（一起買 8 顆）",
+    "note": "AB 膠黏進前殼內層的 4 個磁鐵座，吸的那面朝接縫。"
    }
   },
   {
@@ -1502,7 +1575,8 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": []
     },
     {
      "t": "measure",
@@ -1514,7 +1588,8 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": []
     }
    ]
   },
@@ -1564,6 +1639,7 @@
      "joint": "J01",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
       "note": ""
@@ -1586,9 +1662,10 @@
      "joint": "J02",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 226 mm²（需要 ≥ 3）"
+      "note": "接觸面積 225 mm²（需要 ≥ 3）"
      }
     },
     {
@@ -1611,7 +1688,8 @@
      ],
      "joint": null,
      "bench": true,
-     "install": false
+     "install": false,
+     "move": []
     },
     {
      "t": "push",
@@ -1628,9 +1706,10 @@
      "joint": "J03",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 24 mm²（需要 ≥ 3）"
+      "note": "接觸面積 38 mm²（需要 ≥ 3）"
      }
     },
     {
@@ -1648,6 +1727,7 @@
      "joint": "J05",
      "bench": false,
      "install": true,
+     "move": [],
      "check": {
       "ok": true,
       "note": "最小間隙 0.20 mm"
@@ -1680,9 +1760,10 @@
      "joint": "J07",
      "bench": false,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 475 mm²（需要 ≥ 50）"
+      "note": "接觸面積 477 mm²（需要 ≥ 50）"
      }
     },
     {
@@ -1700,6 +1781,7 @@
      "joint": "J06",
      "bench": false,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
       "note": ""
@@ -1743,7 +1825,8 @@
      "wires": [],
      "joint": null,
      "bench": true,
-     "install": false
+     "install": false,
+     "move": []
     },
     {
      "t": "solder",
@@ -1759,7 +1842,8 @@
      "wires": [],
      "joint": null,
      "bench": true,
-     "install": false
+     "install": false,
+     "move": []
     },
     {
      "t": "ab",
@@ -1776,9 +1860,10 @@
      "joint": "J08",
      "bench": false,
      "install": true,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 437 mm²（需要 ≥ 100）"
+      "note": "接觸面積 471 mm²（需要 ≥ 100）"
      }
     }
    ]
@@ -1814,16 +1899,17 @@
      "joint": "J12",
      "bench": false,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 390 mm²（需要 ≥ 10）"
+      "note": "接觸面積 388 mm²（需要 ≥ 10）"
      }
     },
     {
      "t": "solder",
      "label": "焊接",
      "cat": "wire",
-     "text": "焊 3 條板子之間的線：MOS 5V→S8050（線 12）、S8050→MOS 觸發（線 13）、S8050→ESP32 的 7 芯排線（線 4，放進右邊電池上面的線槽、按進 3 個 U 形夾，再按進 ESP32 旁的直槽往下）。",
+     "text": "焊 3 條板子之間的線：線 12（5 V 給 S8050：和線 3 一起鎖在 MOS 模組的電源輸入端子，沿 MOS 模組旁邊往上）、S8050→MOS 觸發焊孔（線 13）、S8050→ESP32 的 7 芯排線（線 4，放進右邊電池上面的線槽、按進 3 個 U 形夾，再按進 ESP32 旁的直槽往下）。",
      "at": [
       -24.0,
       65.0,
@@ -1837,7 +1923,8 @@
      ],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": []
     },
     {
      "t": "solder",
@@ -1853,7 +1940,8 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": []
     },
     {
      "t": "tape",
@@ -1873,9 +1961,10 @@
      "joint": "J10",
      "bench": false,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 720 mm²（需要 ≥ 20）"
+      "note": "接觸面積 666 mm²（需要 ≥ 20）"
      }
     }
    ]
@@ -1927,9 +2016,10 @@
      "joint": "J18",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 810 mm²（需要 ≥ 100）"
+      "note": "接觸面積 804 mm²（需要 ≥ 100）"
      }
     },
     {
@@ -1951,16 +2041,17 @@
      "joint": "J15",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 205 mm²（需要 ≥ 60）"
+      "note": "接觸面積 176 mm²（需要 ≥ 60）"
      }
     },
     {
      "t": "place",
      "label": "放上",
      "cat": "fit",
-     "text": "導套組件放到底蓋上方約 4 cm，焊 7 條線的另一頭（線 1、2、5、6 上一步已經按進線夾，這裡只焊底蓋那頭）；線 8 按進 S8050 旁的直槽往下；線 3、7、8 焊好後按進底蓋的 U 形線夾；底下 2 條線在中心柱旁先往下彎一個滴水彎再上去接彈簧線，焊點 UV 膠封住。",
+     "text": "導套組件放到底蓋上方約 4 cm，焊 7 條線的另一頭（線 1、2、5、6 上一步已經放進線槽：電池線走內道、線 5／6 走外道）：線 1、2 從槽底缺口往下焊到充電板靠內那條長邊的 B＋／B－ 焊墊；線 3 從充電板 OUT 焊墊往上鎖進 MOS 模組的輸入端子；線 5 從 MOS 輸出端子進外道、到驅動板 VIN／GND；線 8 按進 S8050 旁的直槽往下；線 3、7、8 焊好後按進底蓋的 U 形線夾；底下 2 條線在中心柱旁先往下彎一個滴水彎再上去接彈簧線，焊點 UV 膠封住。",
      "at": [
       -0.0,
       20.0,
@@ -1978,7 +2069,8 @@
      ],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": []
     },
     {
      "t": "place",
@@ -1994,7 +2086,8 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": true
+     "install": true,
+     "move": []
     },
     {
      "t": "screw",
@@ -2013,6 +2106,7 @@
      "joint": "J19",
      "bench": false,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
       "note": ""
@@ -2028,7 +2122,8 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": []
     }
    ]
   },
@@ -2037,7 +2132,8 @@
    "parts": [
     "SHB_IN",
     "SHB_OUT",
-    "FOOT_B"
+    "FOOT_B",
+    "MAG_B"
    ],
    "view": "back",
    "units": [
@@ -2045,7 +2141,8 @@
      "parts": [
       "SHB_IN",
       "SHB_OUT",
-      "FOOT_B"
+      "FOOT_B",
+      "MAG_B"
      ],
      "dirKey": "Y+",
      "dir": [
@@ -2056,6 +2153,25 @@
     }
    ],
    "acts": [
+    {
+     "t": "ab",
+     "label": "AB 膠",
+     "cat": "glue",
+     "text": "4 顆磁鐵用 AB 膠黏進後殼內層左右接縫的磁鐵座（先和前殼的磁鐵疊一次，吸的那面朝接縫；沉進去 0.1 mm）。",
+     "at": [
+      -36.0,
+      32.0,
+      0.0
+     ],
+     "parts": [
+      "MAG_B"
+     ],
+     "wires": [],
+     "joint": null,
+     "bench": true,
+     "install": false,
+     "move": []
+    },
     {
      "t": "uv",
      "label": "UV 膠",
@@ -2075,9 +2191,10 @@
      "joint": "J20",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 15049 mm²（需要 ≥ 1000）"
+      "note": "接觸面積 15121 mm²（需要 ≥ 1000）"
      }
     },
     {
@@ -2094,7 +2211,8 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": true
+     "install": true,
+     "move": []
     }
    ]
   },
@@ -2105,7 +2223,8 @@
     "SHF_OUT",
     "FOOT_F",
     "TOUCH",
-    "FLED"
+    "FLED",
+    "MAG_F"
    ],
    "view": "front",
    "units": [
@@ -2115,7 +2234,8 @@
       "SHF_OUT",
       "FOOT_F",
       "TOUCH",
-      "FLED"
+      "FLED",
+      "MAG_F"
      ],
      "dirKey": "Y-",
      "dir": [
@@ -2126,6 +2246,25 @@
     }
    ],
    "acts": [
+    {
+     "t": "ab",
+     "label": "AB 膠",
+     "cat": "glue",
+     "text": "4 顆磁鐵用 AB 膠黏進前殼內層左右接縫的磁鐵座，吸的那面朝接縫（和後殼的磁鐵相吸）。",
+     "at": [
+      -36.0,
+      32.0,
+      0.0
+     ],
+     "parts": [
+      "MAG_F"
+     ],
+     "wires": [],
+     "joint": null,
+     "bench": true,
+     "install": false,
+     "move": []
+    },
     {
      "t": "uv",
      "label": "UV 膠",
@@ -2145,9 +2284,10 @@
      "joint": "J22",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 15048 mm²（需要 ≥ 1000）"
+      "note": "接觸面積 15140 mm²（需要 ≥ 1000）"
      }
     },
     {
@@ -2168,9 +2308,10 @@
      "joint": "J25",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 19 mm²（需要 ≥ 15）"
+      "note": "接觸面積 17 mm²（需要 ≥ 15）"
      }
     },
     {
@@ -2190,13 +2331,14 @@
      ],
      "joint": null,
      "bench": true,
-     "install": false
+     "install": false,
+     "move": []
     },
     {
      "t": "ab",
      "label": "AB 膠",
      "cat": "glue",
-     "text": "左右接縫和導套頂環塗 AB 膠，前殼從正面水平推上去，和後殼對齊壓緊。",
+     "text": "前殼從正面水平推上去，左右接縫的磁鐵「啪」一聲吸住（不用膠：之後要修電路、換電池，把前殼往前拉開就好）。",
      "at": [
       -44.0,
       120.0,
@@ -2207,9 +2349,10 @@
      "joint": "J24",
      "bench": false,
      "install": true,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 416 mm²（需要 ≥ 30）"
+      "note": "接觸面積 614 mm²（需要 ≥ 30）"
      }
     }
    ]
@@ -2264,9 +2407,10 @@
      "joint": "J32",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.00 mm；接觸 107 mm²"
+      "note": "最小間隙 0.00 mm；接觸 100 mm²"
      }
     },
     {
@@ -2287,9 +2431,10 @@
      "joint": "J29",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 15 mm²（需要 ≥ 2）"
+      "note": "接觸面積 16 mm²（需要 ≥ 2）"
      }
     },
     {
@@ -2309,9 +2454,10 @@
      "joint": "J33",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.00 mm；接觸 110 mm²"
+      "note": "最小間隙 0.00 mm；接觸 117 mm²"
      }
     },
     {
@@ -2331,9 +2477,10 @@
      "joint": "J34",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.00 mm；接觸 8 mm²"
+      "note": "最小間隙 0.00 mm；接觸 11 mm²"
      }
     },
     {
@@ -2353,9 +2500,10 @@
      "joint": "J35",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.00 mm；接觸 154 mm²"
+      "note": "最小間隙 0.00 mm；接觸 159 mm²"
      }
     },
     {
@@ -2373,6 +2521,7 @@
      "joint": "J36",
      "bench": false,
      "install": true,
+     "move": [],
      "check": {
       "ok": true,
       "note": ""
@@ -2420,9 +2569,10 @@
      "joint": "J37",
      "bench": true,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.00 mm；接觸 345 mm²"
+      "note": "最小間隙 0.00 mm；接觸 342 mm²"
      }
     },
     {
@@ -2440,9 +2590,10 @@
      "joint": "J38",
      "bench": false,
      "install": true,
+     "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.02 mm；接觸 48 mm²"
+      "note": "最小間隙 0.02 mm；接觸 42 mm²"
      }
     }
    ]
@@ -2472,6 +2623,7 @@
      "joint": "J39",
      "bench": false,
      "install": false,
+     "move": [],
      "check": {
       "ok": true,
       "note": ""
@@ -2487,7 +2639,8 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": []
     }
    ]
   },
@@ -2511,7 +2664,23 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": [
+      {
+       "ids": [
+        "HOOD"
+       ],
+       "d": [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       "dist": 70.0,
+       "back": false,
+       "rel": false,
+       "turn": 0.0
+      }
+     ]
     },
     {
      "t": "twist",
@@ -2527,7 +2696,35 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": [
+      {
+       "ids": [
+        "BOTTLE",
+        "DROP"
+       ],
+       "d": [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       "dist": 45.0,
+       "back": false,
+       "rel": false,
+       "turn": -540.0
+      },
+      {
+       "ids": [
+        "BOTTLE",
+        "DROP"
+       ],
+       "d": null,
+       "dist": 0.0,
+       "back": true,
+       "rel": false,
+       "turn": 540.0
+      }
+     ]
     },
     {
      "t": "snap",
@@ -2543,7 +2740,19 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": [
+      {
+       "ids": [
+        "HOOD"
+       ],
+       "d": null,
+       "dist": 0.0,
+       "back": true,
+       "rel": false,
+       "turn": 0.0
+      }
+     ]
     }
    ]
   },
@@ -2567,7 +2776,45 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": [
+      {
+       "ids": [
+        "HOOD"
+       ],
+       "d": [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       "dist": 150.0,
+       "back": false,
+       "rel": false,
+       "turn": 0.0
+      },
+      {
+       "ids": [
+        "CUP",
+        "LID",
+        "ORING",
+        "DISC",
+        "UMB",
+        "CRING",
+        "WICK",
+        "BOTTLE",
+        "DROP"
+       ],
+       "d": [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       "dist": 60.0,
+       "back": false,
+       "rel": false,
+       "turn": 0.0
+      }
+     ]
     },
     {
      "t": "twist",
@@ -2576,14 +2823,63 @@
      "text": "在水槽：轉下藥瓶 → 霧化頭從杯身往上拔出來 → 棉棒從霧化頭下面往下抽掉（每瓶換新）。",
      "at": [
       -0.0,
-      150.0,
+      210.0,
       0.0
      ],
      "parts": [],
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": [
+      {
+       "ids": [
+        "BOTTLE",
+        "DROP"
+       ],
+       "d": [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       "dist": 40.0,
+       "back": false,
+       "rel": false,
+       "turn": -540.0
+      },
+      {
+       "ids": [
+        "LID",
+        "ORING",
+        "DISC",
+        "UMB",
+        "CRING"
+       ],
+       "d": [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       "dist": 30.0,
+       "back": false,
+       "rel": false,
+       "turn": 0.0
+      },
+      {
+       "ids": [
+        "WICK"
+       ],
+       "d": [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       "dist": -25.0,
+       "back": false,
+       "rel": false,
+       "turn": 0.0
+      }
+     ]
     },
     {
      "t": "place",
@@ -2595,7 +2891,8 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": []
     },
     {
      "t": "press",
@@ -2611,7 +2908,78 @@
      "wires": [],
      "joint": null,
      "bench": false,
-     "install": false
+     "install": false,
+     "move": [
+      {
+       "ids": [
+        "WICK"
+       ],
+       "d": [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       "dist": 60.0,
+       "back": false,
+       "rel": true,
+       "turn": 0.0
+      },
+      {
+       "ids": [
+        "LID",
+        "ORING",
+        "DISC",
+        "UMB",
+        "CRING"
+       ],
+       "d": [
+        0.0,
+        1.0,
+        -0.0
+       ],
+       "dist": -30.0,
+       "back": false,
+       "rel": true,
+       "turn": 0.0
+      },
+      {
+       "ids": [
+        "CUP",
+        "LID",
+        "ORING",
+        "DISC",
+        "UMB",
+        "CRING",
+        "WICK"
+       ],
+       "d": null,
+       "dist": 0.0,
+       "back": true,
+       "rel": false,
+       "turn": 0.0
+      },
+      {
+       "ids": [
+        "BOTTLE",
+        "DROP"
+       ],
+       "d": null,
+       "dist": 0.0,
+       "back": true,
+       "rel": false,
+       "turn": 540.0
+      },
+      {
+       "ids": [
+        "HOOD"
+       ],
+       "d": null,
+       "dist": 0.0,
+       "back": true,
+       "rel": false,
+       "turn": 0.0
+      }
+     ]
     }
    ]
   }
@@ -2661,6 +3029,12 @@
    "clear": 8.4,
    "ok": true,
    "note": "彈簧線第 3、4 芯直接焊",
+   "kind": "pair",
+   "cores": [
+    "#f5de61",
+    "#505050"
+   ],
+   "rad": 0.5,
    "gpts": null
   },
   {
@@ -2707,6 +3081,12 @@
    "clear": -0.17,
    "ok": true,
    "note": "2 條 0.3 mm 漆包線，膠在管壁槽裡",
+   "kind": "pair",
+   "cores": [
+    "#e6b180",
+    "#e6b180"
+   ],
+   "rad": 0.3,
    "gpts": null
   },
   {
@@ -2720,17 +3100,17 @@
     [
      -0.0,
      66.0,
-     -21.3
+     -21.8
     ],
     [
-     -3.33,
+     -3.4,
      65.0,
-     -23.67
+     -24.16
     ],
     [
-     -5.79,
+     -5.85,
      65.0,
-     -23.24
+     -23.48
     ],
     [
      -8.21,
@@ -2878,6 +3258,17 @@
    "clear": 8.4,
    "ok": true,
    "note": "7 芯 28AWG 排線（5V、GND、霧化觸發、風扇、燈 ×2、備用）",
+   "kind": "bundle",
+   "cores": [
+    "#e36e64",
+    "#505050",
+    "#f5de61",
+    "#7acd8e",
+    "#74a0ec",
+    "#f6f6f5",
+    "#f9b659"
+   ],
+   "rad": 1.6,
    "gpts": null
   },
   {
@@ -2889,21 +3280,42 @@
    "to": "W12_B",
    "pts": [
     [
-     -2.63,
-     54.4,
-     -18.72
+     -4.3,
+     22.2,
+     -22.9
     ],
     [
-     -2.49,
+     -9.4,
+     21.8,
+     -22.9
+    ],
+    [
+     -9.4,
+     31.4,
+     -20.9
+    ],
+    [
+     -9.4,
+     54.4,
+     -20.9
+    ],
+    [
+     -6.0,
      57.4,
-     -17.73
+     -18.9
     ]
    ],
-   "length": 3,
-   "cut": 10,
-   "clear": 8.4,
+   "length": 43,
+   "cut": 50,
+   "clear": 0.75,
    "ok": true,
-   "note": "2 芯 26AWG（短跳線）",
+   "note": "2 芯 26AWG",
+   "kind": "pair",
+   "cores": [
+    "#e36e64",
+    "#505050"
+   ],
+   "rad": 0.7,
    "gpts": null
   },
   {
@@ -2915,21 +3327,26 @@
    "to": "W13_B",
    "pts": [
     [
-     3.11,
+     2.0,
      57.4,
-     -17.63
+     -18.9
     ],
     [
-     3.28,
-     54.4,
-     -18.61
+     0.5,
+     52.1,
+     -18.8
     ]
    ],
-   "length": 3,
+   "length": 6,
    "cut": 10,
    "clear": 8.4,
    "ok": true,
    "note": "1 芯 28AWG（短跳線）",
+   "kind": "single",
+   "cores": [
+    "#7acd8e"
+   ],
+   "rad": 0.5,
    "gpts": null
   },
   {
@@ -2951,66 +3368,67 @@
      -10.49
     ],
     [
-     15.56,
+     15.6,
      19.6,
-     -12.25
+     -12.19
     ],
     [
-     14.14,
+     14.24,
      19.6,
-     -13.86
+     -13.75
     ],
     [
-     12.55,
+     12.73,
      19.6,
-     -15.31
+     -15.17
     ],
     [
-     10.82,
+     11.07,
      19.6,
-     -16.58
+     -16.41
     ],
     [
-     8.95,
+     9.3,
      19.6,
-     -17.66
+     -17.48
     ],
     [
-     6.99,
+     7.42,
      19.6,
-     -18.53
+     -18.36
     ],
     [
-     4.94,
+     5.46,
      19.6,
-     -19.17
+     -19.03
     ],
     [
-     2.83,
+     6.34,
      19.6,
-     -19.6
+     -22.11
     ],
     [
-     0.69,
-     19.6,
-     -19.79
+     6.34,
+     15.6,
+     -22.11
     ],
     [
-     0.0,
-     19.6,
-     -25.8
-    ],
-    [
-     0.0,
-     17.9,
-     -30.0
+     7.96,
+     13.9,
+     -24.38
     ]
    ],
-   "length": 32,
+   "length": 27,
    "cut": 40,
-   "clear": 0.39,
+   "clear": 8.4,
    "ok": true,
    "note": "2 芯 24AWG 矽膠線",
+   "kind": "pair",
+   "cores": [
+    "#e36e64",
+    "#505050"
+   ],
+   "rad": 1.0,
    "gpts": null
   },
   {
@@ -3034,64 +3452,85 @@
     [
      -15.56,
      19.6,
-     -12.25
+     -12.24
     ],
     [
-     -14.14,
+     -14.16,
      19.6,
-     -13.86
+     -13.84
     ],
     [
-     -12.55,
+     -12.58,
      19.6,
-     -15.31
+     -15.29
     ],
     [
-     -10.82,
+     -10.86,
      19.6,
-     -16.58
+     -16.55
     ],
     [
-     -8.95,
+     -9.02,
      19.6,
-     -17.66
+     -17.63
     ],
     [
-     -6.99,
+     -7.07,
      19.6,
-     -18.53
+     -18.5
     ],
     [
-     -4.94,
+     -5.03,
      19.6,
-     -19.17
+     -19.15
     ],
     [
-     -2.83,
+     -2.94,
      19.6,
-     -19.6
+     -19.58
     ],
     [
-     -0.69,
+     -0.82,
      19.6,
-     -19.79
+     -19.78
     ],
     [
-     -0.0,
+     1.32,
      19.6,
-     -25.8
+     -19.76
     ],
     [
-     -0.0,
-     17.9,
-     -30.0
+     3.44,
+     19.6,
+     -19.5
+    ],
+    [
+     3.99,
+     19.6,
+     -22.65
+    ],
+    [
+     3.99,
+     15.6,
+     -22.65
+    ],
+    [
+     3.52,
+     13.9,
+     -24.62
     ]
    ],
-   "length": 32,
-   "cut": 40,
-   "clear": 0.39,
+   "length": 35,
+   "cut": 50,
+   "clear": 0.6,
    "ok": true,
    "note": "2 芯 24AWG 矽膠線",
+   "kind": "pair",
+   "cores": [
+    "#e36e64",
+    "#505050"
+   ],
+   "rad": 1.0,
    "gpts": null
   },
   {
@@ -3103,26 +3542,47 @@
    "to": "W3_B",
    "pts": [
     [
-     -0.0,
-     17.9,
-     -37.0
+     -8.98,
+     13.9,
+     -24.62
     ],
     [
-     -0.0,
-     20.5,
-     -37.0
+     -8.98,
+     16.0,
+     -24.62
     ],
     [
-     -0.0,
-     23.0,
-     -27.9
+     -8.2,
+     19.6,
+     -24.46
+    ],
+    [
+     -5.2,
+     19.6,
+     -25.27
+    ],
+    [
+     -4.45,
+     20.4,
+     -23.69
+    ],
+    [
+     -4.3,
+     22.2,
+     -22.9
     ]
    ],
-   "length": 12,
+   "length": 13,
    "cut": 20,
-   "clear": 8.4,
+   "clear": 0.4,
    "ok": true,
    "note": "2 芯 24AWG 矽膠線",
+   "kind": "pair",
+   "cores": [
+    "#e36e64",
+    "#505050"
+   ],
+   "rad": 1.0,
    "gpts": null
   },
   {
@@ -3134,81 +3594,77 @@
    "to": "W5_B",
    "pts": [
     [
-     3.02,
-     21.3,
-     -17.14
+     4.3,
+     22.2,
+     -22.9
     ],
     [
-     3.12,
+     4.45,
+     20.4,
+     -23.69
+    ],
+    [
+     8.82,
      19.6,
-     -22.18
+     -24.24
     ],
     [
-     5.45,
+     11.5,
      19.6,
-     -21.73
+     -23.09
     ],
     [
-     7.73,
+     14.03,
      19.6,
-     -21.02
+     -21.65
     ],
     [
-     9.92,
+     16.38,
      19.6,
-     -20.09
+     -19.93
     ],
     [
-     11.99,
+     18.53,
      19.6,
-     -18.92
+     -17.96
     ],
     [
-     13.93,
+     20.43,
      19.6,
-     -17.54
+     -15.75
     ],
     [
-     15.71,
+     22.08,
      19.6,
-     -15.96
+     -13.35
     ],
     [
-     17.32,
+     23.44,
      19.6,
-     -14.21
+     -10.78
     ],
     [
-     18.73,
-     19.6,
-     -12.29
+     23.44,
+     9.0,
+     -10.78
     ],
     [
-     19.93,
-     19.6,
-     -10.23
-    ],
-    [
-     20.9,
-     19.6,
-     -8.06
-    ],
-    [
-     21.64,
-     19.6,
-     -5.8
-    ],
-    [
-     25.11,
-     18.2,
-     -4.43
+     23.85,
+     6.0,
+     -11.73
     ]
    ],
-   "length": 35,
+   "length": 41,
    "cut": 50,
-   "clear": 0.59,
+   "clear": 0.4,
    "ok": true,
    "note": "2 芯 24AWG 矽膠線",
+   "kind": "pair",
+   "cores": [
+    "#e36e64",
+    "#505050"
+   ],
+   "rad": 1.0,
    "gpts": null
   },
   {
@@ -3236,68 +3692,73 @@
     ],
     [
      -10.6,
-     21.0,
+     23.0,
      -16.96
     ],
     [
-     -14.4,
-     19.6,
-     -17.16
+     -14.43,
+     22.2,
+     -21.39
     ],
     [
-     -16.25,
+     -16.58,
      19.6,
-     -15.42
+     -19.76
     ],
     [
-     -17.89,
+     -18.71,
      19.6,
-     -13.48
+     -17.76
     ],
     [
-     -19.3,
+     -20.6,
      19.6,
-     -11.37
+     -15.53
     ],
     [
-     -20.46,
+     -22.23,
      19.6,
-     -9.11
+     -13.09
     ],
     [
-     -21.36,
+     -23.57,
      19.6,
-     -6.74
+     -10.49
     ],
     [
-     -21.99,
+     -24.61,
      19.6,
-     -4.27
+     -7.76
     ],
     [
-     -22.33,
+     -25.33,
      19.6,
-     -1.76
+     -4.92
     ],
     [
-     -22.39,
+     -25.72,
      19.6,
-     0.78
+     -2.02
     ],
     [
-     -22.15,
+     -25.78,
      19.6,
-     3.31
+     0.9
     ],
     [
-     -21.64,
+     -25.52,
      19.6,
-     5.8
+     3.81
     ],
     [
-     -24.38,
+     -24.92,
+     19.6,
+     6.68
+    ],
+    [
+     -25.96,
      18.3,
-     9.6
+     10.23
     ],
     [
      -26.49,
@@ -3310,11 +3771,17 @@
      15.9
     ]
    ],
-   "length": 84,
-   "cut": 100,
-   "clear": 0.4,
+   "length": 90,
+   "cut": 110,
+   "clear": 0.39,
    "ok": true,
    "note": "2 芯 26AWG（風扇自帶線，加長）",
+   "kind": "pair",
+   "cores": [
+    "#e36e64",
+    "#505050"
+   ],
+   "rad": 0.9,
    "gpts": null
   },
   {
@@ -3326,13 +3793,13 @@
    "to": "W7_B",
    "pts": [
     [
-     17.97,
-     11.0,
-     4.81
+     18.55,
+     9.1,
+     4.97
     ],
     [
      11.59,
-     11.0,
+     9.1,
      3.11
     ],
     [
@@ -3356,6 +3823,12 @@
    "clear": 8.4,
    "ok": true,
    "note": "驅動板原廠霧化片線（剪短）",
+   "kind": "pair",
+   "cores": [
+    "#e36e64",
+    "#505050"
+   ],
+   "rad": 0.9,
    "gpts": null
   },
   {
@@ -3427,6 +3900,12 @@
    "clear": 0.4,
    "ok": true,
    "note": "2 芯 28AWG 矽膠線",
+   "kind": "pair",
+   "cores": [
+    "#f6f6f5",
+    "#505050"
+   ],
+   "rad": 0.9,
    "gpts": null
   },
   {
@@ -3437,6 +3916,16 @@
    "frm": "W9_A",
    "to": "W9_B",
    "pts": [
+    [
+     -8.0,
+     41.0,
+     20.42
+    ],
+    [
+     -5.55,
+     42.8,
+     21.16
+    ],
     [
      -3.04,
      44.6,
@@ -3513,11 +4002,17 @@
      19.71
     ]
    ],
-   "length": 82,
-   "cut": 100,
+   "length": 88,
+   "cut": 110,
    "clear": 0.67,
    "ok": true,
    "note": "2 芯 28AWG 矽膠線（從 7 芯排線分出）",
+   "kind": "pair",
+   "cores": [
+    "#f6f6f5",
+    "#505050"
+   ],
+   "rad": 0.7,
    "gpts": null
   },
   {
@@ -3552,13 +4047,28 @@
      2.33,
      44.4,
      22.2
+    ],
+    [
+     5.24,
+     42.7,
+     21.5
+    ],
+    [
+     8.0,
+     41.0,
+     20.42
     ]
    ],
-   "length": 32,
-   "cut": 40,
+   "length": 39,
+   "cut": 50,
    "clear": 0.54,
    "ok": true,
    "note": "1 芯 30AWG 細線（越短越好）",
+   "kind": "single",
+   "cores": [
+    "#7acd8e"
+   ],
+   "rad": 0.5,
    "gpts": null
   }
  ],
@@ -3575,9 +4085,9 @@
   "W10_B": {
    "label": "ESP32 GPIO2（觸控腳）",
    "p": [
-    2.33,
-    44.4,
-    22.2
+    8.0,
+    41.0,
+    20.42
    ],
    "part": null
   },
@@ -3600,38 +4110,38 @@
    "part": null
   },
   "W12_A": {
-   "label": "MOS 模組 電源端子（5V／GND）",
+   "label": "MOS 模組 電源輸入端子（和線 3 一起鎖）",
    "p": [
-    -2.63,
-    54.4,
-    -18.72
+    -4.3,
+    22.2,
+    -22.9
    ],
    "part": null
   },
   "W12_B": {
    "label": "S8050 小板 5V／GND",
    "p": [
-    -2.49,
+    -6.0,
     57.4,
-    -17.73
+    -18.9
    ],
    "part": null
   },
   "W13_A": {
    "label": "排線的霧化觸發（GPIO5）",
    "p": [
-    3.11,
+    2.0,
     57.4,
-    -17.63
+    -18.9
    ],
    "part": null
   },
   "W13_B": {
    "label": "MOS 模組 觸發腳",
    "p": [
-    3.28,
-    54.4,
-    -18.61
+    0.5,
+    52.1,
+    -18.8
    ],
    "part": null
   },
@@ -3665,9 +4175,9 @@
   "W1_B": {
    "label": "充放電模組 B+／B−",
    "p": [
-    0.0,
-    17.9,
-    -30.0
+    7.96,
+    13.9,
+    -24.38
    ],
    "part": null
   },
@@ -3683,27 +4193,27 @@
   "W2_B": {
    "label": "充放電模組 B+／B−（和左邊並聯）",
    "p": [
-    -0.0,
-    17.9,
-    -30.0
+    3.52,
+    13.9,
+    -24.62
    ],
    "part": null
   },
   "W3_A": {
    "label": "充放電模組 OUT＋／−",
    "p": [
-    -0.0,
-    17.9,
-    -37.0
+    -8.98,
+    13.9,
+    -24.62
    ],
    "part": null
   },
   "W3_B": {
    "label": "MOS 模組 電源輸入（端子）",
    "p": [
-    -0.0,
-    23.0,
-    -27.9
+    -4.3,
+    22.2,
+    -22.9
    ],
    "part": null
   },
@@ -3712,7 +4222,7 @@
    "p": [
     -0.0,
     66.0,
-    -21.3
+    -21.8
    ],
    "part": null
   },
@@ -3728,18 +4238,18 @@
   "W5_A": {
    "label": "MOS 模組 輸出",
    "p": [
-    3.02,
-    21.3,
-    -17.14
+    4.3,
+    22.2,
+    -22.9
    ],
    "part": null
   },
   "W5_B": {
    "label": "霧化驅動板 VIN／GND",
    "p": [
-    25.11,
-    18.2,
-    -4.43
+    23.85,
+    6.0,
+    -11.73
    ],
    "part": null
   },
@@ -3764,9 +4274,9 @@
   "W7_A": {
    "label": "霧化驅動板 輸出",
    "p": [
-    17.97,
-    11.0,
-    4.81
+    18.55,
+    9.1,
+    4.97
    ],
    "part": null
   },
@@ -3800,9 +4310,9 @@
   "W9_A": {
    "label": "開關板 燈輸出（經排線）",
    "p": [
-    -3.04,
-    44.6,
-    21.61
+    -8.0,
+    41.0,
+    20.42
    ],
    "part": null
   },
@@ -3824,9 +4334,9 @@
    "act": "screw",
    "kind": "screw",
    "desc": "彈簧柱塞從管子裡面鎖進柱塞座的 M4 孔",
-   "contact": 63.7,
-   "depth": 0.099,
-   "gap": 0.0,
+   "contact": 55.2,
+   "depth": 0.095,
+   "gap": 0.001,
    "note": "",
    "ok": true,
    "label": "鎖螺絲",
@@ -3839,11 +4349,11 @@
    "act": "uv",
    "kind": "glue",
    "desc": "燈絲嵌進管壁 270° 的槽（長 103 mm），UV 膠每 2 cm 點一下",
-   "contact": 226.5,
+   "contact": 225.1,
    "depth": 0.0,
    "gap": 0.05,
    "need": 3,
-   "note": "接觸面積 226 mm²（需要 ≥ 3）",
+   "note": "接觸面積 225 mm²（需要 ≥ 3）",
    "ok": true,
    "label": "UV 膠",
    "cat": "glue"
@@ -3855,11 +4365,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "彈簧線固定座從管底推到 3 支腳頂住定位肋，腳端點 AB 膠",
-   "contact": 23.7,
+   "contact": 38.3,
    "depth": 0.0,
    "gap": 0.0,
    "need": 3,
-   "note": "接觸面積 24 mm²（需要 ≥ 3）",
+   "note": "接觸面積 38 mm²（需要 ≥ 3）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -3871,9 +4381,9 @@
    "act": "solder",
    "kind": "wire",
    "desc": "彈簧線上端焊在固定座底下（4 芯），焊點 UV 膠封住防潮",
-   "contact": 55.0,
+   "contact": 0.4,
    "depth": 0.0,
-   "gap": 0.0,
+   "gap": 0.097,
    "note": "",
    "ok": true,
    "label": "焊接",
@@ -3901,9 +4411,9 @@
    "act": "detent",
    "kind": "snap",
    "desc": "塑膠珠卡進導套 3 道定位槽：收合、伸 50、伸 100",
-   "contact": 1.9,
+   "contact": 0.6,
    "depth": 0.0,
-   "gap": 0.013,
+   "gap": 0.012,
    "note": "",
    "ok": true,
    "label": "段落卡位",
@@ -3916,11 +4426,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "止擋環上面的平台 ↔ 導套下端",
-   "contact": 474.8,
+   "contact": 477.0,
    "depth": 0.0,
    "gap": 0.0,
    "need": 50,
-   "note": "接觸面積 475 mm²（需要 ≥ 50）",
+   "note": "接觸面積 477 mm²（需要 ≥ 50）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -3932,11 +4442,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "頭座套管內面 ↔ 伸縮管頂端外圈（接點座對準 90° 導線槽）",
-   "contact": 437.2,
+   "contact": 471.0,
    "depth": 0.0,
    "gap": 0.02,
    "need": 100,
-   "note": "接觸面積 437 mm²（需要 ≥ 100）",
+   "note": "接觸面積 471 mm²（需要 ≥ 100）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -3948,11 +4458,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "電池背面 ↔ 導套電池托（VHB），底面坐在止擋環電池托",
-   "contact": 719.9,
+   "contact": 666.0,
    "depth": 0.0,
-   "gap": 0.008,
+   "gap": 0.13,
    "need": 20,
-   "note": "接觸面積 720 mm²（需要 ≥ 20）",
+   "note": "接觸面積 666 mm²（需要 ≥ 20）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -3964,11 +4474,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "同左",
-   "contact": 730.1,
+   "contact": 683.6,
    "depth": 0.0,
-   "gap": 0.002,
+   "gap": 0.13,
    "need": 20,
-   "note": "接觸面積 730 mm²（需要 ≥ 20）",
+   "note": "接觸面積 684 mm²（需要 ≥ 20）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -3980,11 +4490,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "ESP32 背面 ↔ 導套 ESP32 托（VHB）",
-   "contact": 390.2,
+   "contact": 387.7,
    "depth": 0.0,
    "gap": 0.0,
    "need": 10,
-   "note": "接觸面積 390 mm²（需要 ≥ 10）",
+   "note": "接觸面積 388 mm²（需要 ≥ 10）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -3996,7 +4506,7 @@
    "act": "tape",
    "kind": "glue",
    "desc": "MOS 模組背面 ↔ 導套開關板托（VHB）",
-   "contact": 561.4,
+   "contact": 560.7,
    "depth": 0.0,
    "gap": 0.0,
    "need": 10,
@@ -4012,11 +4522,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "S8050 小板背面 ↔ 導套開關板托（VHB）",
-   "contact": 267.8,
+   "contact": 269.3,
    "depth": 0.0,
-   "gap": 0.007,
+   "gap": 0.006,
    "need": 10,
-   "note": "接觸面積 268 mm²（需要 ≥ 10）",
+   "note": "接觸面積 269 mm²（需要 ≥ 10）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -4028,11 +4538,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "風扇底面 ↔ 底蓋（VHB），3 條定位肋圍住",
-   "contact": 204.7,
+   "contact": 176.4,
    "depth": 0.0,
    "gap": 0.1,
    "need": 60,
-   "note": "接觸面積 205 mm²（需要 ≥ 60）",
+   "note": "接觸面積 176 mm²（需要 ≥ 60）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -4044,11 +4554,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "驅動板底面 ↔ 底蓋（VHB），3 條定位肋圍住",
-   "contact": 759.0,
+   "contact": 537.0,
    "depth": 0.0,
    "gap": 0.1,
    "need": 60,
-   "note": "接觸面積 759 mm²（需要 ≥ 60）",
+   "note": "接觸面積 537 mm²（需要 ≥ 60）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -4060,10 +4570,10 @@
    "act": "place",
    "kind": "fit",
    "desc": "充放電模組放在兩根柱上，Type-C 朝外",
-   "contact": 18.7,
+   "contact": 20.8,
    "depth": 0.0,
-   "gap": 0.002,
-   "note": "最小間隙 0.00 mm；接觸 19 mm²",
+   "gap": 0.009,
+   "note": "最小間隙 0.01 mm；接觸 21 mm²",
    "ok": true,
    "label": "放上",
    "cat": "fit"
@@ -4075,11 +4585,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "配重鋼片 ↔ 底蓋",
-   "contact": 810.0,
+   "contact": 803.6,
    "depth": 0.0,
    "gap": 0.2,
    "need": 100,
-   "note": "接觸面積 810 mm²（需要 ≥ 100）",
+   "note": "接觸面積 804 mm²（需要 ≥ 100）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -4091,8 +4601,8 @@
    "act": "screw",
    "kind": "screw",
    "desc": "M2 螺絲從底蓋下面鎖進止擋環 3 支腳",
-   "contact": 4.9,
-   "depth": 0.15,
+   "contact": 70.4,
+   "depth": 0.147,
    "gap": 0.0,
    "note": "",
    "ok": true,
@@ -4106,11 +4616,11 @@
    "act": "uv",
    "kind": "glue",
    "desc": "後殼內層外表面 ↔ 外層內表面",
-   "contact": 15049.0,
+   "contact": 15121.0,
    "depth": 0.0,
    "gap": 0.0,
    "need": 1000,
-   "note": "接觸面積 15049 mm²（需要 ≥ 1000）",
+   "note": "接觸面積 15121 mm²（需要 ≥ 1000）",
    "ok": true,
    "label": "UV 膠",
    "cat": "glue"
@@ -4122,11 +4632,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "腳環後半 ↔ 後殼外層底緣",
-   "contact": 661.1,
+   "contact": 667.4,
    "depth": 0.0,
    "gap": 0.036,
    "need": 30,
-   "note": "接觸面積 661 mm²（需要 ≥ 30）",
+   "note": "接觸面積 667 mm²（需要 ≥ 30）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -4138,11 +4648,11 @@
    "act": "uv",
    "kind": "glue",
    "desc": "前殼內層 ↔ 外層",
-   "contact": 15048.0,
+   "contact": 15140.0,
    "depth": 0.0,
    "gap": 0.001,
    "need": 1000,
-   "note": "接觸面積 15048 mm²（需要 ≥ 1000）",
+   "note": "接觸面積 15140 mm²（需要 ≥ 1000）",
    "ok": true,
    "label": "UV 膠",
    "cat": "glue"
@@ -4154,11 +4664,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "腳環前半 ↔ 前殼外層底緣",
-   "contact": 637.6,
+   "contact": 634.5,
    "depth": 0.0,
    "gap": 0.036,
    "need": 30,
-   "note": "接觸面積 638 mm²（需要 ≥ 30）",
+   "note": "接觸面積 634 mm²（需要 ≥ 30）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -4170,11 +4680,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "前後殼左右接縫 AB 膠（夾住導套頂環）",
-   "contact": 416.0,
+   "contact": 614.0,
    "depth": 0.0,
    "gap": 0.0,
    "need": 30,
-   "note": "接觸面積 416 mm²（需要 ≥ 30）",
+   "note": "接觸面積 614 mm²（需要 ≥ 30）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -4186,11 +4696,11 @@
    "act": "stick",
    "kind": "glue",
    "desc": "銅箔背膠 ↔ LOGO 背面（LOGO 鏤空，只有筆畫之間貼得到；銅箔幾乎沒重量，夠）",
-   "contact": 19.2,
+   "contact": 17.1,
    "depth": 0.0,
-   "gap": 0.148,
+   "gap": 0.142,
    "need": 15,
-   "note": "接觸面積 19 mm²（需要 ≥ 15）",
+   "note": "接觸面積 17 mm²（需要 ≥ 15）",
    "ok": true,
    "label": "背膠",
    "cat": "glue"
@@ -4202,10 +4712,10 @@
    "act": "press",
    "kind": "fit",
    "desc": "硬燈絲下端坐在燈窗下緣托架上，貼外層殼內面，UV 膠點住",
-   "contact": 2.3,
-   "depth": 0.093,
-   "gap": 0.001,
-   "note": "最小間隙 0.00 mm；接觸 2 mm²",
+   "contact": 2.2,
+   "depth": 0.0,
+   "gap": 0.027,
+   "note": "最小間隙 0.03 mm；接觸 2 mm²",
    "ok": true,
    "label": "壓入",
    "cat": "fit"
@@ -4217,10 +4727,10 @@
    "act": "place",
    "kind": "fit",
    "desc": "藥杯杯緣坐在管頂內緣（任何角度都可以）",
-   "contact": 145.4,
+   "contact": 139.2,
    "depth": 0.0,
    "gap": 0.0,
-   "note": "最小間隙 0.00 mm；接觸 145 mm²",
+   "note": "最小間隙 0.00 mm；接觸 139 mm²",
    "ok": true,
    "label": "放上",
    "cat": "fit"
@@ -4232,11 +4742,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "霧化頭上件 3 根立柱 ↔ 下件 3 支臂（霧化片先放好）",
-   "contact": 14.6,
+   "contact": 15.8,
    "depth": 0.0,
    "gap": 0.0,
    "need": 2,
-   "note": "接觸面積 15 mm²（需要 ≥ 2）",
+   "note": "接觸面積 16 mm²（需要 ≥ 2）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -4248,7 +4758,7 @@
    "act": "uv",
    "kind": "glue",
    "desc": "銅箔接點環繞在插頭環上，焊上霧化片線，UV 膠封",
-   "contact": 321.6,
+   "contact": 321.5,
    "depth": 0.0,
    "gap": 0.0,
    "need": 5,
@@ -4264,10 +4774,10 @@
    "act": "place",
    "kind": "fit",
    "desc": "霧化片連 TPU 薄圈放進霧化頭下件的座裡",
-   "contact": 106.8,
+   "contact": 100.2,
    "depth": 0.0,
    "gap": 0.0,
-   "note": "最小間隙 0.00 mm；接觸 107 mm²",
+   "note": "最小間隙 0.00 mm；接觸 100 mm²",
    "ok": true,
    "label": "放上",
    "cat": "fit"
@@ -4279,10 +4789,10 @@
    "act": "place",
    "kind": "fit",
    "desc": "O 形環套進漏斗蓋邊緣的槽",
-   "contact": 110.5,
+   "contact": 117.1,
    "depth": 0.0,
    "gap": 0.0,
-   "note": "最小間隙 0.00 mm；接觸 110 mm²",
+   "note": "最小間隙 0.00 mm；接觸 117 mm²",
    "ok": true,
    "label": "放上",
    "cat": "fit"
@@ -4294,10 +4804,10 @@
    "act": "press",
    "kind": "fit",
    "desc": "棉棒從下面推進短管（Ø7.4 夾 Ø8），頂到霧化片就停",
-   "contact": 8.5,
+   "contact": 10.7,
    "depth": 0.3,
-   "gap": 0.001,
-   "note": "最小間隙 0.00 mm；接觸 8 mm²",
+   "gap": 0.003,
+   "note": "最小間隙 0.00 mm；接觸 11 mm²",
    "ok": true,
    "label": "壓入",
    "cat": "fit"
@@ -4309,10 +4819,10 @@
    "act": "press",
    "kind": "fit",
    "desc": "霧化頭壓進杯身（O 形環密封）",
-   "contact": 154.5,
+   "contact": 159.2,
    "depth": 0.0,
    "gap": 0.0,
-   "note": "最小間隙 0.00 mm；接觸 154 mm²",
+   "note": "最小間隙 0.00 mm；接觸 159 mm²",
    "ok": true,
    "label": "壓入",
    "cat": "fit"
@@ -4324,7 +4834,7 @@
    "act": "snap",
    "kind": "snap",
    "desc": "藥杯往下放：接點彈片碰到接點環、卡扣彈片「喀」卡進兩道環中間",
-   "contact": 4.7,
+   "contact": 4.4,
    "depth": 0.0,
    "gap": 0.004,
    "note": "",
@@ -4339,10 +4849,10 @@
    "act": "press",
    "kind": "fit",
    "desc": "滴流塞壓進藥瓶口，帽緣和瓶口齊平",
-   "contact": 345.0,
+   "contact": 341.9,
    "depth": 0.0,
    "gap": 0.0,
-   "note": "最小間隙 0.00 mm；接觸 345 mm²",
+   "note": "最小間隙 0.00 mm；接觸 342 mm²",
    "ok": true,
    "label": "壓入",
    "cat": "fit"
@@ -4354,10 +4864,10 @@
    "act": "twist",
    "kind": "fit",
    "desc": "藥瓶倒插轉進瓶座（18 牙，約 1 圈半），瓶口頂到 3 個止擋墊就鎖緊",
-   "contact": 47.7,
+   "contact": 41.8,
    "depth": 0.0,
    "gap": 0.02,
-   "note": "最小間隙 0.02 mm；接觸 48 mm²",
+   "note": "最小間隙 0.02 mm；接觸 42 mm²",
    "ok": true,
    "label": "轉入鎖住",
    "cat": "snap"
@@ -4369,8 +4879,8 @@
    "act": "snap",
    "kind": "snap",
    "desc": "TPU 導流罩喉部撐開套過金環凸緣",
-   "contact": 418.6,
-   "depth": 0.566,
+   "contact": 431.0,
+   "depth": 0.567,
    "gap": 0.001,
    "note": "",
    "ok": true,
@@ -4495,7 +5005,7 @@
   },
   {
    "step": 7,
-   "what": "後殼內層、後殼外層、腳環（後半）",
+   "what": "後殼內層、後殼外層、腳環（後半）、磁鐵（後殼）×4",
    "dir": "Y+",
    "inner": [],
    "blocked": [],
@@ -4503,7 +5013,7 @@
   },
   {
    "step": 8,
-   "what": "前殼內層（含燈絲夾、線夾）、前殼外層、腳環（前半）、觸控銅箔、正面燈點（26 mm 硬燈絲）",
+   "what": "前殼內層（含燈絲夾、線夾）、前殼外層、腳環（前半）、觸控銅箔、正面燈點（26 mm 硬燈絲）、磁鐵（前殼）×4",
    "dir": "Y-",
    "inner": [],
    "blocked": [],
@@ -4538,12 +5048,12 @@
   {
    "a": "HOOD",
    "b": "HEAD",
-   "depth": 0.566,
-   "area": 290.4,
+   "depth": 0.567,
+   "area": 284.0,
    "where": [
-    11.3,
-    10.6,
-    175.5
+    7.2,
+    -13.8,
+    174.7
    ],
    "ok": true,
    "why": "TPU 導流罩喉部撐開包住金環凸緣"
@@ -4551,11 +5061,11 @@
   {
    "a": "STOP",
    "b": "SCREWS",
-   "depth": 0.15,
-   "area": 135.9,
+   "depth": 0.147,
+   "area": 87.3,
    "where": [
-    7.2,
-    14.0,
+    8.6,
+    14.9,
     8.5
    ],
    "ok": true,
@@ -4564,12 +5074,12 @@
   {
    "a": "TUBE",
    "b": "PLG",
-   "depth": 0.099,
-   "area": 15.0,
+   "depth": 0.095,
+   "area": 15.6,
    "where": [
-    -13.4,
-    -1.7,
-    27.1
+    -9.9,
+    0.1,
+    24.0
    ],
    "ok": true,
    "why": "柱塞螺紋鎖在柱塞座裡"
@@ -4578,10 +5088,10 @@
    "a": "CUP",
    "b": "ORING",
    "depth": 0.225,
-   "area": 63.3,
+   "area": 58.5,
    "where": [
-    -10.8,
-    2.2,
+    -10.2,
+    -4.1,
     149.6
    ],
    "ok": true,
@@ -4590,11 +5100,11 @@
   {
    "a": "CUP",
    "b": "WICK",
-   "depth": 0.322,
-   "area": 23.7,
+   "depth": 0.325,
+   "area": 21.9,
    "where": [
-    -2.6,
-    3.0,
+    -3.2,
+    2.4,
     120.3
    ],
    "ok": true,
@@ -4604,11 +5114,11 @@
    "a": "LID",
    "b": "WICK",
    "depth": 0.3,
-   "area": 81.9,
+   "area": 82.5,
    "where": [
-    -1.5,
-    -3.7,
-    147.7
+    3.2,
+    2.4,
+    147.0
    ],
    "ok": true,
    "why": "棉棒 Ø8 被短管 Ø7.4 壓縮"
@@ -4633,7 +5143,7 @@
    "title": "每個零件都有東西撐住",
    "ok": true,
    "lines": [
-    "從底蓋開始，沿著「有碰到」的零件一路找：37 / 37 個零件都找得到"
+    "從底蓋開始，沿著「有碰到」的零件一路找：39 / 39 個零件都找得到"
    ]
   },
   {
@@ -4808,9 +5318,9 @@
   {
    "a": "MOS 模組 5V",
    "b": "S8050 小板",
-   "note": "2 芯 26AWG（短跳線）",
+   "note": "2 芯 26AWG",
    "color": "#c0392b",
-   "cut": 10,
+   "cut": 50,
    "step": 5
   },
   {
@@ -4834,7 +5344,7 @@
    "b": "充電板",
    "note": "2 芯 24AWG 矽膠線",
    "color": "#c0392b",
-   "cut": 40,
+   "cut": 50,
    "step": 6
   },
   {
@@ -4858,7 +5368,7 @@
    "b": "風扇",
    "note": "2 芯 26AWG（風扇自帶線，加長）",
    "color": "#c0392b",
-   "cut": 100,
+   "cut": 110,
    "step": 6
   },
   {
@@ -4882,7 +5392,7 @@
    "b": "正面燈",
    "note": "2 芯 28AWG 矽膠線（從 7 芯排線分出）",
    "color": "#d8d8d8",
-   "cut": 100,
+   "cut": 110,
    "step": 8
   },
   {
@@ -4890,7 +5400,7 @@
    "b": "觸控",
    "note": "1 芯 30AWG 細線（越短越好）",
    "color": "#3ca050",
-   "cut": 40,
+   "cut": 50,
    "step": 8
   }
  ],

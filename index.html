@@ -471,7 +471,7 @@ function renderManualState() {
   $('#mActs').innerHTML = s.acts.map((a, i) => {
     const d = actDone(k, i), auto = actAuto(k, i);
     const ck = a.check ? `<div class="ck${a.check.ok ? '' : ' no'}">${a.check.ok ? '✓ 電腦已驗證（你不用量）' : '✗ 未通過'}：${esc(a.check.note)}</div>` : '';
-    const hint = d ? '' : auto === null ? '<div class="hint">做完點這一項打勾</div>' : a.install ? '<div class="hint">把整組拖到機身上對好就會打勾</div>' : '<div class="hint">把零件拖進工作區組上就會打勾</div>';
+    const hint = d ? '' : auto === null ? '<div class="hint">點這一項：從這裡開始播動畫</div>' : a.install ? '<div class="hint">點這一項：從這裡開始播動畫（或把整組拖到機身上對好）</div>' : '<div class="hint">點這一項：從這裡開始播動畫（或把零件拖進工作區組上）</div>';
     const doit = a.wires.length ? `<button type="button" class="doit" data-solder="${i}">✋ ${d ? '再練一次' : a.t === 'plug' ? '自己接接看' : '自己焊焊看'}（${a.wires.length} 條）</button>` : '';
     return `<li class="c-${a.cat}${d ? ' done' : ''}${nextAct(k) === i ? ' cur' : ''}" data-i="${i}"><span class="badge"><span class="n">${d ? '✓' : i + 1}</span>${esc(a.label)}</span><span class="tx">${esc(a.text)}</span>${ck}${a.wires.length && !d ? '<div class="hint">把線頭拖到正確的焊點，再按住焊點 1 秒焊上；也可以直接點這一項打勾</div>' : hint}${doit}</li>`;
   }).join('');
@@ -484,6 +484,7 @@ function renderManualState() {
 }
 function clickAct(i) {
   if (S.sim || S.prac) return;
+  if (three) { S.curAct = i; three.simulate(S.step, false, i); return; }      // 第 13 版：從這一項開始播
   const k = S.step, a = STEPS[k].acts[i];
   S.curAct = i;
   if (three && a.at) three.focusAt(a.at, STEPS[k].view);
@@ -857,8 +858,26 @@ try {
     const curve = new THREE.CatmullRomCurve3(pts, false, 'centripetal', .5);
     const len = pts.reduce((s, p, i) => i ? s + p.distanceTo(pts[i - 1]) : 0, 0);
     const segs = Math.max(12, Math.round(len / 1.6));
-    const geo = new THREE.TubeGeometry(curve, segs, .62, 6, false);
-    const m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: w.color, roughness: .55, metalness: 0 }));
+    const R = w.rad || .62, kind = w.kind || 'single', cols = (w.cores && w.cores.length) ? w.cores : [w.color];
+    const offs = kind === 'pair' ? [[0, R / 2, 0, R / 2], [Math.PI, R / 2, 0, R / 2]]
+      : kind === 'bundle' ? [[0, 0, 0, R / 3]].concat([0, 1, 2, 3, 4, 5].map(k => [k * Math.PI / 3, 2 * R / 3, 2 * Math.PI / 20, R / 3])) : [[0, 0, 0, R]];
+    const fr = curve.computeFrenetFrames(segs, false), SP = curve.getSpacedPoints(segs), RS = 6, per = RS * 6;
+    const tubes = offs.map(o => new THREE.TubeGeometry(new THREE.CatmullRomCurve3(SP.map((p, i) => {
+      const a = o[0] + o[2] * len * i / segs;
+      return p.clone().addScaledVector(fr.normals[i], Math.cos(a) * o[1]).addScaledVector(fr.binormals[i], Math.sin(a) * o[1]);
+    }), false, 'centripetal', .5), segs, o[3], RS, false));
+    const pos = [], nor = [], col = [], idx = [], base = [];
+    tubes.forEach((g, k) => {
+      base.push(pos.length / 3); const c = new THREE.Color(cols[k % cols.length]);
+      pos.push(...g.attributes.position.array); nor.push(...g.attributes.normal.array);
+      for (let v = 0; v < g.attributes.position.count; v++) col.push(c.r, c.g, c.b);
+    });
+    for (let j = 0; j < segs; j++) tubes.forEach((g, k) => { const I = g.index.array; for (let q = j * per; q < (j + 1) * per; q++) idx.push(I[q] + base[k]); });
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3));
+    geo.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); geo.setIndex(idx);
+    tubes.forEach(g => g.dispose());
+    const m = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: .55, metalness: 0 }));
     m.castShadow = true; m.userData.n = geo.index.count; m.visible = false; wireRoot.add(m); WM[id] = m; return m;
   }
   const wireAnim = [];
@@ -1125,7 +1144,7 @@ try {
     if (PR.hold) { PR.hold.style.left = hx + 'px'; PR.hold.style.top = hy + 'px'; }
     PR.pads.forEach(x => { if (!x.tag) return; const [px, py, pz] = screenPt(x.m.position); x.tag.classList.toggle('off', pz > 1 || PR.stage !== 'drag'); x.tag.style.left = px + 'px'; x.tag.style.top = py + 'px'; });
   }
-  async function simulate(k0, all) {
+  async function simulate(k0, all, i0 = 0) {
     if (S.sim) return;
     S.sim = { stop: false }; select(null); recenter(); refresh();
     const missing = STEPS.slice(0, k0).some((s, j) => !stepDone(j));
@@ -1139,12 +1158,13 @@ try {
       const ug = {}; (s.units || []).forEach((u, j) => ug[j] = S.nextG++);
       for (let i = 0; i < s.acts.length && !S.sim.stop; i++) {
         const a = s.acts[i];
+        const FAST = k === k0 && i < i0, slp = ms => FAST ? Promise.resolve() : sleep(ms), twp = (a1, b1, c1, ms) => tweenParts(a1, b1, c1, FAST ? 1 : ms);
         S.curAct = i; renderManualState();
         const ui = a.bench || a.install ? findUnit(s, i) : -1, ukey = k + ':' + ui;
         if (a.bench && ui >= 0 && !UST[ukey]) UST[ukey] = stageOff(s, ui);
         const p = actPos(k, i);
         if (p) focusAt(p, s.view, s.view === 'head' ? 190 : (a.bench && ui >= 0 ? 420 : 300));
-        await sleep(450);
+        await slp(450);
         // 零件飛進來
         if (a.parts.length) {
           const from = {}, to = {}, ids = a.parts.filter(id => MAIN[id]);
@@ -1157,7 +1177,7 @@ try {
             ensurePlaced(id, from[id], st ? ug[uidx] : g); setT(id, from[id]);
           });
           SND.play('pick'); refresh();
-          await tweenParts(ids, from, to, 900);
+          await twp(ids, from, to, 900);
           SND.play(SFX_OF[a.t] || 'place');
         }
         // 單元裝上去：從桌上 → 沿安裝方向的入口 → 定位
@@ -1166,16 +1186,37 @@ try {
           const top = Math.max(...ids.map(id => P[id].max.y)), entry = d.clone().multiplyScalar(d.y < -.5 ? Math.min(220, Math.max(60, top - 30)) : d.y > .5 ? 70 : 60);
           const a0 = {}, a1 = {}, a2 = {};
           ids.forEach(id => { a0[id] = S.t[id].clone(); a1[id] = entry.clone(); a2[id] = new THREE.Vector3(); });
-          if (d.y < -.5) { view('bottom', true); await sleep(500); }
+          if (d.y < -.5) { view('bottom', true); await slp(500); }
           SND.play('whoosh');
-          await tweenParts(ids, a0, a1, 800);
-          await tweenParts(ids, a1, a2, 900);
+          await twp(ids, a0, a1, 800);
+          await twp(ids, a1, a2, 900);
           ids.forEach(id => S.gid[id] = g);
           delete UST[ukey];
           SND.play(SFX_OF[a.t] || 'snap');
           if (d.y < -.5) view(s.view, true);
         } else if (!a.parts.length) SND.play(SFX_OF[a.t] || 'tap');
         if (a.t === 'flip') { view(s.view === 'bottom' ? 'bottom' : 'iso', true); }
+        // 拆洗／換藥：零件照順序拿出來、裝回去（move：d＝方向、dist＝距離、back＝回到裝好的位置、turn＝邊轉邊走）
+        if (a.move && a.move.length) {
+          for (const mv of a.move) {
+            const ids = mv.ids.filter(id => MAIN[id] && S.inScene.has(id));
+            if (!ids.length) continue;
+            const from = {}, to = {}, r0 = {};
+            ids.forEach(id => { from[id] = S.t[id].clone(); to[id] = mv.back ? new THREE.Vector3() : S.t[id].clone().addScaledVector(V3(mv.d), mv.dist); r0[id] = MAIN[id].rotation.y; });
+            if (!FAST) SND.play(mv.back ? 'snap' : 'detach');
+            const D = (mv.turn || 0) * Math.PI / 180, ms = FAST ? 1 : (mv.turn ? 1300 : 1000), t0 = performance.now();
+            await new Promise(res => {
+              const tick = () => {
+                const kk = Math.min(1, (performance.now() - t0) / ms), e = easeIO(kk);
+                ids.forEach(id => { S.t[id].lerpVectors(from[id], to[id], e); MAIN[id].userData.to = null; if (D) MAIN[id].rotation.y = r0[id] + D * e; });
+                if (kk < 1 && !(S.sim && S.sim.stop)) requestAnimationFrame(tick);
+                else { ids.forEach(id => { S.t[id].copy(to[id]); if (mv.back) MAIN[id].rotation.y = 0; }); res(); }
+              };
+              tick();
+            });
+            await slp(250);
+          }
+        }
         effect(a, actPos(k, i) || p);
         // 電線：單元還在桌上就等它裝上去再畫
         const wl = a.wires.filter(w => WIRE[w]);
@@ -1187,7 +1228,7 @@ try {
         if (a.install && S.sim.pend) { S.sim.pend.forEach(w => S.wiresOn.add(w)); syncWires(S.sim.pend, true); S.sim.pend = null; }
         S.actDone.add(k + ':' + i);
         refresh();
-        await sleep(a.parts.length || a.install ? 700 : 1100);
+        await slp(a.parts.length || a.install ? 700 : 1100);
       }
       S.curAct = -1;
       if (S.sim.stop) break;
