@@ -290,6 +290,69 @@
    }
   },
   {
+   "id": "CSPR",
+   "name": "接點彈片 ×2（電池盒彈片剪成）",
+   "kind": "buy",
+   "dirKey": null,
+   "dir": null,
+   "bbMin": [
+    -15.4,
+    159.5,
+    -1.0
+   ],
+   "bbMax": [
+    -12.75,
+    162.7,
+    1.0
+   ],
+   "blockers": [],
+   "adj": [
+    "CRING",
+    "CUP",
+    "HEAD",
+    "UMB"
+   ],
+   "travel": 0.0,
+   "bom": {
+    "spec": "鍍鎳鋼片：電池盒彈片剪成 2 mm 寬細條、彎成 L，前端捲一個小弧",
+    "size": "2 × 0.3 mm 細條，L 形（腳約 1 mm、臂約 2.5 mm）",
+    "qty": 2,
+    "buy": "【祥昌電子】電池盒彈片，選「3 號正負極」27×12 mm 平片（https://shopee.tw/product/27742636/7037534994，NT$3–4／片；賣場滿 NT$99 才出貨，和 Type-C 母座同一家）",
+    "note": "一腳 AB 膠貼在頭座 90° 接點座上（一片腳朝下、一片腳朝上，中間留空不會短路）；前端小弧頂住霧化頭的兩道接點環。管頂伸出來的 2 條漆包線（線 14）各焊一片。"
+   }
+  },
+  {
+   "id": "LSPR",
+   "name": "卡扣彈片（電池盒彈片剪成）",
+   "kind": "buy",
+   "dirKey": null,
+   "dir": null,
+   "bbMin": [
+    12.63,
+    159.5,
+    -1.0
+   ],
+   "bbMax": [
+    15.4,
+    161.45,
+    1.0
+   ],
+   "blockers": [],
+   "adj": [
+    "CRING",
+    "HEAD",
+    "UMB"
+   ],
+   "travel": 0.0,
+   "bom": {
+    "spec": "鍍鎳鋼片：電池盒彈片剪成 2 mm 寬細條、彎成 L，前端折一個 V 形凸點",
+    "size": "2 × 0.3 mm 細條，L 形＋V 形凸點",
+    "qty": 1,
+    "buy": "和接點彈片同一款（買 3 片：2 片接點、1 片卡扣）",
+    "note": "一腳 AB 膠貼在頭座 270° 卡扣座上；藥杯放下去時 V 形凸點卡進兩道接點環中間「喀」一聲，機器倒下藥杯也不會滑出來。"
+   }
+  },
+  {
    "id": "HEAD",
    "name": "頭座（含金環、接點座、卡扣座，一體印）",
    "kind": "print",
@@ -309,13 +372,15 @@
     177.45,
     18.46
    ],
-   "blockers": [],
+   "blockers": [
+    "CSPR",
+    "LSPR"
+   ],
    "adj": [
-    "CRING",
-    "CUP",
+    "CSPR",
     "HOOD",
-    "TUBE",
-    "UMB"
+    "LSPR",
+    "TUBE"
    ],
    "travel": 101.8,
    "bom": {
@@ -323,7 +388,7 @@
     "size": "36.9 × 36.9 × 24.2 mm",
     "qty": 1,
     "mat": "光固化 標準樹脂＋香檳金噴漆（套管內面不噴，要上膠）",
-    "note": "彈片用電池盒彈片剪成 2 mm 寬細條、彎成 L，黏在接點座、卡扣座上。"
+    "note": "接點座、卡扣座上要黏 3 片彈片（另外買，見「接點彈片」「卡扣彈片」）。"
    }
   },
   {
@@ -713,6 +778,7 @@
     "FIL",
     "HEAD",
     "HOOD",
+    "LSPR",
     "MAG_B",
     "MAG_F",
     "SHB_IN",
@@ -1275,8 +1341,8 @@
     "UMB"
    ],
    "adj": [
+    "CSPR",
     "FIL",
-    "HEAD",
     "LID",
     "ORING",
     "TUBE",
@@ -1434,10 +1500,11 @@
    "adj": [
     "BOTTLE",
     "CRING",
+    "CSPR",
     "CUP",
     "DROP",
-    "HEAD",
-    "LID"
+    "LID",
+    "LSPR"
    ],
    "travel": 99.0,
    "bom": {
@@ -1470,7 +1537,8 @@
    ],
    "blockers": [],
    "adj": [
-    "HEAD",
+    "CSPR",
+    "LSPR",
     "UMB"
    ],
    "travel": 95.1,
@@ -1710,7 +1778,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 202 mm²（需要 ≥ 3）"
+      "note": "接觸面積 199 mm²（需要 ≥ 3）"
      }
     },
     {
@@ -1754,7 +1822,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 38 mm²（需要 ≥ 3）"
+      "note": "接觸面積 23 mm²（需要 ≥ 3）"
      }
     },
     {
@@ -1808,7 +1876,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 523 mm²（需要 ≥ 50）"
+      "note": "接觸面積 544 mm²（需要 ≥ 50）"
      }
     },
     {
@@ -1835,9 +1903,11 @@
    ]
   },
   {
-   "title": "頭座（含金環，一體印）",
+   "title": "頭座（含金環，一體印）＋3 片彈片",
    "parts": [
-    "HEAD"
+    "HEAD",
+    "CSPR",
+    "LSPR"
    ],
    "view": "head",
    "units": [
@@ -1858,32 +1928,63 @@
      "t": "ab",
      "label": "AB 膠",
      "cat": "glue",
-     "text": "2 片接點彈片、1 片卡扣彈片（電池盒彈片剪 2 mm 寬、彎成 L）用 AB 膠黏在頭座裡的接點座（90°）、卡扣座（270°）上：座和頭座一體印，位置不會錯。",
+     "text": "2 片接點彈片（電池盒彈片剪 2 mm 寬、彎成 L、前端捲小弧）用鑷子放進頭座，一腳 AB 膠貼在 90° 接點座上：一片腳朝下、一片腳朝上，兩片中間留空（不能碰在一起，會短路）。前端小弧要剛好碰到藥杯的接點環高度。",
      "at": [
-      -16.0,
+      -15.2,
       161.0,
       0.0
      ],
      "parts": [
-      "HEAD"
+      "HEAD",
+      "CSPR"
      ],
      "wires": [],
-     "joint": null,
+     "joint": "J40",
      "bench": true,
      "install": false,
-     "move": []
+     "move": [],
+     "check": {
+      "ok": true,
+      "note": "接觸面積 7 mm²（需要 ≥ 1）"
+     }
+    },
+    {
+     "t": "ab",
+     "label": "AB 膠",
+     "cat": "glue",
+     "text": "卡扣彈片（同款剪 2 mm 寬、彎成 L、前端折一個 V 形凸點）一腳 AB 膠貼在 270° 卡扣座上，V 形凸點朝杯子。",
+     "at": [
+      15.2,
+      161.0,
+      -0.0
+     ],
+     "parts": [
+      "HEAD",
+      "LSPR"
+     ],
+     "wires": [],
+     "joint": "J41",
+     "bench": true,
+     "install": false,
+     "move": [],
+     "check": {
+      "ok": true,
+      "note": "接觸面積 4 mm²（需要 ≥ 1）"
+     }
     },
     {
      "t": "solder",
      "label": "焊接",
      "cat": "wire",
-     "text": "管頂伸出來的 2 條漆包線焊到 2 片接點彈片。",
+     "text": "管頂伸出來的 2 條漆包線（線 14），各焊到一片接點彈片的腳上（焊點在彈片上、不是在塑膠上）。",
      "at": [
       -15.0,
       160.0,
       0.0
      ],
-     "parts": [],
+     "parts": [
+      "CSPR"
+     ],
      "wires": [],
      "joint": null,
      "bench": true,
@@ -1908,7 +2009,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 449 mm²（需要 ≥ 100）"
+      "note": "接觸面積 446 mm²（需要 ≥ 100）"
      }
     }
    ]
@@ -1947,7 +2048,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 383 mm²（需要 ≥ 10）"
+      "note": "接觸面積 387 mm²（需要 ≥ 10）"
      }
     },
     {
@@ -2009,7 +2110,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 663 mm²（需要 ≥ 20）"
+      "note": "接觸面積 655 mm²（需要 ≥ 20）"
      }
     }
    ]
@@ -2064,7 +2165,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 780 mm²（需要 ≥ 100）"
+      "note": "接觸面積 781 mm²（需要 ≥ 100）"
      }
     },
     {
@@ -2089,7 +2190,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 73 mm²（需要 ≥ 60）"
+      "note": "接觸面積 79 mm²（需要 ≥ 60）"
      }
     },
     {
@@ -2416,7 +2517,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "接觸面積 21 mm²（需要 ≥ 15）"
+      "note": "接觸面積 20 mm²（需要 ≥ 15）"
      }
     },
     {
@@ -2515,7 +2616,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.00 mm；接觸 98 mm²"
+      "note": "最小間隙 0.00 mm；接觸 105 mm²"
      }
     },
     {
@@ -2562,7 +2663,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.00 mm；接觸 115 mm²"
+      "note": "最小間隙 0.00 mm；接觸 116 mm²"
      }
     },
     {
@@ -2585,7 +2686,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.01 mm；接觸 10 mm²"
+      "note": "最小間隙 0.00 mm；接觸 10 mm²"
      }
     },
     {
@@ -2608,7 +2709,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.01 mm；接觸 214 mm²"
+      "note": "最小間隙 0.00 mm；接觸 215 mm²"
      }
     },
     {
@@ -2677,7 +2778,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.00 mm；接觸 345 mm²"
+      "note": "最小間隙 0.00 mm；接觸 357 mm²"
      }
     },
     {
@@ -2698,7 +2799,7 @@
      "move": [],
      "check": {
       "ok": true,
-      "note": "最小間隙 0.02 mm；接觸 68 mm²"
+      "note": "最小間隙 0.02 mm；接觸 73 mm²"
      }
     }
    ]
@@ -4549,9 +4650,9 @@
    "act": "screw",
    "kind": "screw",
    "desc": "彈簧柱塞從管子裡面鎖進柱塞座的 M4 孔",
-   "contact": 66.0,
+   "contact": 62.0,
    "depth": 0.099,
-   "gap": 0.0,
+   "gap": 0.001,
    "note": "",
    "ok": true,
    "label": "鎖螺絲",
@@ -4564,11 +4665,11 @@
    "act": "uv",
    "kind": "glue",
    "desc": "燈絲嵌進管壁 270° 的槽（長 103 mm），UV 膠每 2 cm 點一下",
-   "contact": 202.1,
+   "contact": 198.8,
    "depth": 0.0,
-   "gap": 0.02,
+   "gap": 0.021,
    "need": 3,
-   "note": "接觸面積 202 mm²（需要 ≥ 3）",
+   "note": "接觸面積 199 mm²（需要 ≥ 3）",
    "ok": true,
    "label": "UV 膠",
    "cat": "glue"
@@ -4580,11 +4681,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "彈簧線固定座從管底推到 3 支腳頂住定位肋，腳端點 AB 膠",
-   "contact": 37.7,
+   "contact": 22.9,
    "depth": 0.0,
    "gap": 0.0,
    "need": 3,
-   "note": "接觸面積 38 mm²（需要 ≥ 3）",
+   "note": "接觸面積 23 mm²（需要 ≥ 3）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -4598,7 +4699,7 @@
    "desc": "彈簧線上端焊在固定座底下（4 芯），焊點 UV 膠封住防潮",
    "contact": 0.4,
    "depth": 0.0,
-   "gap": 0.075,
+   "gap": 0.057,
    "note": "",
    "ok": true,
    "label": "焊接",
@@ -4626,9 +4727,9 @@
    "act": "detent",
    "kind": "snap",
    "desc": "塑膠珠卡進導套 3 道定位槽：收合、伸 50、伸 100",
-   "contact": 0.6,
+   "contact": 2.9,
    "depth": 0.0,
-   "gap": 0.051,
+   "gap": 0.035,
    "note": "",
    "ok": true,
    "label": "段落卡位",
@@ -4641,11 +4742,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "止擋環上面的平台 ↔ 導套下端",
-   "contact": 523.0,
+   "contact": 544.4,
    "depth": 0.0,
    "gap": 0.0,
    "need": 50,
-   "note": "接觸面積 523 mm²（需要 ≥ 50）",
+   "note": "接觸面積 544 mm²（需要 ≥ 50）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -4657,11 +4758,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "頭座套管內面 ↔ 伸縮管頂端外圈（接點座對準 90° 導線槽）",
-   "contact": 449.0,
+   "contact": 446.0,
    "depth": 0.0,
    "gap": 0.02,
    "need": 100,
-   "note": "接觸面積 449 mm²（需要 ≥ 100）",
+   "note": "接觸面積 446 mm²（需要 ≥ 100）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -4673,11 +4774,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "電池背面 ↔ 導套電池托（VHB），底面坐在止擋環電池托",
-   "contact": 662.6,
+   "contact": 655.2,
    "depth": 0.0,
    "gap": 0.13,
    "need": 20,
-   "note": "接觸面積 663 mm²（需要 ≥ 20）",
+   "note": "接觸面積 655 mm²（需要 ≥ 20）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -4689,11 +4790,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "同左",
-   "contact": 666.6,
+   "contact": 671.4,
    "depth": 0.0,
    "gap": 0.13,
    "need": 20,
-   "note": "接觸面積 667 mm²（需要 ≥ 20）",
+   "note": "接觸面積 671 mm²（需要 ≥ 20）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -4705,11 +4806,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "ESP32 背面 ↔ 導套 ESP32 托（VHB）",
-   "contact": 383.2,
+   "contact": 386.9,
    "depth": 0.0,
    "gap": 0.0,
    "need": 10,
-   "note": "接觸面積 383 mm²（需要 ≥ 10）",
+   "note": "接觸面積 387 mm²（需要 ≥ 10）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -4721,11 +4822,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "MOS 模組背面 ↔ 導套開關板托（VHB）",
-   "contact": 561.2,
+   "contact": 555.7,
    "depth": 0.0,
    "gap": 0.0,
    "need": 10,
-   "note": "接觸面積 561 mm²（需要 ≥ 10）",
+   "note": "接觸面積 556 mm²（需要 ≥ 10）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -4737,11 +4838,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "S8050 小板背面 ↔ 導套開關板托（VHB）",
-   "contact": 266.4,
+   "contact": 262.9,
    "depth": 0.0,
-   "gap": 0.0,
+   "gap": 0.001,
    "need": 10,
-   "note": "接觸面積 266 mm²（需要 ≥ 10）",
+   "note": "接觸面積 263 mm²（需要 ≥ 10）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -4753,11 +4854,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "風扇底面 ↔ 底蓋（VHB），3 條定位肋圍住",
-   "contact": 73.2,
+   "contact": 78.8,
    "depth": 0.0,
    "gap": 0.2,
    "need": 60,
-   "note": "接觸面積 73 mm²（需要 ≥ 60）",
+   "note": "接觸面積 79 mm²（需要 ≥ 60）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -4769,11 +4870,11 @@
    "act": "tape",
    "kind": "glue",
    "desc": "驅動板底面 ↔ 底蓋（VHB），3 條定位肋圍住",
-   "contact": 577.8,
+   "contact": 574.0,
    "depth": 0.0,
    "gap": 0.2,
    "need": 60,
-   "note": "接觸面積 578 mm²（需要 ≥ 60）",
+   "note": "接觸面積 574 mm²（需要 ≥ 60）",
    "ok": true,
    "label": "VHB 雙面膠",
    "cat": "glue"
@@ -4785,10 +4886,10 @@
    "act": "place",
    "kind": "fit",
    "desc": "充放電模組放在兩根柱上，Type-C 朝外",
-   "contact": 18.7,
+   "contact": 18.8,
    "depth": 0.0,
-   "gap": 0.014,
-   "note": "最小間隙 0.01 mm；接觸 19 mm²",
+   "gap": 0.002,
+   "note": "最小間隙 0.00 mm；接觸 19 mm²",
    "ok": true,
    "label": "放上",
    "cat": "fit"
@@ -4800,11 +4901,11 @@
    "act": "ab",
    "kind": "glue",
    "desc": "配重鋼片 ↔ 底蓋",
-   "contact": 779.6,
+   "contact": 780.8,
    "depth": 0.0,
    "gap": 0.2,
    "need": 100,
-   "note": "接觸面積 780 mm²（需要 ≥ 100）",
+   "note": "接觸面積 781 mm²（需要 ≥ 100）",
    "ok": true,
    "label": "AB 膠",
    "cat": "glue"
@@ -4816,8 +4917,8 @@
    "act": "screw",
    "kind": "screw",
    "desc": "M2 螺絲從底蓋下面鎖進止擋環 3 支腳",
-   "contact": 57.1,
-   "depth": 0.146,
+   "contact": 65.3,
+   "depth": 0.149,
    "gap": 0.0,
    "note": "",
    "ok": true,
@@ -4911,11 +5012,11 @@
    "act": "stick",
    "kind": "glue",
    "desc": "銅箔背膠 ↔ LOGO 背面（LOGO 鏤空，只有筆畫之間貼得到；銅箔幾乎沒重量，夠）",
-   "contact": 20.8,
+   "contact": 19.9,
    "depth": 0.0,
-   "gap": 0.142,
+   "gap": 0.145,
    "need": 15,
-   "note": "接觸面積 21 mm²（需要 ≥ 15）",
+   "note": "接觸面積 20 mm²（需要 ≥ 15）",
    "ok": true,
    "label": "背膠",
    "cat": "glue"
@@ -4927,10 +5028,10 @@
    "act": "press",
    "kind": "fit",
    "desc": "硬燈絲下端坐在燈窗下緣托架上，貼外層殼內面，UV 膠點住",
-   "contact": 2.5,
+   "contact": 2.8,
    "depth": 0.0,
-   "gap": 0.002,
-   "note": "最小間隙 0.00 mm；接觸 2 mm²",
+   "gap": 0.066,
+   "note": "最小間隙 0.07 mm；接觸 3 mm²",
    "ok": true,
    "label": "壓入",
    "cat": "fit"
@@ -4942,10 +5043,10 @@
    "act": "place",
    "kind": "fit",
    "desc": "藥杯杯緣坐在管頂內緣（任何角度都可以）",
-   "contact": 123.2,
+   "contact": 126.6,
    "depth": 0.0,
    "gap": 0.0,
-   "note": "最小間隙 0.00 mm；接觸 123 mm²",
+   "note": "最小間隙 0.00 mm；接觸 127 mm²",
    "ok": true,
    "label": "放上",
    "cat": "fit"
@@ -4957,7 +5058,7 @@
    "act": "ab",
    "kind": "glue",
    "desc": "霧化頭上件 3 根立柱 ↔ 下件 3 支臂（霧化片先放好）",
-   "contact": 15.6,
+   "contact": 15.8,
    "depth": 0.0,
    "gap": 0.0,
    "need": 2,
@@ -4973,11 +5074,11 @@
    "act": "uv",
    "kind": "glue",
    "desc": "銅箔接點環繞在插頭環上，焊上霧化片線，UV 膠封",
-   "contact": 306.2,
+   "contact": 308.7,
    "depth": 0.0,
    "gap": 0.0,
    "need": 5,
-   "note": "接觸面積 306 mm²（需要 ≥ 5）",
+   "note": "接觸面積 309 mm²（需要 ≥ 5）",
    "ok": true,
    "label": "UV 膠",
    "cat": "glue"
@@ -4989,10 +5090,10 @@
    "act": "place",
    "kind": "fit",
    "desc": "霧化片連 TPU 薄圈放進霧化頭下件的座裡",
-   "contact": 98.5,
+   "contact": 104.7,
    "depth": 0.0,
    "gap": 0.0,
-   "note": "最小間隙 0.00 mm；接觸 98 mm²",
+   "note": "最小間隙 0.00 mm；接觸 105 mm²",
    "ok": true,
    "label": "放上",
    "cat": "fit"
@@ -5004,10 +5105,10 @@
    "act": "place",
    "kind": "fit",
    "desc": "O 形環套進漏斗蓋邊緣的槽",
-   "contact": 114.7,
+   "contact": 115.5,
    "depth": 0.0,
    "gap": 0.0,
-   "note": "最小間隙 0.00 mm；接觸 115 mm²",
+   "note": "最小間隙 0.00 mm；接觸 116 mm²",
    "ok": true,
    "label": "放上",
    "cat": "fit"
@@ -5019,10 +5120,10 @@
    "act": "press",
    "kind": "fit",
    "desc": "棉棒從下面推進短管（Ø7.4 夾 Ø8），頂到霧化片就停",
-   "contact": 10.2,
+   "contact": 10.1,
    "depth": 0.3,
-   "gap": 0.008,
-   "note": "最小間隙 0.01 mm；接觸 10 mm²",
+   "gap": 0.001,
+   "note": "最小間隙 0.00 mm；接觸 10 mm²",
    "ok": true,
    "label": "壓入",
    "cat": "fit"
@@ -5034,10 +5135,10 @@
    "act": "press",
    "kind": "fit",
    "desc": "霧化頭壓進杯身（O 形環密封）",
-   "contact": 214.3,
+   "contact": 215.1,
    "depth": 0.0,
-   "gap": 0.011,
-   "note": "最小間隙 0.01 mm；接觸 214 mm²",
+   "gap": 0.002,
+   "note": "最小間隙 0.00 mm；接觸 215 mm²",
    "ok": true,
    "label": "壓入",
    "cat": "fit"
@@ -5049,9 +5150,9 @@
    "act": "snap",
    "kind": "snap",
    "desc": "藥杯往下放：接點彈片碰到接點環、卡扣彈片「喀」卡進兩道環中間",
-   "contact": 4.1,
+   "contact": 0.0,
    "depth": 0.0,
-   "gap": 0.013,
+   "gap": 2.244,
    "note": "",
    "ok": true,
    "label": "卡扣",
@@ -5064,10 +5165,10 @@
    "act": "press",
    "kind": "fit",
    "desc": "滴流塞壓進藥瓶口，帽緣和瓶口齊平",
-   "contact": 344.9,
+   "contact": 356.6,
    "depth": 0.0,
    "gap": 0.0,
-   "note": "最小間隙 0.00 mm；接觸 345 mm²",
+   "note": "最小間隙 0.00 mm；接觸 357 mm²",
    "ok": true,
    "label": "壓入",
    "cat": "fit"
@@ -5079,10 +5180,10 @@
    "act": "twist",
    "kind": "fit",
    "desc": "藥瓶倒插轉進瓶座（18 牙，約 1 圈半），瓶口頂到 3 個止擋墊就鎖緊",
-   "contact": 68.2,
+   "contact": 72.9,
    "depth": 0.0,
    "gap": 0.02,
-   "note": "最小間隙 0.02 mm；接觸 68 mm²",
+   "note": "最小間隙 0.02 mm；接觸 73 mm²",
    "ok": true,
    "label": "轉入鎖住",
    "cat": "snap"
@@ -5101,6 +5202,38 @@
    "ok": true,
    "label": "卡扣",
    "cat": "snap"
+  },
+  {
+   "id": "J40",
+   "a": "CSPR",
+   "b": "HEAD",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "接點彈片的腳 ↔ 頭座 90° 接點座（AB 膠）",
+   "contact": 7.1,
+   "depth": 0.0,
+   "gap": 0.0,
+   "need": 1,
+   "note": "接觸面積 7 mm²（需要 ≥ 1）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
+  },
+  {
+   "id": "J41",
+   "a": "LSPR",
+   "b": "HEAD",
+   "act": "ab",
+   "kind": "glue",
+   "desc": "卡扣彈片的腳 ↔ 頭座 270° 卡扣座（AB 膠）",
+   "contact": 4.1,
+   "depth": 0.0,
+   "gap": 0.0,
+   "need": 1,
+   "note": "接觸面積 4 mm²（需要 ≥ 1）",
+   "ok": true,
+   "label": "AB 膠",
+   "cat": "glue"
   }
  ],
  "snap": {
@@ -5158,6 +5291,22 @@
    "step": 4,
    "what": "頭座（含金環、接點座、卡扣座，一體印）",
    "dir": "Z+",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 4,
+   "what": "接點彈片 ×2（電池盒彈片剪成）",
+   "dir": "鑷子／手放",
+   "inner": [],
+   "blocked": [],
+   "ok": true
+  },
+  {
+   "step": 4,
+   "what": "卡扣彈片（電池盒彈片剪成）",
+   "dir": "鑷子／手放",
    "inner": [],
    "blocked": [],
    "ok": true
@@ -5276,12 +5425,12 @@
   {
    "a": "STOP",
    "b": "SCREWS",
-   "depth": 0.146,
-   "area": 82.2,
+   "depth": 0.149,
+   "area": 78.9,
    "where": [
-    8.7,
-    -14.9,
-    8.1
+    -13.2,
+    9.8,
+    5.2
    ],
    "ok": true,
    "why": "自攻螺絲咬進腳的導孔（螺紋）"
@@ -5292,9 +5441,9 @@
    "depth": 0.099,
    "area": 14.7,
    "where": [
-    -9.9,
-    -1.4,
-    27.4
+    -8.5,
+    0.8,
+    27.8
    ],
    "ok": true,
    "why": "柱塞螺紋鎖在柱塞座裡"
@@ -5303,10 +5452,10 @@
    "a": "CUP",
    "b": "ORING",
    "depth": 0.225,
-   "area": 55.2,
+   "area": 60.0,
    "where": [
-    10.8,
-    -2.3,
+    -10.0,
+    -4.7,
     149.2
    ],
    "ok": true,
@@ -5315,11 +5464,11 @@
   {
    "a": "CUP",
    "b": "WICK",
-   "depth": 0.358,
-   "area": 20.1,
+   "depth": 0.36,
+   "area": 19.8,
    "where": [
-    -3.9,
-    -0.9,
+    -3.8,
+    -1.1,
     115.3
    ],
    "ok": true,
@@ -5329,11 +5478,11 @@
    "a": "LID",
    "b": "WICK",
    "depth": 0.3,
-   "area": 85.8,
+   "area": 80.7,
    "where": [
-    3.9,
-    -1.0,
-    147.6
+    -3.2,
+    -2.4,
+    147.4
    ],
    "ok": true,
    "why": "棉棒 Ø8 被短管 Ø7.4 壓縮"
@@ -5358,7 +5507,7 @@
    "title": "每個零件都有東西撐住",
    "ok": true,
    "lines": [
-    "從底蓋開始，沿著「有碰到」的零件一路找：40 / 40 個零件都找得到"
+    "從底蓋開始，沿著「有碰到」的零件一路找：42 / 42 個零件都找得到"
    ]
   },
   {
@@ -5728,10 +5877,10 @@
  "summary": {
   "support_bad": 0,
   "wire_end_bad": 0,
-  "joints_ok": 36,
-  "joints": 36,
-  "paths_ok": 16,
-  "paths": 16,
+  "joints_ok": 38,
+  "joints": 38,
+  "paths_ok": 18,
+  "paths": 18,
   "interf_bad": 0,
   "wires_ok": 15,
   "wires": 15
